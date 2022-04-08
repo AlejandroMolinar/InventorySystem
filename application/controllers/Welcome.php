@@ -20,6 +20,11 @@ class Welcome extends CI_Controller {
 	 */
 	public function index()
 	{
+		print 'hola';
 		$this->load->view('welcome_message');
+		$this->load->model('log_model');
+		$this->log_model->insertar(array(
+			'Descripcion'=>'prueba'
+		)); 	
 	}
 }
