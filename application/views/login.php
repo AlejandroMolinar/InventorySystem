@@ -6,7 +6,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!--Import materialize.css-->
     <link type="text/css" rel="stylesheet" href="../SystemInventory/public/css/materialize.min.css"  media="screen,projection"/>
-    <link type="text/css" rel="stylesheet" href="../SystemInventory/public\css\style.css"/>
+    <link type="text/css" rel="stylesheet" href="../SystemInventory/public/css/style.css"/>
     
 
     <!--Let browser know website is optimized for mobile-->
@@ -14,7 +14,7 @@
   </head>
   <body ng-app="mainModule" ng-controller="mainController">
        <!--JavaScript at end of body for optimized loading-->
-    <script type="text/javascript" src="./SystemInventory/public/js/materialize.min.js"></script>
+    <script type="text/javascript" src="../SystemInventory/public/js/materialize.min.js"></script>
 
     <div id="login-page" class="row" >
       <div class="col s12 z-depth-6 card-panel">
