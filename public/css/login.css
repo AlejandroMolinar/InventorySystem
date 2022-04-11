@@ -1,0 +1,65 @@
+body {
+	/*background:url(../../public/img/img1.jpg);*/
+	/*background-repeat:no-repeat;
+	background-attachment:fixed;
+	background-position: center;
+	padding: 2em;
+	padding-top: 8em;
+	display: flex;
+	justify-content: center;
+	background-size: cover;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	-ms-background-size: cover;*/
+
+	/*align-items: flex-end;*/ /* Alieacion a Bajo */
+	/* align-items: center; /* Alineacion vertical */
+}
+.container{
+	height: inherit;
+	display: flex;
+	align-items: center;
+}
+
+/* row login */
+.row{
+	z-index: 9999;
+	position: relative;
+}
+
+/* titulos */
+.title{
+	/*text-shadow: 2px 2px 4px rgba(63,251,213);*/
+	/*background: rgb(63,251,213);*/
+	/*background: radial-gradient(circle, rgba(63,251,213,0.34077380952380953) 0%, rgba(99,70,252,0.27354691876750703) 100%);*/
+}
+
+/*
+ * Estilos Css Personalizados para el Formulario de Logueo.
+ */
+div.card{
+	opacity: 0.9;
+	/*background: rgb(34,0,29);*/
+	/*background: linear-gradient(180deg, rgba(34,0,29,1) 0%, rgba(99,169,184,0.4500175070028011) 0%, rgba(0,255,194,0.2455357142857143) 100%);*/
+}
+h5.hide-on-small-only, .hide-on-med-and-up, .teal-person{
+	text-shadow: 2px 2px 4px #000;
+}
+.teal-person{
+	background: rgb(34,0,29);
+	background: radial-gradient(circle, rgba(34,0,29,1) 0%, rgba(99,169,184,0.4500175070028011) 0%, rgba(0,255,194,0.2455357142857143) 100%);
+}
+
+/* Section */
+.section{
+	z-index: 9999;
+	position: relative;
+}
+
+/* slides */
+.slides{
+	background-color: #9e9e9e00 !important;
+}
+
+/* Fin Css Logueo */
