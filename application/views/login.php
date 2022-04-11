@@ -15,52 +15,61 @@
   <body ng-app="mainModule" ng-controller="mainController">
        <!--JavaScript at end of body for optimized loading-->
     <script type="text/javascript" src="../SystemInventory/public/js/materialize.min.js"></script>
-
-    <div id="login-page" class="row" >
-      <div class="col s12 z-depth-6 card-panel">
-        <form class="login-form" action="" method="post">
-          <div class="row"></div>
-          <div class="row">
-            <div class="input-field col s12">
-              <i class="material-icons prefix">mail_outline</i>
-              <input class="validate" id="email" type="email" />
-              <label for="email" data-error="wrong" data-success="right"
-                >Email</label
-              >
+    
+    <div class="login-wrap">
+      <div class="login-html">
+        <input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Sign In</label>
+        <input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab">Sign Up</label>
+        <div class="login-form">
+          <div class="sign-in-htm">
+            <div class="group">
+              <label for="user" class="label">Username</label>
+              <input id="user" type="text" class="input">
+            </div>
+            <div class="group">
+              <label for="pass" class="label">Password</label>
+              <input id="pass" type="password" class="input" data-type="password">
+            </div>
+            <div class="group">
+              <input id="check" type="checkbox" class="check" checked>
+              <label for="check"><span class="icon"></span> Keep me Signed in</label>
+            </div>
+            <div class="group">
+              <input type="submit" class="button" value="Sign In">
+            </div>
+            <div class="hr"></div>
+            <div class="foot-lnk">
+              <a href="#forgot">Forgot Password?</a>
             </div>
           </div>
-          <div class="row">
-            <div class="input-field col s12">
-              <i class="material-icons prefix">lock_outline</i>
-              <input id="password" type="password" />
-              <label for="password">Password</label>
+          <div class="sign-up-htm">
+            <div class="group">
+              <label for="user" class="label">Username</label>
+              <input id="user" type="text" class="input">
+            </div>
+            <div class="group">
+              <label for="pass" class="label">Password</label>
+              <input id="pass" type="password" class="input" data-type="password">
+            </div>
+            <div class="group">
+              <label for="pass" class="label">Repeat Password</label>
+              <input id="pass" type="password" class="input" data-type="password">
+            </div>
+            <div class="group">
+              <label for="pass" class="label">Email Address</label>
+              <input id="pass" type="text" class="input">
+            </div>
+            <div class="group">
+              <input type="submit" class="button" value="Sign Up">
+            </div>
+            <div class="hr"></div>
+            <div class="foot-lnk">
+              <label for="tab-1">Already Member?</a>
             </div>
           </div>
-          <div class="row">
-            <div class="input-field col s12 m12 l12 login-text">
-              <input type="checkbox" id="remember-me" />
-              <label for="remember-me">Remember me</label>
-            </div>
-          </div>
-          <div class="row">
-            <div class="input-field col s12">
-              <a href="#" class="btn waves-effect waves-light col s12">Login</a>
-            </div>
-          </div>
-          <div class="row">
-            <div class="input-field col s6 m6 l6">
-              <p class="margin medium-small"><a href="#">Register Now!</a></p>
-            </div>
-            <div class="input-field col s6 m6 l6">
-              <p class="margin right-align medium-small">
-                <a href="#">Forgot password?</a>
-              </p>
-            </div>
-          </div>
-        </form>
+        </div>
       </div>
     </div>
-
     
   </body>
 </html>
