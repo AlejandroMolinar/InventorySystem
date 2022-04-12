@@ -74,12 +74,12 @@ $active_group = 'default';
 $query_builder = TRUE;
 
 $db['default'] = array(
-	'dsn'	=> 'pgsql:host-localhost;port=5432;dbname=Inventory_System',
+	//'dsn'	=> 'pgsql:host-localhost;port=5432;dbname=Inventory_System',
 	'hostname' => 'localhost',
 	'username' => 'postgres',
 	'password' => 'postgres',
-	'database' => 'Inventory_System',
-	'dbdriver' => 'pdo',
+	'database' => 'inventory_system',
+	'dbdriver' => 'postgre',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
 	'db_debug' => (ENVIRONMENT !== 'production'),
