@@ -15,8 +15,8 @@
     <!--Import Google Icon Font-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!--Import materialize.css-->
-    <link type="text/css" rel="stylesheet" href="../SystemInventory/public/materialize/css/materialize.min.css"  media="screen,projection"/>
-    <link type="text/css" rel="stylesheet" href="../SystemInventory/public/css/style.css"/>
+    <link rel="stylesheet" href="../SystemInventory/public/materialize/css/materialize.min.css"  media="screen,projection"/>
+    <link rel="stylesheet" href="../SystemInventory/public/css/style.css"/>
     
 
     <!--Let browser know website is optimized for mobile-->
@@ -27,7 +27,7 @@
     <script type="text/javascript" src="../SystemInventory/public/materialize/js/materialize.min.js"></script>
     
     <div class="login-wrap">
-      <div class="login-html">
+      <div class="login-html" style="height: 142%;">
         <input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Sign In</label>
         <input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab">Sign Up</label>
         <form class="login-form" action="" method="post">
