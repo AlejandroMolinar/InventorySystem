@@ -24,6 +24,8 @@ class Welcome extends CI_Controller {
 		//$this->load->model('BBDD_SI.php');
 		
 		//$this->BBDD_SI->insertar(array{});
+
+		//$this->BBDD_SI->getAll();
 	
 	}
 }
