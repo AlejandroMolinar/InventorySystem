@@ -1,11 +1,21 @@
+<?php
+/* ===========================================================================================
+    Archivo: Login.php
+    Descripcion: vista principal de Login.
+    Fecha de Creacion: 12-04-2022
+    Por: Alejandro Molinar.
+ * ===========================================================================================
+*/
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <title>Login</title>
+    <meta charset="UTF-8">
     <!--Import Google Icon Font-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!--Import materialize.css-->
-    <link type="text/css" rel="stylesheet" href="../SystemInventory/public/css/materialize.min.css"  media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href="../SystemInventory/public/materialize/css/materialize.min.css"  media="screen,projection"/>
     <link type="text/css" rel="stylesheet" href="../SystemInventory/public/css/style.css"/>
     
 
@@ -14,7 +24,7 @@
   </head>
   <body ng-app="mainModule" ng-controller="mainController">
        <!--JavaScript at end of body for optimized loading-->
-    <script type="text/javascript" src="../SystemInventory/public/js/materialize.min.js"></script>
+    <script type="text/javascript" src="../SystemInventory/public/materialize/js/materialize.min.js"></script>
     
     <div class="login-wrap">
       <div class="login-html">
@@ -23,16 +33,16 @@
         <form class="login-form" action="" method="post">
           <div class="sign-in-htm">
             <div class="group">
-              <label for="user" class="label">Username</label>
-              <input id="user" type="text" class="input">
+              <label for="lab_ema" class="label">Correo</label>
+              <input id="txt_ema" name="txt_ema" type="text" class="input">
             </div>
             <div class="group">
-              <label for="pass" class="label">Password</label>
-              <input id="pass" type="password" class="input" data-type="password">
+              <label for="lab_pas" class="label">Contraseña</label>
+              <input id="txt_pas" name="txt_pas" type="password" class="input" data-type="password">
             </div>
             <div class="group">
-              <input id="check" type="checkbox" class="check" checked>
-              <label for="check"><span class="icon"></span> Keep me Signed in</label>
+              <input id="chk_kpm" name="chk_kpm" type="checkbox" class="check" checked>
+              <label for="lab_kpm"><span class="icon"></span>Recordar Usuario</label>
             </div>
             <div class="group">
               <input type="submit" class="button" value="Sign In">
@@ -44,20 +54,28 @@
           </div>
           <div class="sign-up-htm">
             <div class="group">
-              <label for="user" class="label">Username</label>
-              <input id="user" type="text" class="input">
+              <label for="lab_nom" class="label">Nombres</label>
+              <input id="txt_nom" name="txt_nom" type="text" class="input">
             </div>
             <div class="group">
-              <label for="pass" class="label">Password</label>
-              <input id="pass" type="password" class="input" data-type="password">
+              <label for="lab_ape" class="label">Apellidos</label>
+              <input id="txt_ape" name="txt_ape" type="text" class="input">
             </div>
             <div class="group">
-              <label for="pass" class="label">Repeat Password</label>
-              <input id="pass" type="password" class="input" data-type="password">
+              <label for="ced" class="label">Cedula</label>
+              <input id="txt_user" name="txt_user" type="text" class="input">
             </div>
             <div class="group">
-              <label for="pass" class="label">Email Address</label>
-              <input id="pass" type="text" class="input">
+              <label for="lab_ema" class="label">Correo</label>
+              <input id="txt_ema" name="txt_ema" type="Email" class="input">
+            </div>
+            <div class="group">
+              <label for="lab_pas" class="label">Contraseña</label>
+              <input id="txt_pas"  name="txt_pas" type="password" class="input" data-type="password">
+            </div>
+            <div class="group">
+              <label for="lab_rep_pas" class="label">Repetir Contraseña</label>
+              <input id="txt_rep_pas" name="txt_rep_pas" type="password" class="input" data-type="password">
             </div>
             <div class="group">
               <input type="submit" class="button" value="Sign Up">
@@ -67,7 +85,7 @@
               <label for="tab-1">Already Member?</a>
             </div>
           </div>
-        </div>
+        </form>
       </div>
     </div>
     
