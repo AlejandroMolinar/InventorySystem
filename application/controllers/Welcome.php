@@ -21,5 +21,9 @@ class Welcome extends CI_Controller {
 	public function index()
 	{
 		$this->load->view('login.php');
+		//$this->load->model('BBDD_SI.php');
+		
+		//$this->BBDD_SI->insertar(array{});
+	
 	}
 }

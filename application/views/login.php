@@ -27,7 +27,7 @@
     <script type="text/javascript" src="../SystemInventory/public/materialize/js/materialize.min.js"></script>
     
     <div class="login-wrap">
-      <div class="login-html" style="height: 142%;">
+      <div class="login-html" style="height: 160%;">
         <input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Sign In</label>
         <input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab">Sign Up</label>
         <form class="login-form" action="" method="post">
@@ -45,11 +45,11 @@
               <label for="lab_kpm"><span class="icon"></span>Recordar Usuario</label>
             </div>
             <div class="group">
-              <input type="submit" class="button" value="Sign In">
+              <input type="submit" class="button" value="Ingresar">
             </div>
             <div class="hr"></div>
             <div class="foot-lnk">
-              <a href="#forgot">Forgot Password?</a>
+              <a href="#forgot">Olvido la contraseña?</a>
             </div>
           </div>
           <div class="sign-up-htm">
@@ -62,8 +62,12 @@
               <input id="txt_ape" name="txt_ape" type="text" class="input">
             </div>
             <div class="group">
-              <label for="ced" class="label">Cedula</label>
-              <input id="txt_user" name="txt_user" type="text" class="input">
+              <label for="lab_ced" class="label">Cedula</label>
+              <input id="txt_ced" name="txt_ced" type="text" class="input">
+            </div>
+            <div class="group">
+              <label for="lab_are" class="label">Area</label>
+              <input id="txt_are" name="txt_are" type="text" class="input">
             </div>
             <div class="group">
               <label for="lab_ema" class="label">Correo</label>
