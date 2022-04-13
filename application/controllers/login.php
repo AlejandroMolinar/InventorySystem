@@ -1,31 +1,46 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Login extends CI_Controller {
+class Login extends CI_controller
+{
+    public function __construct()
+    {
+        parent::__construct();
+        $this->load->helper('url');
+        $this->load->helper('form');
+        $this->load->library('form_validation');
+    }
+    public function index()
+    {
+        $this->form_validation->set_rules('nombre' ,'Nombre', 'required');
+        $this->form_validation->set_rules('password' ,'Password', 'required|callback_verifica');
+        if($this->form_validation->run() == false)
+        {
+            $data['main_title'] = 'Biblioteca';
+            $data['title2'] = 'Registro';
 
-	/**
-	 * Index Page for this controller.
-	 *
-	 * Maps to the following URL
-	 * 		http://example.com/index.php/welcome
-	 *	- or -
-	 * 		http://example.com/index.php/welcome/index
-	 *	- or -
-	 * Since this controller is set as the default controller in
-	 * config/routes.php, it's displayed at http://example.com/
-	 *
-	 * So any other public methods not prefixed with an underscore will
-	 * map to /index.php/welcome/<method_name>
-	 * @see https://codeigniter.com/userguide3/general/urls.html
-	 */
-	public function index()
-	{
-		$this->load->view('login.php');
-		//$this->load->model('BBDD_SI.php');
-		
-		//$this->BBDD_SI->insertar(array{});
+            $this->load->view('templates/header', $data);
+            $this->load->view('login');
+            $this->load->view('templates/footer');
+        }
+        else
+        {
+            redirect('editoriales/index');
+        }
+    }
+    public function verifica()
+    {
+        $nombre = $this->input->post('nombre');
+        $password = $this->input->post('password');
 
-		//$this->BBDD_SI->getAll();
-	
-	}
+        if($this->login_model->login($nombre, $password))
+        {
+            redirect('editoriales/index');
+        }
+        else
+        {
+            $this->form_validation->set_message('verifica','Contraseña incorrecta');
+            redirect('login');
+        }
+    }
 }
