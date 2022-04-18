@@ -41,6 +41,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 */
 $autoload['packages'] = array();
 
+
 /*
 | -------------------------------------------------------------------
 |  Auto-load Libraries
@@ -89,7 +90,7 @@ $autoload['drivers'] = array();
 |
 |	$autoload['helper'] = array('url', 'file');
 */
-$autoload['helper'] = array();
+$autoload['helper'] = array('login');
 
 /*
 | -------------------------------------------------------------------
