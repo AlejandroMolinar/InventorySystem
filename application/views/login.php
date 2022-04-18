@@ -45,6 +45,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
               <label for="lab_pas" class="label">Contraseña</label>
               <input id="txt_pas_l" name="txt_pas_l" type="password" class="input" data-type="password">
             </div>
+            <br>
             <div class="group">
               <input id="chk_kpm" name="chk_kpm" type="checkbox" class="check" checked>
               <label for="lab_kpm"><span class="icon"></span>Recordar Usuario</label>
