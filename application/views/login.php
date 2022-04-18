@@ -35,15 +35,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       <div class="login-html">
         <input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Sign In</label>
         <input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab">Sign Up</label>
-        <form class="login-form" action="logAdd" method="post">
+        <form class="login-form" action="logadd" method="post">
           <div class="sign-in-htm">
             <div class="group">
               <label for="lab_ema" class="label">Correo</label>
-              <input id="txt_ema" name="txt_ema" type="text" class="input">
+              <input id="txt_ema_l" name="txt_ema_l" type="text" class="input">
             </div>
             <div class="group">
               <label for="lab_pas" class="label">Contraseña</label>
-              <input id="txt_pas" name="txt_pas" type="password" class="input" data-type="password">
+              <input id="txt_pas_l" name="txt_pas_l" type="password" class="input" data-type="password">
             </div>
             <div class="group">
               <input id="chk_kpm" name="chk_kpm" type="checkbox" class="check" checked>
@@ -76,11 +76,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             </div>
             <div class="group">
               <label for="lab_ema" class="label">Correo</label>
-              <input id="txt_ema" name="txt_ema" type="Email" class="input">
+              <input id="txt_ema_r" name="txt_ema_r" type="Email" class="input">
             </div>
             <div class="group">
               <label for="lab_pas" class="label">Contraseña</label>
-              <input id="txt_pas"  name="txt_pas" type="password" class="input" data-type="password">
+              <input id="txt_pas_r"  name="txt_pas_r" type="password" class="input" data-type="password">
             </div>
             <div class="group">
               <label for="lab_rep_pas" class="label">Repetir Contraseña</label>

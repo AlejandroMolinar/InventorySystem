@@ -6,3 +6,8 @@ function is_logged_in() {
     $user = $CI->session->userdata('user_data');
     if (!isset($user)) { return false; } else { return true; }
 }
+
+function main_menu() {
+    return array('urlBase' => base_url());
+}
+
