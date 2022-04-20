@@ -17,6 +17,8 @@ class Login extends CI_Controller {
 		//$this->BBDD_SI->insertar(array{});
 		//$this->BBDD_SI->getAll();
 		
+		$query = $this->db->get('mytable'); 
+
 		// SignIn
 		$email_si = $this->input->post('txt_ema_l');
 		$password_si = $this->input->post('txt_pas_l');
