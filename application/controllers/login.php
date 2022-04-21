@@ -13,11 +13,6 @@ class Login extends CI_Controller {
 	
 	}
 	public function create(){
-		//$this->load->model('BBDD_SI.php');
-		//$this->BBDD_SI->insertar(array{});
-		//$this->BBDD_SI->getAll();
-		
-		$query = $this->db->get('mytable'); 
 
 		// SignIn
 		$email_si = $this->input->post('txt_ema_l');
