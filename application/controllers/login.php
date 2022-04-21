@@ -5,12 +5,11 @@ class Login extends CI_Controller {
 	public function __construct(){
 		parent::__construct();
 		$this->load->database();
+		$this->load->model('Login_model');
 	}
 	public function index(){
 		$data['url']= main_menu();
 		$this->load->view('login', $data);
-		
-	
 	}
 	public function create(){
 
@@ -28,12 +27,33 @@ class Login extends CI_Controller {
 		$email_sp = $this->input->post('txt_ema_r');
 		$password_sp = $this->input->post('txt_pas_r');
 		$rep_password_sp = $this->input->post('txt_rep_pas');
-		
+
 		if($email_si!=NULL && $password_si!=NULL){
-			var_dump($email_si .'/ '. $password_si);
+			$data_si= array(
+				'email_trb' => $email_si,
+				'password_trb' => $password_si
+			);
+			var_dump($data_si);
+			// $this->Login_model->read($data_si);
+
 		}
 		else if($email_sp!=NULL && $password_sp!=NULL && $rep_password_sp!=NULL){
-			var_dump($email_sp .'/ '. $password_sp .'/ '. $rep_password_sp);
+			
+			if($password_sp==$rep_password_sp){
+				$data_sp= array(
+					'email_trb' => $email_sp,
+					'nombre_trb' => $nombre_sp,
+					'apellido_trb' => $apellido_sp,
+					'cedula_trb' => $cedula_sp,
+					'password_trb' => $password_sp,
+					'area_trb' => $area_sp
+				);
+				var_dump($data_sp);
+				// $this->Login_model->create($data_sp);
+			}
+			
+		}else{
+			redirect('','index');
 		}
 	}
 

@@ -32,17 +32,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     
     <div class="login-wrap">
       <div class="login-html">
-        <input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Sign In</label>
-        <input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab">Sign Up</label>
-        <form class="login-form" action="logadd" method="post">
+        <input id="tab-1" type="radio" name="tab" class="sign-in" checked ><label for="tab-1" class="tab">Sign In</label>
+        <input id="tab-2" type="radio" name="tab" class="sign-up" onclick="javascript:form_data.reset();">
+        <label for="tab-2" class="tab">Sign Up</label>
+        <form id="form_data" class="login-form" action="logadd" method="post">
           <div class="sign-in-htm">
             <div class="group">
               <label for="lab_ema" class="label">Correo</label>
-              <input id="txt_ema_l" name="txt_ema_l" type="text" class="input">
+              <input id="txt_ema_l" name="txt_ema_l" type="text" class="input" onfocus="javascript:select();" value="">
             </div>
             <div class="group">
               <label for="lab_pas" class="label">Contraseña</label>
-              <input id="txt_pas_l" name="txt_pas_l" type="password" class="input" data-type="password">
+              <input id="txt_pas_l" name="txt_pas_l" type="password" class="input" 
+              data-type="password" onfocus="javascript:select();" value="">
             </div>
             <br>
             <div class="group">
@@ -60,31 +62,31 @@ defined('BASEPATH') OR exit('No direct script access allowed');
           <div class="sign-up-htm">
             <div class="group">
               <label for="lab_nom" class="label">Nombres</label>
-              <input id="txt_nom" name="txt_nom" type="text" class="input">
+              <input id="txt_nom" name="txt_nom" type="text" class="input" onfocus="javascript:select();">
             </div>
             <div class="group">
               <label for="lab_ape" class="label">Apellidos</label>
-              <input id="txt_ape" name="txt_ape" type="text" class="input">
+              <input id="txt_ape" name="txt_ape" type="text" class="input" onfocus="javascript:select();">
             </div>
             <div class="group">
               <label for="lab_ced" class="label">Cedula</label>
-              <input id="txt_ced" name="txt_ced" type="text" class="input">
+              <input id="txt_ced" name="txt_ced" type="text" class="input" onfocus="javascript:select();">
             </div>
             <div class="group">
               <label for="lab_are" class="label">Area</label>
-              <input id="txt_are" name="txt_are" type="text" class="input">
+              <input id="txt_are" name="txt_are" type="text" class="input" onfocus="javascript:select();">
             </div>
             <div class="group">
               <label for="lab_ema" class="label">Correo</label>
-              <input id="txt_ema_r" name="txt_ema_r" type="Email" class="input">
+              <input id="txt_ema_r" name="txt_ema_r" type="Email" class="input" onfocus="javascript:select();">
             </div>
             <div class="group">
               <label for="lab_pas" class="label">Contraseña</label>
-              <input id="txt_pas_r"  name="txt_pas_r" type="password" class="input" data-type="password">
+              <input id="txt_pas_r"  name="txt_pas_r" type="password" class="input" data-type="password" onfocus="javascript:select();">
             </div>
             <div class="group">
               <label for="lab_rep_pas" class="label">Repetir Contraseña</label>
-              <input id="txt_rep_pas" name="txt_rep_pas" type="password" class="input" data-type="password">
+              <input id="txt_rep_pas" name="txt_rep_pas" type="password" class="input" data-type="password" onfocus="javascript:select();">
             </div>
             <div class="group">
               <input type="submit" class="button" value="Ingresar">
