@@ -86,7 +86,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             </div>
             <div class="group">
               <label for="lab_rep_pas" class="label">Repetir Contraseña</label>
-              <input id="txt_rep_pas" name="txt_rep_pas" type="password" class="input" data-type="password" onfocus="javascript:select();">
+              <input id="txt_rep_pas" name="txt_rep_pas" type="password" class="input" data-type="password" 
+                onfocus="javascript:select();" value="javascript: if(document.getElementById('txt_rep_pas').value==)">
             </div>
             <div class="group">
               <input type="submit" class="button" value="Ingresar">

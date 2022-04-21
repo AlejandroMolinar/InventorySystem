@@ -17,7 +17,6 @@ class Login extends CI_Controller {
 		$email_si = $this->input->post('txt_ema_l');
 		$password_si = $this->input->post('txt_pas_l');
 		$recordar = $this->input->post('chk_kpm');
-
 		
 		// SignUp
 		$nombre_sp = $this->input->post('txt_nom');
@@ -28,12 +27,12 @@ class Login extends CI_Controller {
 		$password_sp = $this->input->post('txt_pas_r');
 		$rep_password_sp = $this->input->post('txt_rep_pas');
 
+		// if para las tabs
 		if($email_si!=NULL && $password_si!=NULL){
 			$data_si= array(
 				'email_trb' => $email_si,
 				'password_trb' => $password_si
 			);
-			var_dump($data_si);
 			// $this->Login_model->read($data_si);
 
 		}
@@ -48,8 +47,9 @@ class Login extends CI_Controller {
 					'password_trb' => $password_sp,
 					'area_trb' => $area_sp
 				);
-				var_dump($data_sp);
-				// $this->Login_model->create($data_sp);
+				$this->Login_model->create($data_sp);
+			}else{
+				$this->load->view('login');
 			}
 			
 		}else{
