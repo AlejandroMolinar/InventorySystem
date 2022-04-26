@@ -8,10 +8,16 @@ class Login_model extends CI_model{
     }
 
     public function reed($data_si){
-
+        if(!$this->db->insert('trabajador', $data_si)){
+            return FALSE;
+        }
+        return TRUE;
     }
 
     public function create($data_sp){
-        $this->db->insert('mytable', $data_sp);
+        if(!$this->db->insert('trabajador', $data_sp)){
+            return FALSE;
+        }
+        return TRUE;
     }
 }

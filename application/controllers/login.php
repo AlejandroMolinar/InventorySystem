@@ -33,7 +33,14 @@ class Login extends CI_Controller {
 				'email_trb' => $email_si,
 				'password_trb' => $password_si
 			);
-			// $this->Login_model->read($data_si);
+			
+			if(!$this->Login_model->read($data_si)){
+				$data['msg']="Ocurrrio un error al enviar los datos";
+				$this->load->view('login', $data);
+			}
+
+			$data['msg']="Se registro correctamente el Usuario";
+			$this->load->view('login', $data);
 
 		}
 		else if($email_sp!=NULL && $password_sp!=NULL && $rep_password_sp!=NULL){
@@ -47,7 +54,15 @@ class Login extends CI_Controller {
 					'password_trb' => $password_sp,
 					'area_trb' => $area_sp
 				);
-				$this->Login_model->create($data_sp);
+				
+				if(!$this->Login_model->create($data_sp)){
+					$data['msg']="Ocurrrio un error al enviar los datos";
+					$this->load->view('login', $data);
+				}
+
+				$data['msg']="Se registro correctamente el Usuario";
+				$this->load->view('login', $data);
+
 			}else{
 				$this->load->view('login');
 			}

@@ -31,6 +31,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <script type="text/javascript" src="../SystemInventory/public/materialize/js/materialize.min.js"></script>
     
     <div class="login-wrap">
+      <div class="foot-lnk">
+        <label class="msgtxt"><?= isset($msg) ? $msg : '' ?></label>
+      </div>
       <div class="login-html">
         <input id="tab-1" type="radio" name="tab" class="sign-in" checked ><label for="tab-1" class="tab">Sign In</label>
         <input id="tab-2" type="radio" name="tab" class="sign-up" onclick="javascript:form_data.reset();">
@@ -87,7 +90,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <div class="group">
               <label for="lab_rep_pas" class="label">Repetir Contraseña</label>
               <input id="txt_rep_pas" name="txt_rep_pas" type="password" class="input" data-type="password" 
-                onfocus="javascript:select();" value="javascript: if(document.getElementById('txt_rep_pas').value==)">
+                onfocus="javascript:select();">
             </div>
             <div class="group">
               <input type="submit" class="button" value="Ingresar">
@@ -100,6 +103,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         </form>
       </div>
     </div>
+
     
   </body>
 </html>
