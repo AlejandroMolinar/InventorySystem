@@ -5,7 +5,10 @@ class Login extends CI_Controller {
 	public function __construct(){
 		parent::__construct();
 		$this->load->database();
+		$this->load->helper(array('auth/login', 'auth/register'));
 		$this->load->model('Login_model');
+		
+
 	}
 	public function index(){
 		$data['url']= main_menu();
@@ -27,7 +30,7 @@ class Login extends CI_Controller {
 		$password_sp = $this->input->post('txt_pas_r');
 		$rep_password_sp = $this->input->post('txt_rep_pas');
 
-		// if para las tabs
+		// Login
 		if($email_si!=NULL && $password_si!=NULL){
 			$data_si= array(
 				'email_trb' => $email_si,
@@ -43,9 +46,15 @@ class Login extends CI_Controller {
 			$this->load->view('login', $data);
 
 		}
+		
+		//Registro
 		else if($email_sp!=NULL && $password_sp!=NULL && $rep_password_sp!=NULL){
-			
-			if($password_sp==$rep_password_sp){
+	
+					
+			if ($this->form_validation->run() == FALSE){
+				$this->load->view('login');
+			}
+			else{
 				$data_sp= array(
 					'email_trb' => $email_sp,
 					'nombre_trb' => $nombre_sp,
@@ -62,13 +71,13 @@ class Login extends CI_Controller {
 
 				$data['msg']="Se registro correctamente el Usuario";
 				$this->load->view('login', $data);
-
-			}else{
-				$this->load->view('login');
+	
 			}
+
 			
 		}else{
-			redirect('','index');
+			$data['msg']="Campos de Textos Vacios";
+			$this->load->view('login', $data);
 		}
 	}
 
