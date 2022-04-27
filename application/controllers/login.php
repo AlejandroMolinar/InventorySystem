@@ -35,16 +35,25 @@ class Login extends CI_Controller {
 			
 			$config= login_rules();
 			$this->form_validation->set_rules($config);
+			$this->form_validation->set_error_delimiters('', '');
 			
 			if ($this->form_validation->run() == FALSE){
-				$this->load->view('login');
+				$error= array(
+					'email' => form_error('txt_ema_r'),
+					'password' => form_error('txt_pas_r')
+				);
+				echo json_encode($error);
+				$this->output->set_status_header(400);
 			}
 			else{
-				$data_si= array(
-					'email_trb' => $email_si,
-					'password_trb' => $password_si
-				);
-				$this->Login_model->read($data_si);
+				$error="Ingresado";
+				echo json_encode($error);
+
+				// $data_si= array(
+				// 	'email_trb' => $email_si,
+				// 	'password_trb' => $password_si
+				// );
+				// $this->Login_model->read($data_si);
 			
 			}
 		}
@@ -80,8 +89,9 @@ class Login extends CI_Controller {
 
 			
 		}else{
-			$data['msg']="Campos de Textos Vacios";
-			$this->load->view('login', $data);
+			$error="Campos de Textos Vacios";
+			$this->output->set_status_header(400);
+			echo json_encode($error);
 		}
 	}
 

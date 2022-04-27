@@ -171,6 +171,16 @@ a {
 	color:#000000;
 }
 
+.input_area{
+	width: 108%;
+	height: 80px;
+	color: rgb(0, 0, 0);
+	display: block;
+	border: none;
+	border-radius: 25px;
+	background: rgb(255, 255, 255);
+}
+
 /* label color */
 .input-field label {
 	color: #000;
