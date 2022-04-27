@@ -19,16 +19,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <!--Import Google Icon Font-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!--Import materialize.css-->
-    <link rel="stylesheet" href="../SystemInventory/public/materialize/css/materialize.min.css"  media="screen,projection"/>
-    <link rel="stylesheet" href="../SystemInventory/public/css/style.css"/>
+    <link rel="stylesheet" href="<?= base_url('public/materialize/css/materialize.min.css')?>"  media="screen,projection"/>
+    <link rel="stylesheet" href="<?= base_url('public/css/style.css')?>"/>
     
 
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   </head>
   <body ng-app="mainModule" ng-controller="mainController">
-       <!--JavaScript at end of body for optimized loading-->
-    <script type="text/javascript" src="../SystemInventory/public/materialize/js/materialize.min.js"></script>
     
     <div class="login-wrap">
       <div class="foot-lnk">
@@ -114,6 +112,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       </div>
     </div>
 
-    
+    <script type="text/javascript" src="<?= base_url('public/materialize/js/materialize.min.js')?>"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="<?= base_url('public/js/auth/login.js')?>"></script>
   </body>
 </html>

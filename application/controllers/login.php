@@ -32,25 +32,29 @@ class Login extends CI_Controller {
 
 		// Login
 		if($email_si!=NULL && $password_si!=NULL){
-			$data_si= array(
-				'email_trb' => $email_si,
-				'password_trb' => $password_si
-			);
 			
-			if(!$this->Login_model->read($data_si)){
-				$data['msg']="Ocurrrio un error al enviar los datos";
-				$this->load->view('login', $data);
+			$config= login_rules();
+			$this->form_validation->set_rules($config);
+			
+			if ($this->form_validation->run() == FALSE){
+				$this->load->view('login');
 			}
-
-			$data['msg']="Se registro correctamente el Usuario";
-			$this->load->view('login', $data);
-
+			else{
+				$data_si= array(
+					'email_trb' => $email_si,
+					'password_trb' => $password_si
+				);
+				$this->Login_model->read($data_si);
+			
+			}
 		}
 		
 		//Registro
 		else if($email_sp!=NULL && $password_sp!=NULL && $rep_password_sp!=NULL){
 	
-					
+			$config= register_rules();
+			$this->form_validation->set_rules($config);
+			
 			if ($this->form_validation->run() == FALSE){
 				$this->load->view('login');
 			}
