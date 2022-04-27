@@ -37,10 +37,10 @@ class Login extends CI_Controller {
 			$this->form_validation->set_rules($config);
 			$this->form_validation->set_error_delimiters('', '');
 			
-			if ($this->form_validation->run() == FALSE){
+			if ($this->form_validation->run() === FALSE){
 				$error= array(
-					'email' => form_error('txt_ema_r'),
-					'password' => form_error('txt_pas_r')
+					'email' => form_error('txt_ema_l'),
+					'password' => form_error('txt_pas_l'),
 				);
 				echo json_encode($error);
 				$this->output->set_status_header(400);

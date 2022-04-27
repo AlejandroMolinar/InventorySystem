@@ -48,14 +48,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <label for="lab_ema" class="label">Correo</label>
             <input id="txt_ema_l" name="txt_ema_l" type="email" class="input validate" onfocus="javascript:select();"
               value="">
-            <span class="helper-text"><?= isset($error) ? $error : '' ?></span>
+            <span class="helper-text">
+              <label class="label_error"><?= isset($error) ? $error : '' ?></label>
+            </span>
           </div>
 
           <div class="group" id="pass_si">
             <label for="lab_pas" class="label">Contraseña</label>
             <input id="txt_pas_l" name="txt_pas_l" type="password" class="input" data-type="password"
             onfocus="javascript:select();">
-            <span class="helper-text"></span>
+            <span class="helper-text">
+              <label class="label_error"><?= isset($error) ? $error : '' ?></label>
+            </span>
           </div><br>
 
           <div class="group">
