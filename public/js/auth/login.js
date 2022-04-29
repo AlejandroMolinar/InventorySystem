@@ -6,12 +6,14 @@
 			type: "POST",
 			data: $(this).serialize(),
 			success: function (data) {
+				$("#email_si > span > label").html("");
+				$("#pass_si > span > label").html("");
+				
 				$("#email_si > input").removeClass("invalid");
 				$("#pass_si > input").removeClass("invalid");
 			},
 			error: function (xhr) {
-                $("#email_si > input").addClass("valid");
-				$("#pass_si > input").addClass("valid");
+				
 				
                 if (xhr.status == 400) {
 					

@@ -55,7 +55,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
           <div class="group" id="pass_si">
             <label for="lab_pas" class="label">Contraseña</label>
-            <input id="txt_pas_l" name="txt_pas_l" type="password" class="input" data-type="password"
+            <input id="txt_pas_l" name="txt_pas_l" type="password" class="input validate" data-type="password"
             onfocus="javascript:select();">
             <span class="helper-text">
               <label class="label_error"><?= isset($error) ? $error : '' ?></label>
