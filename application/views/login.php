@@ -32,16 +32,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <body ng-app="mainModule" ng-controller="mainController">
 
   <div class="login-wrap">
-    <div class="foot-lnk">
-      <label class="msgtxt">
-        <?= isset($msg) ? $msg : '' ?>
-      </label>
-    </div>
+    
     <div class="login-html">
       <input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Sign In</label>
       <input id="tab-2" type="radio" name="tab" class="sign-up" onclick="javascript:form_data.reset();">
       <label for="tab-2" class="tab">Sign Up</label>
       <form id="form_data" class="login-form" action="logadd" method="post">
+
         <div class="sign-in-htm">
 
           <div class="group" id="email_si">
@@ -69,6 +66,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
           <div class="group">
             <input type="submit" class="button" value="Ingresar">
+          </div>
+
+          <div class="foot-lnk" id="errvacio">
+            <label class="msgtxt"><?= isset($errctv) ? $errctv : '' ?></label>
           </div>
 
           <div class="hr"></div>
@@ -133,6 +134,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
           <div class="group">
             <input type="submit" class="button" value="Ingresar">
+          </div>
+
+          <div class="foot-lnk" id="errvacio">
+            <label class="msgtxt"><?= isset($errctv) ? $errctv : '' ?></label>
           </div>
 
           <div class="hr"></div>

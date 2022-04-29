@@ -78,20 +78,19 @@ class Login extends CI_Controller {
 				);
 				
 				if(!$this->Login_model->create($data_sp)){
-					$data['msg']="Ocurrrio un error al enviar los datos";
-					$this->load->view('login', $data);
 				}
 
-				$data['msg']="Se registro correctamente el Usuario";
-				$this->load->view('login', $data);
 	
 			}
 
 			
 		}else{
-			$error="Campos de Textos Vacios";
+			$errctv= array(
+				'errvacio' => "Campos de Textos Vacios"
+			);
+			echo json_encode($errctv);
 			$this->output->set_status_header(400);
-			echo json_encode($error);
+
 		}
 	}
 

@@ -8,28 +8,31 @@
 			success: function (data) {
 				$("#email_si > span > label").html("");
 				$("#pass_si > span > label").html("");
+				$("#errvacio > label").html("");
 				
 				$("#email_si > input").removeClass("invalid");
 				$("#pass_si > input").removeClass("invalid");
+
 			},
 			error: function (xhr) {
-				
-				
                 if (xhr.status == 400) {
-					
-
 					var json = JSON.parse(xhr.responseText);
 
-					if (json.email.length != 0) {
-						// $("#email_si > span").addDataError(json.email);
-						$("#email_si > span > label").html(json.email);
-						$("#email_si > input").addClass("invalid");
+					if (json.email !=null && json.password !=null) {
+						if (json.email.length != 0) {
+							$("#email_si > span > label").html(json.email);
+							$("#email_si > input").addClass("invalid");
+						}
+						if (json.password.length != 0) {
+							$("#pass_si > span > label").html(json.password);
+							$("#pass_si > input").addClass("invalid");
+						}
 					}
-					if (json.password.length != 0) {
-						// $("#email_si > span").addDataError(json.email);
-						$("#pass_si > span > label").html(json.password);
-						$("#pass_si > input").addClass("invalid");
+					if (json.errvacio != "") {
+						console.log("entro");
+						$("#errvacio > label").html(json.errvacio);
 					}
+
 				}
 			},
 		});
