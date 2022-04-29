@@ -17,10 +17,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <head>
   <title>Login</title>
   <meta charset="UTF-8">
-
-  <!--Import Google Icon Font-->
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <!--Import materialize.css-->
+  <link href="data:image/x-icon;base64,AAABAAEAEBAAAAEACABoBQAAFgAAACgAAAAQAAAAIAAAAAEACAAAAAAAAAEAAAAAAAAAAAAAAAEAAAAAAAAAAAAAPh7cADMRpgA/H9EAQCG7AD8fyQBBIrAAQCC+AEEjpQA8HLkAQiaMAD8f0gA+HeAAPyDHACcEvABAIbwARShuAEEisQBAIL8AQCG0AEEjpgBCJJsAQiWQAD8f0wA+HeEAQyaFACkLkAA/IMgAPx7WAEMliABAIb0AQSKyAEAgwAD+/v4AQSOnAEAhtQBBIqoAQiScAEIlkQA+HeIAQyaGADIQxQA/HtcAPx/MAEAgwQBAIbYAQSKrAEIknQBCJZIAQiOgAEMmhwCPgdcAPx/NAC4buABAIMIAQSK0AEEirABBI6EAQyaIAEMliwA/H84AW0a6AEAgwwBAIbgAQSKtAEEjogBCI6IA/f38AEIklwBCJYwAQyWMAP///wBAIMQAQCG5ADYWpwD+/f0AQiSYAD4e2wBDJY0APx/IAEEirwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABY7AAAAAAAAAAAAAAAAJ0wwCh0QAAAAAAAAAAAAJzklRDBFMjoAAAAAAAAAJ0AiQS9EMEY6GQAAAAAAJyMfOBRBJUQwRjIoAAAAJywELRECMzMaRDBOKDEAJydIEg8tR0tDRxVEMEYxMScnJ0gSBDNLITNCL0wmMTEnJycFSCAJIUtKFEIlRDExJycnPE9INSEhPSQIQhUxMScnJxc8BUdHR0dQLhQxMTEnJwEqCzwzIUczE1AkCDExJycYTSoLNCkOB0k3BiQxMScnJwxNHAs0Gz4PPzdQMTEnJycnDE0cCzQbPh4/NzExACcnJycMTRwDKw02Hi4xAP5/AAD4HwAA8A8AAOAHAADAAwAAgAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIABAAA=" rel="icon" type="image/x-icon" />  <!--Import materialize.css-->
   <link type="text/css" rel="stylesheet" href="<?= base_url('public/materialize/css/materialize.min.css')?>"  media="screen,projection"/>
   <link rel="stylesheet" href="<?= base_url('public/css/style_login.css')?>" />
 
@@ -68,7 +65,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <input type="submit" class="button" value="Ingresar">
           </div>
 
-          <div class="foot-lnk" id="errvacio">
+          <div class="foot-lnk" id="err_login">
             <label class="msgtxt"><?= isset($errctv) ? $errctv : '' ?></label>
           </div>
 
@@ -81,27 +78,33 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
         <div class="sign-up-htm">
 
-          <div class="group" id="name_sp">
+          <div class="group" id="nom_sp">
             <label for="lab_nom" class="label">Nombres</label>
-            <input id="txt_nom" name="txt_nom" type="text" class="input validate" onfocus="javascript:select();">
-            <span class="helper-text" data-error="Nombres Invalido"></span>
+            <input id="txt_nom" name="txt_nom_r" type="text" class="input validate" onfocus="javascript:select();">
+            <span class="helper-text">
+              <label class="label_error"><?= isset($error) ? $error : '' ?></label>
+            </span>
           </div>
 
-          <div class="group" id="lname_sp">
+          <div class="group" id="apel_sp">
             <label for="lab_ape" class="label">Apellidos</label>
-            <input id="txt_ape" name="txt_ape" type="text" class="input validate" onfocus="javascript:select();">
-            <span class="helper-text" data-error="Apellidos Invalido"></span>
+            <input id="txt_ape" name="txt_ape_r" type="text" class="input validate" onfocus="javascript:select();">
+            <span class="helper-text">
+              <label class="label_error"><?= isset($error) ? $error : '' ?></label>
+            </span>          
           </div>
 
           <div class="group" id="ced_sp">
             <label for="lab_ced" class="label">Cedula</label>
-            <input id="txt_ced" name="txt_ced" type="text" class="input validate" onfocus="javascript:select();">
-            <span class="helper-text" data-error="Cedula Invalido"></span>
+            <input id="txt_ced" name="txt_ced_r" type="text" class="input validate" onfocus="javascript:select();">
+            <span class="helper-text">
+              <label class="label_error"><?= isset($error) ? $error : '' ?></label>
+            </span>          
           </div>
 
           <div class="group" id="area_sp">
             <label for="lab_ced" class="label">Area</label>
-            <select class="input_area" id="opcion_area"> 
+            <select class="input_area" id="opcion_area_r" name="opcion_area_r"> 
               <option value="" disabled selected>Selecionar</option>
               <option value="1">Desarrollo de Software</option>
               <option value="2">Telecom</option>
@@ -109,34 +112,42 @@ defined('BASEPATH') OR exit('No direct script access allowed');
               <option value="4">Soporte Tecnico</option>
               <option value="5">Cobro Pasaje</option>
             </select>
-            <span class="helper-text" data-error="Area Invalida"></span>
+            <span class="helper-text">
+              <label class="label_error"><?= isset($error) ? $error : '' ?></label>
+            </span>          
           </div>
 
           <div class="group" id="email_sp">
             <label for="lab_ema" class="label">Correo</label>
             <input id="txt_ema_r" name="txt_ema_r" type="Email" class="input validate" onfocus="javascript:select();">
-            <span class="helper-text" data-error="Correo Invalido"></span>
+            <span class="helper-text">
+              <label class="label_error"><?= isset($error) ? $error : '' ?></label>
+            </span>          
           </div>
 
           <div class="group" id="pass_sp">
             <label for="lab_pas" class="label">Contraseña</label>
             <input id="txt_pas_r" name="txt_pas_r" type="password" class="input validate" data-type="password"
             onfocus="javascript:select();">
-            <span class="helper-text" data-error=""></span>
+            <span class="helper-text">
+              <label class="label_error"><?= isset($error) ? $error : '' ?></label>
+            </span>         
           </div>
 
           <div class="group" id="cfpass_sp">
             <label for="lab_rep_pas" class="label">Repetir Contraseña</label>
             <input id="txt_rep_pas" name="txt_rep_pas" type="password" class="input validate" data-type="password"
             onfocus="javascript:select();">
-            <span class="helper-text" data-error=""></span>
+            <span class="helper-text">
+              <label class="label_error"><?= isset($error) ? $error : '' ?></label>
+            </span>          
           </div>
 
           <div class="group">
             <input type="submit" class="button" value="Ingresar">
           </div>
 
-          <div class="foot-lnk" id="errvacio">
+          <div class="foot-lnk" id="err_register">
             <label class="msgtxt"><?= isset($errctv) ? $errctv : '' ?></label>
           </div>
 
