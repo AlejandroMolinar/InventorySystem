@@ -15,8 +15,7 @@ class Login extends CI_Controller
 		$data['url'] = main_menu();
 		$this->load->view('login', $data);
 	}
-	public function create()
-	{
+	public function create(){
 
 		// SignIn
 		$email_si = $this->input->post('txt_ema_l');
@@ -48,12 +47,12 @@ class Login extends CI_Controller
 				$this->output->set_status_header(400);
 			} else {
 				
-				if(!$this->Login_model->read($email_si, $password_si)){
-					$error = "El usuario o la contraseña son invalidas";
-					echo json_encode($error);
+				if(!$data_log= $this->Login_model->read($email_si, $password_si)){
+					echo json_encode(array('msg' => "El usuario o la Clave no son validas"));
+					$this->output->set_status_header(401);
+					exit;
 				}
-				$error = "Ingresado";
-				echo json_encode($error);
+				var_dump($data_log);
 
 			}
 		}
@@ -81,6 +80,8 @@ class Login extends CI_Controller
 				);
 				echo json_encode($error);
 				$this->output->set_status_header(400);
+				exit;
+
 			} else {
 
 				if ($password_sp == $rep_password_sp) {
@@ -103,6 +104,7 @@ class Login extends CI_Controller
 					}
 
 					$data_sp = array(
+						'id_tp_trb' => 2,
 						'email_trb' => $email_sp,
 						'nombre_trb' => $nombre_sp,
 						'apellido_trb' => $apellido_sp,
@@ -112,36 +114,27 @@ class Login extends CI_Controller
 
 					);
 					if (!$this->Login_model->create($data_sp)) {
-						$err_reg = array(
-							'err_registro' => "Hubo un Error en el Registro"
-						);
-						echo json_encode($err_reg);
+						echo json_encode(array('err_registro' => "Hubo un Error en el Registro"));
 						$this->output->set_status_header(400);
+						exit;
 					}
 					else{
-						$succ_reg = array(
-							'success_reg' => "Se registró correctamente"
-						);
-						echo json_encode($succ_reg);
+						echo json_encode(array('success_reg' => "Se registró correctamente"));
 						$this->output->set_status_header(200);
-						$this->load->view('login');
+						exit;
 					}
 
 
 				} else {
-					$error = array(
-						'errcts' => "Las contraseñas no son iguales"
-					);
-					echo json_encode($error);
+					echo json_encode(array('errcts' => "Las Claves no son iguales"));
 					$this->output->set_status_header(400);
+					exit;
 				}
 			}
 		} else {
-			$errctv = array(
-				'errvacio' => "Campos de Textos Vacios"
-			);
-			echo json_encode($errctv);
+			echo json_encode(array('errvacio' => "Campos de Textos Vacios"));
 			$this->output->set_status_header(400);
+			exit;
 		}
 	}
 }

@@ -16,10 +16,10 @@ function login_rules(){
         ),
         array(
             'field' => 'txt_pas_l',
-            'label' => 'Contraseña',
+            'label' => 'Clave',
             'rules' => 'required|trim|min_length[5]',
             'errors' => array(
-                'required' => 'La %s es invalido.',
+                'required' => 'La %s es invalida.',
                 'min_length' => 'La %s debe tener minimo 5 caracteres.',
             ),
         ),

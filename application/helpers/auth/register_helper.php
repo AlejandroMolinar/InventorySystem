@@ -41,12 +41,12 @@ function register_rules(){
                         'label' => 'Correo',
                         'rules' => 'required|trim',
                         'errors' => array(
-                                'required' => 'El %s es Requerida.',
+                                'required' => 'El %s es Requerido.',
                         ),
                 ),
                 array(
                         'field' => 'txt_pas_r',
-                        'label' => 'Contraseña',
+                        'label' => 'Clave',
                         'rules' => 'required|trim',
                         'errors' => array(
                                 'required' => 'La %s es Requerida.',
@@ -54,7 +54,7 @@ function register_rules(){
                 ),
                 array(
                         'field' => 'txt_rep_pas',
-                        'label' => 'Confirmacion de Contraseña',
+                        'label' => 'Confirmacion de Clave',
                         'rules' => 'required|trim',
                         'errors' => array(
                                 'required' => 'La %s es Requerida.',

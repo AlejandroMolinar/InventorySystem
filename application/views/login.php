@@ -43,16 +43,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <input id="txt_ema_l" name="txt_ema_l" type="email" class="input validate" onfocus="javascript:select();"
               value="">
             <span class="helper-text">
-              <label class="label_error"><?= isset($error) ? $error : '' ?></label>
+              <label class="label_error"></label>
             </span>
           </div>
 
           <div class="group" id="pass_si">
-            <label for="lab_pas" class="label">Contraseña</label>
+            <label for="lab_pas" class="label">Clave</label>
             <input id="txt_pas_l" name="txt_pas_l" type="password" class="input validate" data-type="password"
             onfocus="javascript:select();">
             <span class="helper-text">
-              <label class="label_error"><?= isset($error) ? $error : '' ?></label>
+              <label class="label_error"></label>
             </span>
           </div><br>
 
@@ -66,7 +66,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
           </div>
 
           <div class="foot-lnk" id="err_login">
-            <label class="msgtxt"><?= isset($login) ? $login : '' ?></label>
+            <label class="msgtxt"></label>
           </div>
 
           <div class="hr"></div>
@@ -82,7 +82,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <label for="lab_nom" class="label">Nombres</label>
             <input id="txt_nom" name="txt_nom_r" type="text" class="input validate" onfocus="javascript:select();">
             <span class="helper-text">
-              <label class="label_error"><?= isset($error) ? $error : '' ?></label>
+              <label class="label_error"></label>
             </span>
           </div>
 
@@ -90,7 +90,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <label for="lab_ape" class="label">Apellidos</label>
             <input id="txt_ape" name="txt_ape_r" type="text" class="input validate" onfocus="javascript:select();">
             <span class="helper-text">
-              <label class="label_error"><?= isset($error) ? $error : '' ?></label>
+              <label class="label_error"></label>
             </span>          
           </div>
 
@@ -98,7 +98,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <label for="lab_ced" class="label">Cedula</label>
             <input id="txt_ced" name="txt_ced_r" type="text" class="input validate" onfocus="javascript:select();">
             <span class="helper-text">
-              <label class="label_error"><?= isset($error) ? $error : '' ?></label>
+              <label class="label_error"></label>
             </span>          
           </div>
 
@@ -113,7 +113,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
               <option value="5">Cobro Pasaje</option>
             </select>
             <span class="helper-text">
-              <label class="label_error"><?= isset($error) ? $error : '' ?></label>
+              <label class="label_error"></label>
             </span>          
           </div>
 
@@ -121,25 +121,25 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <label for="lab_ema" class="label">Correo</label>
             <input id="txt_ema_r" name="txt_ema_r" type="Email" class="input validate" onfocus="javascript:select();">
             <span class="helper-text">
-              <label class="label_error"><?= isset($error) ? $error : '' ?></label>
+              <label class="label_error"></label>
             </span>          
           </div>
 
           <div class="group" id="pass_sp">
-            <label for="lab_pas" class="label">Contraseña</label>
+            <label for="lab_pas" class="label">Clave</label>
             <input id="txt_pas_r" name="txt_pas_r" type="password" class="input validate" data-type="password"
             onfocus="javascript:select();">
             <span class="helper-text">
-              <label class="label_error"><?= isset($error) ? $error : '' ?></label>
+              <label class="label_error"></label>
             </span>         
           </div>
 
           <div class="group" id="cfpass_sp">
-            <label for="lab_rep_pas" class="label">Repetir Contraseña</label>
+            <label for="lab_rep_pas" class="label">Repetir Clave</label>
             <input id="txt_rep_pas" name="txt_rep_pas" type="password" class="input validate" data-type="password"
             onfocus="javascript:select();">
             <span class="helper-text">
-              <label class="label_error"><?= isset($error) ? $error : '' ?></label>
+              <label class="label_error"></label>
             </span>          
           </div>
 
@@ -148,7 +148,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
           </div>
 
           <div class="foot-lnk" id="err_register">
-            <label class="msgtxt"><?= isset($registro) ? $registro : '' ?></label>
+            <label class="msgtxt"></label>
           </div>
 
           <div class="hr"></div>
