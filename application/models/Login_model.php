@@ -7,11 +7,9 @@ class Login_model extends CI_model{
         $this->load->database();
     }
 
-    public function reed($data_si){
-        if(!$this->db->insert('trabajador', $data_si)){
-            return FALSE;
-        }
-        return TRUE;
+    public function reed($user, $password){
+        $data_log= $this->db->get_where('trabajador'. array('email_trb' => $user , 'password_trb' => $password), 1);
+        return $data_log;
     }
 
     public function create($data_sp){

@@ -47,14 +47,13 @@ class Login extends CI_Controller
 				echo json_encode($error);
 				$this->output->set_status_header(400);
 			} else {
+				
+				if(!$this->Login_model->read($email_si, $password_si)){
+					$error = "El usuario o la contraseña son invalidas";
+					echo json_encode($error);
+				}
 				$error = "Ingresado";
 				echo json_encode($error);
-
-				// $data_si= array(
-				// 	'email_trb' => $email_si,
-				// 	'password_trb' => $password_si
-				// );
-				// $this->Login_model->read($data_si);
 
 			}
 		}
@@ -113,18 +112,22 @@ class Login extends CI_Controller
 
 					);
 					if (!$this->Login_model->create($data_sp)) {
-						$errctv = array(
+						$err_reg = array(
 							'err_registro' => "Hubo un Error en el Registro"
 						);
-						echo json_encode($errctv);
+						echo json_encode($err_reg);
 						$this->output->set_status_header(400);
 					}
+					else{
+						$succ_reg = array(
+							'success_reg' => "Se registró correctamente"
+						);
+						echo json_encode($succ_reg);
+						$this->output->set_status_header(200);
+						$this->load->view('login');
+					}
 
-					// $errctv = array(
-					// 	'success_reg' => "Se registró correctamente"
-					// );
-					// echo json_encode($errctv);
-					// // $this->output->set_status_header(200);
+
 				} else {
 					$error = array(
 						'errcts' => "Las contraseñas no son iguales"

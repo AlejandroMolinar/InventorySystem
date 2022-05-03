@@ -66,7 +66,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
           </div>
 
           <div class="foot-lnk" id="err_login">
-            <label class="msgtxt"><?= isset($errctv) ? $errctv : '' ?></label>
+            <label class="msgtxt"><?= isset($login) ? $login : '' ?></label>
           </div>
 
           <div class="hr"></div>
@@ -148,7 +148,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
           </div>
 
           <div class="foot-lnk" id="err_register">
-            <label class="msgtxt"><?= isset($errctv) ? $errctv : '' ?></label>
+            <label class="msgtxt"><?= isset($registro) ? $registro : '' ?></label>
           </div>
 
           <div class="hr"></div>
