@@ -45,6 +45,8 @@ class Login extends CI_Controller
 				);
 				echo json_encode($error);
 				$this->output->set_status_header(400);
+				exit;
+
 			} else {
 				
 				if(!$data_log= $this->Login_model->read($email_si, $password_si)){

@@ -66,7 +66,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
           </div>
 
           <div class="foot-lnk" id="err_login">
-            <label class="msgtxt"></label>
+            <span class="">
+              <label class="label_error"></label>
+            </span> 
           </div>
 
           <div class="hr"></div>
@@ -95,7 +97,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
           </div>
 
           <div class="group" id="ced_sp">
-            <label for="lab_ced" class="label">Cedula</label>
+            <label for="lab_ced" class="label">C&eacutedula</label>
             <input id="txt_ced" name="txt_ced_r" type="text" class="input validate" onfocus="javascript:select();">
             <span class="helper-text">
               <label class="label_error"></label>
@@ -103,7 +105,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
           </div>
 
           <div class="group" id="area_sp">
-            <label for="lab_ced" class="label">Area</label>
+            <label for="lab_ced" class="label">&aacuterea</label>
             <select class="input_area" id="opcion_area_r" name="opcion_area_r"> 
               <option value="" disabled selected>Selecionar</option>
               <option value="1">Desarrollo de Software</option>
@@ -148,13 +150,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
           </div>
 
           <div class="foot-lnk" id="err_register">
-            <label class="msgtxt"></label>
+            <span class="">
+              <label class="label_error"></label>
+            </span>
           </div>
 
           <div class="hr"></div>
-          <div class="foot-lnk">
-            <label for="tab-1">Already Member?</a>
-          </div>
         </div>
       </form>
     </div>

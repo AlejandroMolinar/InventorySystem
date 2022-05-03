@@ -174,7 +174,13 @@ a {
 .label_error {
 	text-align: center;
 	color: #ee1111;
+	font-size: medium;
 }
+
+.line_color{
+	background-color: #ffffff;
+}
+
 .input_area{
 	width: 105%;
 	height: 60px;

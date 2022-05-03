@@ -12,41 +12,40 @@
 
 				}
 			},
-			error: function (xhr) {
+			statusCode: {
+				400: function (xhr) {
+					// Error Vacio
+					$("#err_register > label").html("");
+					$("#err_login > label").html("");
 
-				// Error Vacio
-				$("#err_register > label").html("");
-				$("#err_login > label").html("");
+					//Error Login
+					$("#email_si > span > label").html("");
+					$("#email_si > input").removeClass("invalid");
+					$("#pass_si > span > label").html("");
+					$("#pass_si > input").removeClass("invalid");
 
-				//Error Login
-				$("#email_si > span > label").html("");
-				$("#email_si > input").removeClass("invalid");
-				$("#pass_si > span > label").html("");
-				$("#pass_si > input").removeClass("invalid");
+					//Error Clave Registro
+					$("#pass_sp > span > label").html("");
+					$("#pass_sp > input").removeClass("invalid");
+					$("#cfpass_sp > input").removeClass("invalid");
 
-				//Error Clave Registro
-				$("#pass_sp > span > label").html("");
-				$("#pass_sp > input").removeClass("invalid");
-				$("#cfpass_sp > input").removeClass("invalid");
+					//Error Registro
+					$("#email_sp > span > label").html('');
+					$("#email_sp > input").removeClass("invalid");
+					$("#nom_sp > span > label").html('');
+					$("#nom_sp > input").removeClass("invalid");
+					$("#apel_sp > span > label").html('');
+					$("#apel_sp > input").removeClass("invalid");
+					$("#ced_sp > span > label").html('');
+					$("#ced_sp > input").removeClass("invalid");
+					$("#area_sp > span > label").html('');
+					$("#area_sp > input").removeClass("invalid");
+					$("#pass_sp > span > label").html('');
+					$("#pass_sp > input").removeClass("invalid");
+					$("#cfpass_sp > span > label").html('');
+					$("#cfpass_sp > input").removeClass("invalid");
 
-				//Error Registro
-				$("#email_sp > span > label").html('');
-				$("#email_sp > input").removeClass("invalid");
-				$("#nom_sp > span > label").html('');
-				$("#nom_sp > input").removeClass("invalid");
-				$("#apel_sp > span > label").html('');
-				$("#apel_sp > input").removeClass("invalid");
-				$("#ced_sp > span > label").html('');
-				$("#ced_sp > input").removeClass("invalid");
-				$("#area_sp > span > label").html('');
-				$("#area_sp > input").removeClass("invalid");
-				$("#pass_sp > span > label").html('');
-				$("#pass_sp > input").removeClass("invalid");
-				$("#cfpass_sp > span > label").html('');
-				$("#cfpass_sp > input").removeClass("invalid");
-
-				if (xhr.status == 400) {
-					var json = JSON.parse(xhr.responseText); 
+					var json = JSON.parse(xhr.responseText);
 
 					if (json.email_si != null || json.password_si != null) {
 						if (json.email_si.length != 0) {
@@ -60,7 +59,7 @@
 					}
 					if (json.email_sp != null || json.nombre_sp != null || json.apellido_sp != null || json.cedula_sp != null
 						|| json.area_sp != null || json.password_sp != null || json.rep_password_sp != null) {
-						
+
 						if (json.email_sp.length != 0) {
 							$("#email_sp > span > label").html(json.email_sp);
 							$("#email_sp > input").addClass("invalid");
@@ -92,8 +91,11 @@
 					}
 					if (json.errvacio != null) {
 						if (json.errvacio.length != 0) {
-							$("#err_login > label").html(json.errvacio);
-							$("#err_register > label").html(json.errvacio);
+							$("#err_login > span > label").html(json.errvacio);
+							$("#err_login > span").addClass("line_color");
+							
+							$("#err_register > span > label").html(json.errvacio);
+							$("#err_register > span").addClass("line_color");
 						}
 					}
 					if (json.errcts != null) {
@@ -109,17 +111,17 @@
 
 						}
 					}
-					
-				}
-				else if (xhr.status == 401) {
-					var json = JSON.parse(xhr.responseText);
-					$("#err_login > label").html('');
 
-					if (json.msg != null) {
-						if (json.msg.length != 0) {
-							$("#err_login > label").html(json.msg);
+				},
+				401: function (xhr) {
+						var json = JSON.parse(xhr.responseText);
+						$("#err_login > label").html('');
+
+						if (json.msg != null) {
+							if (json.msg.length != 0) {
+								$("#err_login > label").html(json.msg);
+							}
 						}
-					}
 				}
 			},
 		});
