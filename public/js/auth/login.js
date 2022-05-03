@@ -49,44 +49,45 @@
 
 					if (json.email_si != null || json.password_si != null) {
 						if (json.email_si.length != 0) {
-							$("#email_si > span > label").html(json.email_si);
-							$("#email_si > input").addClass("invalid");
+							$("#email_err").html('<div class="alert alert-danger" role="alert">'							
+						   		+json.email_si + '</div>');
 						}
 						if (json.password_si.length != 0) {
-							$("#pass_si > span > label").html(json.password_si);
-							$("#pass_si > input").addClass("invalid");
+							$("#pass_err").html('<div class="alert alert-danger" role="alert">'							
+						   		+json.password_si + '</div>');
 						}
 					}
 					if (json.email_sp != null || json.nombre_sp != null || json.apellido_sp != null || json.cedula_sp != null
 						|| json.area_sp != null || json.password_sp != null || json.rep_password_sp != null) {
 
-						if (json.email_sp.length != 0) {
-							$("#email_sp > span > label").html(json.email_sp);
-							$("#email_sp > input").addClass("invalid");
-						}
-						if (json.nombre_sp.length != 0) {
-							$("#nom_sp > span > label").html(json.nombre_sp);
-							$("#nom_sp > input").addClass("invalid");
-						}
-						if (json.apellido_sp.length != 0) {
-							$("#apel_sp > span > label").html(json.apellido_sp);
-							$("#apel_sp > input").addClass("invalid");
-						}
-						if (json.cedula_sp.length != 0) {
-							$("#ced_sp > span > label").html(json.cedula_sp);
-							$("#ced_sp > input").addClass("invalid");
-						}
-						if (json.area_sp.length != 0) {
-							$("#area_sp > span > label").html(json.area_sp);
-							$("#area_sp > input").addClass("invalid");
-						}
+							if (json.nombre_sp.length != 0) {
+								
+								$("#nom_err").html('<div class="alert alert-danger" role="alert">'							
+								+json.nombre_sp + '</div>');
+							}
+							if (json.apellido_sp.length != 0) {
+								$("#apel_err").html('<div class="alert alert-danger" role="alert">'							
+								+json.apellido_sp + '</div>');
+							}
+							if (json.cedula_sp.length != 0) {
+								$("#ced_err").html('<div class="alert alert-danger" role="alert">'							
+								+json.cedula_sp+ '</div>');
+							}
+							if (json.area_sp.length != 0) {
+								$("#are_err").html('<div class="alert alert-danger" role="alert">'							
+								+json.area_sp+ '</div>');
+							}
+							if (json.email_sp.length != 0) {
+								$("#ema_err").html('<div class="alert alert-danger" role="alert">'							
+									   +json.email_sp + '</div>');
+							}
 						if (json.password_sp.length != 0) {
-							$("#pass_sp > span > label").html(json.password_sp);
-							$("#pass_sp > input").addClass("invalid");
+							$("#pas_err").html('<div class="alert alert-danger" role="alert">'							
+						   		+json.password_sp+ '</div>');
 						}
 						if (json.rep_password_sp.length != 0) {
-							$("#cfpass_sp > span > label").html(json.rep_password_sp);
-							$("#cfpass_sp > input").addClass("invalid");
+							$("#cfpass_err").html('<div class="alert alert-danger" role="alert">'							
+						   		+json.rep_password_sp+ '</div>');
 						}
 					}
 					if (json.errvacio != null) {
