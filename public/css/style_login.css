@@ -220,9 +220,13 @@ a {
   }
 
   .alert{
-	position: relative;
+	position: relative;	
 	padding: 1rem 1rem;
 	margin-bottom: 1rem;
 	border: 1px solid transparent;
-	border-radius: .25rem;
+	border-radius: .50rem;
+	height: .20rem;
+	display: flex;
+   	align-items: center;
 }
+

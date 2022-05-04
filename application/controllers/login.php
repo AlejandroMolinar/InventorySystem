@@ -117,7 +117,7 @@ class Login extends CI_Controller
 					);
 					if (!$this->Login_model->create($data_sp)) {
 						echo json_encode(array('err_registro' => "Hubo un Error en el Registro"));
-						$this->output->set_status_header(400);
+						$this->output->set_status_header(401);
 						exit;
 					}
 					else{
