@@ -6,18 +6,20 @@
 			type: "POST",
 			data: $(this).serialize(),
 			success: function (data) {
-
-			},
-			statusCode: {
-				200: function (data) {
+				if (data.status == 200) {
 					var json = JSON.parse(data.responseText);
+
 					if (json.success_reg != null) {
 						if (json.success_reg.length != 0) {
 							$("#err_register").html('<div class="alert alert-success" role="alert">'
 								+ json.success_reg + '</div>');
 						}
 					}
-				},
+
+				}
+			},
+			statusCode: {
+				
 				400: function (xhr) {
 					// Error Vacio
 					$("#err_login").html('');
