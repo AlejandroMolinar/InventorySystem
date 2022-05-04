@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Control_inv extends CI_Controller
+class ControlInventario extends CI_Controller
 {
 	public function __construct()
 	{
@@ -15,7 +15,7 @@ class Control_inv extends CI_Controller
 	public function index()
 	{
 		$data['url'] = main_menu();
-		$this->load->view('control_inv', $data);
+		$this->load->view('inventario', $data);
 	}
 	
     public function inventario()

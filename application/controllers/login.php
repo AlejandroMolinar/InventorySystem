@@ -3,8 +3,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class Login extends CI_Controller
 {
-	public function __construct()
-	{
+	public function __construct(){
 		parent::__construct();
 		$this->load->database();
 		$this->load->helper(array('auth/login', 'auth/register'));
@@ -12,13 +11,11 @@ class Login extends CI_Controller
 		$this->load->library('session');
 
 	}
-	public function index()
-	{
+	public function index(){
 		$data['url'] = main_menu();
 		$this->load->view('login', $data);
 	}
-	public function create()
-	{
+	public function create(){
 
 		// SignIn
 		$email_si = $this->input->post('txt_ema_l');
@@ -67,18 +64,15 @@ class Login extends CI_Controller
 						'is_logged' => TRUE,
 					);
 					$this->session->set_userdata($data);
-					echo json_encode(array("url" => base_url("control_inv")));
-
+					echo json_encode(array("url" => base_url("inventario")));
 
 				}
 			}
 		}
 
 		//Registro
-		else if (
-			$email_sp != NULL || $password_sp != NULL || $rep_password_sp != NULL || $nombre_sp != NULL
-			|| $apellido_sp != NULL || $cedula_sp != NULL || $area_sp != NULL
-		) {
+		else if ($email_sp != NULL || $password_sp != NULL || $rep_password_sp != NULL || $nombre_sp != NULL
+			|| $apellido_sp != NULL || $cedula_sp != NULL || $area_sp != NULL) {
 
 			$config = register_rules();
 			$this->form_validation->set_rules($config);
@@ -135,8 +129,7 @@ class Login extends CI_Controller
 						$this->output->set_status_header(401);
 						exit;
 					} else {
-						redirect(base_url());
-						
+						echo json_encode(array("url" => base_url()));
 					}
 				} else {
 					echo json_encode(array('errcts' => "Las Claves no son iguales"));
