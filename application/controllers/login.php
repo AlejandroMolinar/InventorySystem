@@ -64,7 +64,7 @@ class Login extends CI_Controller
 						'is_logged' => TRUE,
 					);
 					$this->session->set_userdata($data);
-					echo json_encode(array("url" => base_url("inventario")));
+					echo json_encode(array("url" => base_url("controlInv")));
 
 				}
 			}
@@ -142,5 +142,12 @@ class Login extends CI_Controller
 			$this->output->set_status_header(400);
 			exit;
 		}
+	}
+
+	public function logout(){
+		$vars= array('id','rage','nombre_user','apellido_user','status','is_logged');
+		$this->session->unset_userdata($vars);
+		$this->session->sess_destroy();
+		redirect(base_url());
 	}
 }
