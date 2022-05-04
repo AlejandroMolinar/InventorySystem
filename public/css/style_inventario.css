@@ -23,6 +23,10 @@ body {
     text-transform: capitalize;
   }
 
+  #cerrar{
+      position: relative;
+      left: 140px;
+  }
   .b-example-divider {
     flex-shrink: 0;
     width: 1.5rem;

@@ -64,6 +64,7 @@ class Login extends CI_Controller
 						'is_logged' => TRUE,
 					);
 					$this->session->set_userdata($data);
+					$this->session->set_flashdata('msg', 'Sistema de Control de Inventario, '.$data['nombre_user']);
 					echo json_encode(array("url" => base_url("controlInv")));
 
 				}
