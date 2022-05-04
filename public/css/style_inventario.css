@@ -23,10 +23,28 @@ body {
     text-transform: capitalize;
   }
 
+  #sidebar{
+    width: 260px; 
+    height: 575px;
+    overflow: hidden;
+  }
+
   #cerrar{
       position: relative;
       left: 140px;
+      
   }
+
+  .inventario{
+    /* float: left; */
+    /* display: flex; */
+    /* left: 200px; */
+    /* display: flex; */ 
+    /* justify-content: center; */
+    margin-top: -560px;
+    margin-left: 280px;
+  }
+
   .b-example-divider {
     flex-shrink: 0;
     width: 1.5rem;
