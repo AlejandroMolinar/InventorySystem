@@ -6,13 +6,18 @@
 			type: "POST",
 			data: $(this).serialize(),
 			success: function (data) {
-				if (data.status == 200) {
-					$("#err_register > label").html(json.errvacio);
-					$("#err_register > label").addClass("valid");
 
-				}
 			},
 			statusCode: {
+				200: function (data) {
+					var json = JSON.parse(data.responseText);
+					if (json.success_reg != null) {
+						if (json.success_reg.length != 0) {
+							$("#err_register").html('<div class="alert alert-success" role="alert">'
+								+ json.success_reg + '</div>');
+						}
+					}
+				},
 				400: function (xhr) {
 					// Error Vacio
 					$("#err_login").html('');
@@ -35,10 +40,7 @@
 					$("#pas_err").html('');
 					$("#cfpass_err").html('');
 
-
-
-
-
+					//Error Registro fallo
 					$("#err_register").html('');
 
 					var json = JSON.parse(xhr.responseText);
@@ -100,8 +102,6 @@
 							$("#pas_err").html('<div class="alert alert-danger" role="alert">'
 								+ json.errcts + '</div>');
 
-							// $("#cfpass_err").html('<div class="alert alert-danger" role="alert">'
-							// 	+ json.errcts + '</div>');
 							$("#cfpass_sp > input").addClass("invalid");
 
 						}

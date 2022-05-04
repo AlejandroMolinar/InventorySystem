@@ -121,7 +121,7 @@ class Login extends CI_Controller
 						exit;
 					}
 					else{
-						echo json_encode(array('success_reg' => "Se registró correctamente"));
+						echo json_encode(array('success_reg' => "Se registr&oacute correctamente"));
 						$this->output->set_status_header(200);
 						exit;
 					}
