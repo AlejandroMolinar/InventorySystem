@@ -7,7 +7,7 @@ function register_rules(){
                         'rules' => 'required|alpha_numeric_spaces',
                         'errors' => array(
                                 'required' => 'Los %s son Requeridos.',
-                                'alpha_numeric_spaces' => 'Los %s no pueden Contener Simbolos',
+                                'alpha_numeric_spaces' => 'Los %s no pueden Contener S&iacutembolos',
                         ),
                 ),
                 array(
@@ -16,21 +16,21 @@ function register_rules(){
                         'rules' => 'required|alpha_numeric_spaces',
                         'errors' => array(
                                 'required' => 'Los %s son Requeridos.',
-                                'alpha_numeric_spaces' => 'Los %s no pueden Contener Simbolos',
+                                'alpha_numeric_spaces' => 'Los %s no pueden Contener S&iacutembolos',
                         ),
                 ),
                 array(
                         'field' => 'txt_ced_r',
-                        'label' => 'Cedula',
+                        'label' => 'C&eacutedula',
                         'rules' => 'required|numeric',
                         'errors' => array(
                                 'required' => 'La %s es Requerida.',
-                                'numeric' => 'La %s es un Campo Numerico',
+                                'numeric' => 'La %s es un Campo Num&eacuterico',
                         ),
                 ),
                 array(
                         'field' => 'opcion_area_r',
-                        'label' => 'Area asignada',
+                        'label' => '&aacuterea asignada',
                         'rules' => 'required',
                         'errors' => array(
                                 'required' => 'El %s es Requerida.',
@@ -47,10 +47,11 @@ function register_rules(){
                 array(
                         'field' => 'txt_pas_r',
                         'label' => 'Clave',
-                        'rules' => 'required|trim',
+                        'rules' => 'required|trim|min_length[5]',
                         'errors' => array(
-                                'required' => 'La %s es Requerida.',
-                        ),
+                                'required' => 'La %s es invalida.',
+                                'min_length' => 'La %s debe tener m&iacutenimo 5 caracteres.',
+                        ),       
                 ),
                 array(
                         'field' => 'txt_rep_pas',

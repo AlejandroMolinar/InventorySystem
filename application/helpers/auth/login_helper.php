@@ -20,7 +20,7 @@ function login_rules(){
             'rules' => 'required|trim|min_length[5]',
             'errors' => array(
                 'required' => 'La %s es invalida.',
-                'min_length' => 'La %s debe tener minimo 5 caracteres.',
+                'min_length' => 'La %s debe tener m&iacutenimo 5 caracteres.',
             ),
         ),
     );

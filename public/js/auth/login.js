@@ -100,8 +100,10 @@
 							$("#pas_err").html('<div class="alert alert-danger" role="alert">'
 								+ json.errcts + '</div>');
 
-							$("#cfpass_err").html('<div class="alert alert-danger" role="alert">'
-								+ json.errcts + '</div>');
+							// $("#cfpass_err").html('<div class="alert alert-danger" role="alert">'
+							// 	+ json.errcts + '</div>');
+							$("#cfpass_sp > input").addClass("invalid");
+
 						}
 					}
 
