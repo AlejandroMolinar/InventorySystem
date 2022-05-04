@@ -47,25 +47,29 @@ class Login extends CI_Controller
 				$this->output->set_status_header(400);
 				exit;
 			} else {
-				$data_log = $this->Login_model->user($email_si);
-				
-				if (!password_verify($password_si, $data_log->password_trb)) {
+				if(!$data_log = $this->Login_model->user($email_si)){
 					echo json_encode(array('msg' => "El usuario o la Clave no son validas"));
 					$this->output->set_status_header(401);
 					exit;
-
-				} else {
-					$data= array(
-						'id' => $data_log->id_trb,
-						'rage' => $data_log->id_tp_trb,
-						'nombre_user' => $data_log->nombre_trb,
-						'apellido_user' => $data_log->apellido_trb,
-						'status' => $data_log->status,
-						'is_logged' => TRUE,
-					);
-					$this->session->set_userdata($data);
-					$this->session->set_flashdata('msg', 'Sistema de Control de Inventario, '.$data['nombre_user']);
-					echo json_encode(array("url" => base_url("controlInv")));
+				}else{
+					
+					if (!password_verify($password_si, $data_log->password_trb)) {
+						
+	
+					} else {
+						$data= array(
+							'id' => $data_log->id_trb,
+							'range' => $data_log->id_tp_trb,
+							'nombre_user' => $data_log->nombre_trb,
+							'apellido_user' => $data_log->apellido_trb,
+							'status' => $data_log->status,
+							'is_logged' => TRUE,
+						);
+						$this->session->set_userdata($data);
+						$this->session->set_flashdata('msg', 'Sistema de Control de Inventario, '.$data['nombre_user']);
+						echo json_encode(array("url" => base_url("controlInv")));
+	
+					}
 
 				}
 			}
