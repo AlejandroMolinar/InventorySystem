@@ -1,5 +1,7 @@
 @import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
 
+
+
 body {
     min-height: 100vh;
     min-height: -webkit-fill-available;
@@ -36,11 +38,6 @@ body {
   }
 
   .inventario{
-    /* float: left; */
-    /* display: flex; */
-    /* left: 200px; */
-    /* display: flex; */ 
-    /* justify-content: center; */
     margin-top: -560px;
     margin-left: 280px;
   }
@@ -116,3 +113,24 @@ body {
   .fw-semibold { font-weight: 600; }
   .lh-tight { line-height: 1.25; }
   
+  .nav-pill .nav-link.actives, .nav-pills .show>.nav-link {
+    color: #fff;
+    background-color: #fd0d0d;
+}
+
+table.dataTable thead .sorting:after,
+table.dataTable thead .sorting:before,
+table.dataTable thead .sorting_asc:after,
+table.dataTable thead .sorting_asc:before,
+table.dataTable thead .sorting_asc_disabled:after,
+table.dataTable thead .sorting_asc_disabled:before,
+table.dataTable thead .sorting_desc:after,
+table.dataTable thead .sorting_desc:before,
+table.dataTable thead .sorting_desc_disabled:after,
+table.dataTable thead .sorting_desc_disabled:before {
+  bottom: .5em;
+}
+
+.nav-pill .nav-link {
+  border-radius: .25rem;
+}

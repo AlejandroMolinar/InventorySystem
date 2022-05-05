@@ -1,7 +1,7 @@
 <ul class="nav justify-content-end bg-dark">
     <li class="nav-item">
         <a class="nav-link disabled">
-            <?= $this->session->range != 1 ? 'user' : 'admin' ?>
+            <?= ($this->session->range != 1) ? 'user' : 'admin' ?>
         </a>
     </li>
     <li class="nav-item">
@@ -11,8 +11,8 @@
         </a>
     </li>
     <li class="nav-item">
-        <a class="nav-link disabled">
-            Control de Inventario
-        </a>
+            <button type="button" class="btn btn-outline-success <?= ($this->session->range != 1) ? 'disabled' : '' ?>" >
+            Agregar
+        </button>
     </li>
 </ul>

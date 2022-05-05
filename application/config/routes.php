@@ -54,7 +54,7 @@ $route['404_override'] = 'Login';
 $route['translate_uri_dashes'] = FALSE;
 $route['logadd'] = 'Login/create';
 $route['logout'] = 'Login/logout';
-$route['controlInv'] = 'ControlInventario';
+$route['controlInv'] = 'control_inventario/ControlInventario';
 
 
 
