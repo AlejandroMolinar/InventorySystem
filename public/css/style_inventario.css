@@ -13,9 +13,9 @@ body {
 }
 
 .nav{
-	position: fixed;
-	top: 0px;
-	width: 100%;
+	position: relative;
+	top: -10px;
+	width: 1320px;
   
 }
 
