@@ -12,30 +12,29 @@ body {
 	left: 0px;
 }
 
-.nav{
-	position: relative;
-	top: -10px;
-	width: 1320px;
-  
+.nav {
+	position: fixed;
+	top: 0px;
+	width: 100%;
 }
+
 
 .fs-4 {
 	text-transform: capitalize;
 }
 
 .inventario {
-	width: 70%;
-	/* Esto equilibria lo del aside */
-	position: absolute;
+	position: fixed;
 	top: 45px;
 	left: 270px;
+	top: 45;
+	bottom: 0;
+	width: 80vw; /* viewport width */
+	height: 100vh; /* viewport height */
+	overflow-y: scroll;
+	overflow-x: hidden;
 }
 
-.nav-pills .nav-link.active,
-.nav-pills .show > .nav-link {
-	color: #fff;
-	background-color: #fd0d0d;
-}
 
 table.dataTable thead .sorting:after,
 table.dataTable thead .sorting:before,
@@ -47,12 +46,18 @@ table.dataTable thead .sorting_desc:after,
 table.dataTable thead .sorting_desc:before,
 table.dataTable thead .sorting_desc_disabled:after,
 table.dataTable thead .sorting_desc_disabled:before {
-	bottom: 0.5em;
+  bottom: .5em;
 }
 
 .nav-links {
-  display: block;
-  padding: .5rem 1rem;
-  color: #fd0d0d;
-  text-decoration: none;
+	display: block;
+	padding: 0.5rem 1rem;
+	color: #fd0d0d;
+	text-decoration: none;
+}
+
+.active{
+  color: #fff;
+	background-color: #fd0d0d;
+  border-radius: 50px;
 }

@@ -2,7 +2,7 @@
 <?= $nav ?>
 <?= $side ?>
 
-<div class="inventario">
+<div class="content">
     <?= $content ?>
 
 </div>
