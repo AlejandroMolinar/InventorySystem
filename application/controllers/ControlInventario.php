@@ -12,7 +12,16 @@ class ControlInventario extends CI_Controller
 	}
 	public function index(){
 		if($this->session->userdata('is_logged')){
-			$this->load->view('inventario');
+
+			$data= array(
+				'head' => $this->load->view('layout/head','', TRUE),
+				'nav' => $this->load->view('layout/navbar','', TRUE),
+				'side' => $this->load->view('layout/sidebar','', TRUE),
+				'footer' => $this->load->view('layout/footer','', TRUE),
+			); 
+
+			$this->load->view('inventario', $data);
+
 		}else{
 			redirect(base_url());
 		}
