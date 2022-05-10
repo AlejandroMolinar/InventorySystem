@@ -25,20 +25,20 @@
 		<tbody>
 			<?php foreach ($table as $items) : ?>
 				<tr>
-					<td><?= $items->id_inv_bien ?></td>
-					<td><?= $items->cod_marc ?></td>
-					<td><?= $items->id_mod_bien ?></td>
-					<td><?= $items->serial_bien ?></td>
-					<td><?= $items->id_num_bien ?></td>
-					<td><?= $items->id_clr_bien ?></td>
-					<td><?= $items->id_tpc_bien ?></td>
-					<td><?= $items->id_adm_bien ?></td>
-					<td><?= $items->id_trb_bien ?></td>
-					<td><?= $items->id_ciu_bien ?></td>
-					<td><?= $items->id_mun_bien ?></td>
-					<td><?= $items->id_parr_bien ?></td>
-					<td><?= $items->fec_crt_inv ?></td>
-					<td><?= $items->hor_crt_inv ?></td>
+					<td><?= $items->id ?></td>
+					<td><?= $items->marca ?></td>
+					<td><?= $items->modelo ?></td>
+					<td><?= $items->serial ?></td>
+					<td><?= $items->numBien ?></td>
+					<td><?= $items->color ?></td>
+					<td><?= $items->componente ?></td>
+					<td><?= $items->undAdm ?></td>
+					<td><?= $items->nombre ?> <?= $items->apellido ?></td>
+					<td><?= $items->ciudad ?></td>
+					<td><?= $items->municipio ?></td>
+					<td><?= $items->parroquia ?></td>
+					<td><?= $items->fecha ?></td>
+					<td><?= $items->hora ?></td>
 					<td><?= $items->status ?></td>
 				</tr>
 			<?php endforeach; ?>

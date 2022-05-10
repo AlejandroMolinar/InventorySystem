@@ -13,27 +13,57 @@ class ControlInventario extends CI_Controller
 			$range = $this->session->range;
 
 			$data = $this->Inventario_model->GetTable();
-			$contador =0; 
 
-			
+			$datatotal= array();
+			$contador=0;
+
 			foreach ($data as $items) {
-				$marca= array ($contador => $this->GetElements('marca', 'cod_marc', $items->cod_marc));
-				$modelo= array ($contador => $this->GetElements('modelo', 'id_mod', $items->id_mod_bien));
-				$numBien= array ($contador => $this->GetElements('bien_mue', 'id_bien_mue', $items->id_num_bien));
-				$color= array ($contador => $this->GetElements('colores', 'id_col', $items->id_clr_bien));
-				$componente= array ($contador => $this->GetElements('tp_comp', 'id_tp_comp', $items->id_tpc_bien));
-				$undAdm= array ($contador => $this->GetElements('uni_adm', 'id_uni_adm', $items->id_adm_bien));
-				$trabajador= array ($contador => $this->GetElements('trabajador', 'id_trb', $items->id_trb_bien));
-				$ciudad= array ($contador => $this->GetElements('ciudad', 'id_ciu', $items->id_ciu_bien));
-				$municipio= array ($contador => $this->GetElements('municipio', 'id_mun', $items->id_mun_bien));
-				$parroquia= array ($contador =>  $this->GetElements('parroquia', 'id_parr', $items->id_parr_bien));
-				$contador+1;
+
+				$id= $items->id_inv_bien; 
+				$marca= $this->GetElements('marca', 'cod_marc', $items->cod_marc);
+				$modelo= $this->GetElements('modelo', 'id_mod', $items->id_mod_bien);
+				$serial= $items->serial_bien; 
+				$numBien=$this->GetElements('bien_mue', 'id_bien_mue', $items->id_num_bien);
+				$color= $this->GetElements('colores', 'id_col', $items->id_clr_bien);
+				$componente= $this->GetElements('tp_comp', 'id_tp_comp', $items->id_tpc_bien);
+				$undAdm= $this->GetElements('uni_adm', 'id_uni_adm', $items->id_adm_bien);
+				$trabajador= $this->GetElements('trabajador', 'id_trb', $items->id_trb_bien);
+				$ciudad= $this->GetElements('ciudad', 'id_ciu', $items->id_ciu_bien);
+				$municipio= $this->GetElements('municipio', 'id_mun', $items->id_mun_bien);
+				$parroquia= $this->GetElements('parroquia', 'id_parr', $items->id_parr_bien);
+				$fecha= $items->fec_crt_inv; 
+				$hora= $items->hor_crt_inv;
+				$status= $items->status;
+
+				$datos= array(
+					'id' => $id,
+					'marca' => $marca -> den_com_marc,
+					'modelo' => $modelo -> den_mod,
+					'serial' => $serial,
+					'numBien' => $numBien -> num_bien_mue,
+					'color' => $color -> desc_col,
+					'componente' => $componente -> mat_tp_comp,
+					'undAdm' => $undAdm -> desc_uni_adm,
+					'nombre' => $trabajador -> nombre_trb,
+					'apellido' => $trabajador -> apellido_trb,
+					'ciudad' => $ciudad -> desc_ciu,
+					'municipio' => $municipio -> desc_mun,
+					'parroquia' => $parroquia -> desc_parr,
+					'fecha' => $fecha,
+					'hora' => $hora,
+					'status' => $status,
+				);
+				array_push($datatotal, $datos);
 			}
 
-			var_dump($marca);
+			// foreach ($datatotal as $key) {
+				// foreach ($key as $item) {
+					var_dump($datos);
+				// }
+			// }
 
 			if ($data != null) {
-				$this->GetView($range, $data);
+				$this->GetView($range, $datatotal);
 			}
 		} else {
 			redirect(base_url());
