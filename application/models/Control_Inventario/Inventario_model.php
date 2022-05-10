@@ -14,10 +14,12 @@ class Inventario_model extends CI_model{
 
     }
 
-    public function GetTables($table, $key, $search){
-        
-        $data_log= $this->db->get_where($table, array($key => $search), 1);
-        return $data_log->result();
+    public function GetTables($table, $select, $key, $search){
+        $this->db->select($select);
+        $this->db->from($table);
+        $this->db->where($key , $search);
+        $data_log= $this->db->get();
+        return $data_log->row();
 
     }
 

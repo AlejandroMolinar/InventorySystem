@@ -2,7 +2,7 @@
 	<h1>Control de Inventario</h1>
 
 
-	<table id="example" class="table table-striped table-bordered" style="width:100%">
+	<table id="example" class="table table-striped table-bordered">
 		<thead>
 			<tr>
 				<th>Id</th>
@@ -23,23 +23,23 @@
 			</tr>
 		</thead>
 		<tbody>
-			<?php foreach ($table as $items) : ?>
+			<?php foreach ($dataTable as $items) : ?>
 				<tr>
-					<td><?= $items->id ?></td>
-					<td><?= $items->marca ?></td>
-					<td><?= $items->modelo ?></td>
-					<td><?= $items->serial ?></td>
-					<td><?= $items->numBien ?></td>
-					<td><?= $items->color ?></td>
-					<td><?= $items->componente ?></td>
-					<td><?= $items->undAdm ?></td>
-					<td><?= $items->nombre ?> <?= $items->apellido ?></td>
-					<td><?= $items->ciudad ?></td>
-					<td><?= $items->municipio ?></td>
-					<td><?= $items->parroquia ?></td>
-					<td><?= $items->fecha ?></td>
-					<td><?= $items->hora ?></td>
-					<td><?= $items->status ?></td>
+					<td><?= $items['id'] ?></td>
+					<td><?= $items['marca']-> den_com_marc ?></td>
+					<td><?= $items['modelo']-> den_mod ?></td>
+					<td><?= $items['serial'] ?></td>
+					<td><?= $items['numBien']-> num_bien_mue ?></td>
+					<td><?= $items['color']-> desc_col ?></td>
+					<td><?= $items['componente']-> mat_tp_comp ?></td>
+					<td><?= $items['undAdm']-> desc_uni_adm ?></td>
+					<td><?= $items['trabajador']-> nombre_trb ?> <?= $items['trabajador']-> apellido_trb ?></td>
+					<td><?= $items['ciudad']-> desc_ciu ?></td>
+					<td><?= $items['municipio']-> desc_mun ?></td>
+					<td><?= $items['parroquia'] -> desc_parr ?></td>
+					<td><?= $items['fecha'] ?></td>
+					<td><?= $items['hora'] ?></td>
+					<td><?= $items['status'] ?></td>
 				</tr>
 			<?php endforeach; ?>
 

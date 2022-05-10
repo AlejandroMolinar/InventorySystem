@@ -1,9 +1,9 @@
-<!-- <?= $head ?> -->
-<!-- <?= $nav ?> -->
-<!-- <?= $side ?> -->
+<?= $head ?>
+<?= $nav ?>
+<?= $side ?>
 
 <div class="content">
-    <!-- <?= $content ?> -->
+    <?= $content ?>
 
 </div>
-<!-- <?= $footer ?> -->
+<?= $footer ?>
