@@ -17,10 +17,7 @@ class Inventario_model extends CI_model{
     public function GetTables($table, $key, $search){
         
         $data_log= $this->db->get_where($table, array($key => $search), 1);
-        if(!$data_log->result()){
-            return FALSE;
-        }
-        return $data_log->row();
+        return $data_log->result();
 
     }
 

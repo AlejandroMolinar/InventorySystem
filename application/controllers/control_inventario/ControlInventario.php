@@ -15,18 +15,22 @@ class ControlInventario extends CI_Controller
 			$data = $this->Inventario_model->GetTable();
 			$contador =0; 
 
+			
 			foreach ($data as $items) {
-				$marca= array ($contador => $this->GetView('marca', 'id_marc', $items->cod_marc));
-				$modelo= array ($contador => $this->GetView('modelo', 'id_mod', $items->id_mod_bien));
-				$numBien= array ($contador => $this->GetView('bien_mue', 'id_bien_mue', $items->id_num_bien));
-				$color= array ($contador => $this->GetView('colores', 'id_col', $items->id_clr_bien));
-				$componente= array ($contador => $this->GetView('tp_comp', 'id_tp_comp', $items->id_tpc_bien));
-				$undAdm= array ($contador => $this->GetView('uni_adm', 'id_uni_adm', $items->id_adm_bien));
-				$trabajador= array ($contador => $this->GetView('trabajador', 'id_trb', $items->id_trb_bien));
-				$ciudad= array ($contador => $this->GetView('ciudad', 'id_ciu', $items->id_ciu_bien));
-				$municipio= array ($contador => $this->GetView('municipio', 'id_mun', $items->id_mun_bien));
-				$parroquia= array ($contador => $this->GetView('parroquia', 'id_parr', $items->id_parr_bien));
+				$marca= array ($contador => $this->GetElements('marca', 'cod_marc', $items->cod_marc));
+				$modelo= array ($contador => $this->GetElements('modelo', 'id_mod', $items->id_mod_bien));
+				$numBien= array ($contador => $this->GetElements('bien_mue', 'id_bien_mue', $items->id_num_bien));
+				$color= array ($contador => $this->GetElements('colores', 'id_col', $items->id_clr_bien));
+				$componente= array ($contador => $this->GetElements('tp_comp', 'id_tp_comp', $items->id_tpc_bien));
+				$undAdm= array ($contador => $this->GetElements('uni_adm', 'id_uni_adm', $items->id_adm_bien));
+				$trabajador= array ($contador => $this->GetElements('trabajador', 'id_trb', $items->id_trb_bien));
+				$ciudad= array ($contador => $this->GetElements('ciudad', 'id_ciu', $items->id_ciu_bien));
+				$municipio= array ($contador => $this->GetElements('municipio', 'id_mun', $items->id_mun_bien));
+				$parroquia= array ($contador =>  $this->GetElements('parroquia', 'id_parr', $items->id_parr_bien));
+				$contador+1;
 			}
+
+			var_dump($marca);
 
 			if ($data != null) {
 				$this->GetView($range, $data);
@@ -56,8 +60,8 @@ class ControlInventario extends CI_Controller
 		$this->load->view('inventario', $data);
 	}
 	
-	public function getelements($table, $key, $item){
-		$this->Inventario_model->GetTables($table, $key , $item)
+	public function GetElements($table, $key, $item){
+		return $this->Inventario_model->GetTables($table, $key , $item);
 	}
 	
 	public function Inventario(){
