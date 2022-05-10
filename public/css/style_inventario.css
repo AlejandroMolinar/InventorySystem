@@ -18,6 +18,10 @@ body {
 	width: 100%;
 }
 
+.nav-link{
+	text-transform: capitalize;
+	font-style: italic;
+}
 
 .fs-4 {
 	text-transform: capitalize;
@@ -35,6 +39,10 @@ body {
 	overflow-x: scroll;
 }
 
+.tr_content > td{
+	text-transform: capitalize;
+}
+
 .nav-links {
 	display: block;
 	padding: 0.5rem 1rem;
@@ -42,7 +50,7 @@ body {
 }
 
 .active{
-  color: #fff;
+  	color: #fff;
 	background-color: #fd0d0d;
-  border-radius: 50px;
+  	border-radius: 50px;
 }

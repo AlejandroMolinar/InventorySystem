@@ -1,7 +1,6 @@
 <div class="inventario">
 	<h1>Control de Inventario</h1>
 
-
 	<table id="example" class="table table-striped table-bordered">
 		<thead>
 			<tr>
@@ -17,14 +16,13 @@
 				<th>Ciudad</th>
 				<th>Municipio</th>
 				<th>Parroquia</th>
-				<th>Fecha de Creaci&oacuten</th>
-				<th>Hora de Creaci&oacuten</th>
+				<th>Fecha Creaci&oacuten</th>
+				<th>Hora Creaci&oacuten</th>
 				<th>Status</th>
 			</tr>
 		</thead>
-		<tbody>
 			<?php foreach ($dataTable as $items) : ?>
-				<tr>
+				<tr class="tr_content">
 					<td><?= $items['id'] ?></td>
 					<td><?= $items['marca']-> den_com_marc ?></td>
 					<td><?= $items['modelo']-> den_mod ?></td>
