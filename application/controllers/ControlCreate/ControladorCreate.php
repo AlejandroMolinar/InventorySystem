@@ -10,28 +10,26 @@ class ControladorCreate extends CI_Controller
 	}
 	public function index(){
 
-			$marca		= $this->ModelCreate->GetTable('marca', 'den_com_marc');
-			$modelo		= $this->ModelCreate->GetTable('modelo', 'den_mod');
-			$color		= $this->ModelCreate->GetTable('colores', 'desc_col', 'id_col');
-			$componente	= $this->ModelCreate->GetTable('tp_comp', 'mat_tp_comp');
-			$undAdm		= $this->ModelCreate->GetTable('uni_adm', 'desc_uni_adm');
-			$trabajador	= $this->ModelCreate->GetTable('trabajador', 'nombre_trb, apellido_trb');
-			$ciudad		= $this->ModelCreate->GetTable('ciudad', 'desc_ciu');
-			$municipio	= $this->ModelCreate->GetTable('municipio', 'desc_mun');
-			$parroquia	= $this->ModelCreate->GetTable('parroquia', 'desc_parr');
+		$marca= $this->ModelCreate->GetTable('marca', 'den_com_marc');
+		$modelo= $this->ModelCreate->GetTable('modelo', 'den_mod');
+		$color= $this->ModelCreate->GetTable('colores', 'desc_col', 'id_col');
+		$componente= $this->ModelCreate->GetTable('tp_comp', 'mat_tp_comp');
+		$undAdm= $this->ModelCreate->GetTable('uni_adm', 'desc_uni_adm');
+		$trabajador= $this->ModelCreate->GetTable('trabajador', 'nombre_trb, apellido_trb');
+		$ciudad= $this->ModelCreate->GetTable('ciudad', 'desc_ciu');
+		$municipio= $this->ModelCreate->GetTable('municipio', 'desc_mun');
+		$parroquia= $this->ModelCreate->GetTable('parroquia', 'desc_parr');
 
-		// foreach ($datos as $key) {
-		// 	foreach ($key['modelo'] as $item) {			
-		// 		var_dump($item->den_mod);
-		// 	}
-		// }
-			$data = array(
-				'head' => $this->load->view('VistaCreate/layout/head', '', TRUE),
-				'nav' => $this->load->view('VistaCreate/layout/navbar', '', TRUE),
-				'content' => $this->load->view('VistaCreate/content/formCreate', array(), TRUE),
-				'footer' => $this->load->view('VistaCreate/layout/footer', '', TRUE),
-			);
+			foreach ($marca as $item) {			
+				var_dump($item->den_com_marc);
+			}
+		// $data = array(
+		// 	'head' => $this->load->view('VistaCreate/layout/head', '', TRUE),
+		// 	'nav' => $this->load->view('VistaCreate/layout/navbar', '', TRUE),
+		// 	'content' => $this->load->view('VistaCreate/content/formCreate', array(), TRUE),
+		// 	'footer' => $this->load->view('VistaCreate/layout/footer', '', TRUE),
+		// );
 
-			$this->load->view('VistaCreate/vistaCreate', $data);
+		// $this->load->view('VistaCreate/vistaCreate', $data);
 	}
 }
