@@ -24,9 +24,10 @@ body {
 	position: static;
 }
 
-input {
+.form-selects,
+.form-inputs{
 	background-color: #fbfbfb;
-	width: 408px;
+	width: 400px;
 	height: 40px;
 	border-radius: 5px;
 	border-style: solid;
@@ -34,21 +35,7 @@ input {
 	border-color: #000000;
 	margin-top: 10px;
 	padding-left: 10px;
-	margin-bottom: 20px;
-}
-
-textarea {
-	background-color: #fbfbfb;
-	width: 405px;
-	height: 150px;
-	border-radius: 5px;
-	border-style: solid;
-	border-width: 1px;
-	border-color: #000000;
-	margin-top: 10px;
-	padding-left: 10px;
-	margin-bottom: 20px;
-	padding-top: 15px;
+	padding-right: 10px;
 }
 
 label {
@@ -56,11 +43,12 @@ label {
 	float: center;
 }
 
-button {
+.submit{
 	height: 45px;
 	padding-left: 5px;
 	padding-right: 5px;
-	margin-bottom: 20px;
+	padding-top: 10px;
+	margin-bottom: 10px;
 	margin-top: 10px;
 	text-transform: uppercase;
 	background-color: #0e0e0e;
@@ -81,7 +69,7 @@ span {
 
 .aviso {
 	font-size: 13px;
-	color: #0e0e0e76;
+	color: #0e0e0e;
 }
 
 h1 {
@@ -106,17 +94,10 @@ p {
 	color: #a8a8a8;
 }
 
-::-webkit-textarea-placeholder {
-	color: #a8a8a8;
-}
 
 .formulario input:focus {
 	outline: 0;
-	border: 1px solid #97d848;
+	border: 1px solid #016d0a;
 }
 
-.formulario textarea:focus {
-	outline: 0;
-	border: 1px solid #97d848;
-}
 
