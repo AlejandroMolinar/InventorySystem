@@ -8,7 +8,15 @@ class ControladorCreate extends CI_Controller{
 		$this->load->model('ModeloCreate/ModelCreate');
 	}
 	public function index(){
-		$this->load->view('VistaCreate/vistaCreate');
+
+		$data = array(
+			'head' => $this->load->view('VistaCreate/layout/head', '', TRUE),
+			'nav' => $this->load->view('VistaCreate/layout/navbar', '', TRUE),
+			'content' => $this->load->view('VistaCreate/content/formCreate', '', TRUE),
+			'footer' => $this->load->view('VistaCreate/layout/footer', '', TRUE),
+		);
+
+		$this->load->view('VistaCreate/vistaCreate', $data);
         
 	}
 

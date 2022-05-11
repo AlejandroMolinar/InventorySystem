@@ -55,7 +55,6 @@ $route['translate_uri_dashes'] = FALSE;
 $route['logadd'] = 'Login/create';
 $route['logout'] = 'Login/logout';
 $route['controlInv'] = 'ControlPrincipal/ControlInventario';
-$route['createred'] = 'ControlPrincipal/ControlInventario/NewCreate';
 $route['newCreate'] = 'ControlCreate/ControladorCreate';
 
 

@@ -80,7 +80,4 @@ class ControlInventario extends CI_Controller{
 		return $this->ModelInventario->GetTables($table, $select, $key, $item);
 	}
 
-	public function NewCreate(){
-		redirect(base_url('newCreate'));
-	}
 }
