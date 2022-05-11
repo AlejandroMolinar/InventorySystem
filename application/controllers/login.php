@@ -54,7 +54,9 @@ class Login extends CI_Controller
 				}else{
 					
 					if (!password_verify($password_si, $data_log->password_trb)) {
-						
+						echo json_encode(array('msg' => "La Clave no son valida"));
+						$this->output->set_status_header(401);
+						exit;
 	
 					} else {
 						$data= array(
@@ -64,9 +66,10 @@ class Login extends CI_Controller
 							'apellido_user' => $data_log->apellido_trb,
 							'status' => $data_log->status,
 							'is_logged' => TRUE,
+							'time' => time(),
 						);
 						$this->session->set_userdata($data);
-						$this->session->set_flashdata('msg', 'Sistema de Control de Inventario, '.$data['nombre_user']);
+						// $this->session->set_flashdata('msg', 'Sistema de Control de Inventario, '.$data['nombre_user']);
 						echo json_encode(array("url" => base_url("controlInv")));
 	
 					}

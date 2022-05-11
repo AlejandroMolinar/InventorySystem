@@ -12,9 +12,11 @@
             </a>
         </li>
         <li class="nav-item">
-            <button type="button" class="btn btn-outline-success <?= ($this->session->range != 1) ? 'disabled' : '' ?>">
-                Agregar
-            </button>
+            <?php if ($this->session->range == 1) : ?>
+                <button type="button" class="btn btn-outline-success">
+                    Agregar
+                </button>
+            <?php endif; ?>
         </li>
     </ul>
 </div>

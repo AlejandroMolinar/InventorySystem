@@ -59,13 +59,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
           </div>
 
           <div class="foot-lnk" id="err_login">
-            
           </div>
 
           <div class="hr"></div>
-          <div class="foot-lnk">
-            <a class="foot-lnk" href="">Olvido la contraseña?</a>
-          </div>
 
         </div>
 
