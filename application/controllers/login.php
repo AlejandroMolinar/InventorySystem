@@ -7,13 +7,13 @@ class Login extends CI_Controller
 		parent::__construct();
 		$this->load->database();
 		$this->load->helper(array('auth/login', 'auth/register'));
-		$this->load->model('Login_model');
+		$this->load->model('ModeloLogIn/Login_model');
 		$this->load->library('session');
 
 	}
 	public function index(){
 		$data['url'] = main_menu();
-		$this->load->view('login', $data);
+		$this->load->view('VistaLogIn/login', $data);
 	}
 	public function create(){
 

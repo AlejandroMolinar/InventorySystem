@@ -14,7 +14,8 @@
         <li class="nav-item">
             <?php if ($this->session->range == 1) : ?>
                 <button type="button" class="btn btn-outline-success">
-                    Agregar
+                    <a style="color: white;"
+                    href="<?= base_url('newCreate') ?>">Agregar</a>
                 </button>
             <?php endif; ?>
         </li>

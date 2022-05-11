@@ -5,7 +5,7 @@ class ControlInventario extends CI_Controller{
 	public function __construct(){
 		parent::__construct();
 		$this->load->database();
-		$this->load->model('Control_Inventario/Inventario_model');
+		$this->load->model('ModeloInventario/ModelInventario');
 	}
 	public function index(){
 		if ($this->session->userdata('is_logged')) {
@@ -13,16 +13,16 @@ class ControlInventario extends CI_Controller{
 			$timeLog = $this->session->time;
 			$timeNow = time();
 
-			if ($timeNow - $timeLog >= 300) {
-				session_destroy();
-				redirect(base_url());
+			// if ($timeNow - $timeLog >= 300) {
+				// session_destroy();
+				// redirect(base_url());
 
-			} else {
+			// } else {
 				$timeLog = time();
 
 				$range = $this->session->range;
 
-				$data = $this->Inventario_model->GetTable();
+				$data = $this->ModelInventario->GetTable();
 
 				$datatotal = array();
 				$contador = 0;
@@ -52,7 +52,7 @@ class ControlInventario extends CI_Controller{
 				if ($datatotal != null) {
 					$this->GetView($range, $datatotal);
 				}
-			}
+			// }
 		} else {
 			redirect(base_url());
 		}
@@ -61,25 +61,26 @@ class ControlInventario extends CI_Controller{
 	public function GetView($range, $dataTable){
 
 		if ($range != 1) {
-			$view = $this->load->view('user/inventario_user', array('dataTable' => $dataTable), TRUE);
+			$view = $this->load->view('VistaPrincipal/user/inventario_user', array('dataTable' => $dataTable), TRUE);
 		} else {
-			$view = $this->load->view('admin/inventario_admin', array('dataTable' => $dataTable), TRUE);
+			$view = $this->load->view('VistaPrincipal/admin/inventario_admin', array('dataTable' => $dataTable), TRUE);
 		}
 		$data = array(
-			'head' => $this->load->view('layout/head', '', TRUE),
-			'nav' => $this->load->view('layout/navbar', '', TRUE),
+			'head' => $this->load->view('VistaPrincipal/layout/head', '', TRUE),
+			'nav' => $this->load->view('VistaPrincipal/layout/navbar', '', TRUE),
 			'content' => $view,
-			'side' => $this->load->view('layout/sidebar', '', TRUE),
-			'footer' => $this->load->view('layout/footer', '', TRUE),
+			'side' => $this->load->view('VistaPrincipal/layout/sidebar', '', TRUE),
+			'footer' => $this->load->view('VistaPrincipal/layout/footer', '', TRUE),
 		);
 
-		$this->load->view('inventario', $data);
+		$this->load->view('VistaPrincipal/vistaInventario', $data);
 	}
 
 	public function GetElements($table, $select, $key, $item){
-		return $this->Inventario_model->GetTables($table, $select, $key, $item);
+		return $this->ModelInventario->GetTables($table, $select, $key, $item);
 	}
 
-	public function Inventario(){
+	public function NewCreate(){
+		redirect(base_url('newCreate'));
 	}
 }

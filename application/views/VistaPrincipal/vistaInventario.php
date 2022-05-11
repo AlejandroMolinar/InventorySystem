@@ -3,6 +3,7 @@
 <?= $side ?>
 
 <div class="content">
+    
     <?= $content ?>
 
 </div>
