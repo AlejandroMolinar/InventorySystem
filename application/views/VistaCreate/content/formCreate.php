@@ -2,31 +2,25 @@
     <div class="formulario">
         <h1>Crear Nuevo Bien</h1>
 
-        <!-- <td><?= $items['id'] ?></td>
-        <td><?= $items['marca']->den_com_marc ?></td>
-        <td><?= $items['modelo']->den_mod ?></td>
-        <td><?= $items['serial'] ?></td>
-        <td><?= $items['numBien']->num_bien_mue ?></td>
-        <td><?= $items['color']->desc_col ?></td>
-        <td><?= $items['componente']->mat_tp_comp ?></td>
-        <td><?= $items['undAdm']->desc_uni_adm ?></td>
-        <td><?= $items['trabajador']->nombre_trb ?> <?= $items['trabajador']->apellido_trb ?></td>
-        <td><?= $items['ciudad']->desc_ciu ?></td>
-        <td><?= $items['municipio']->desc_mun ?></td>
-        <td><?= $items['parroquia']->desc_parr ?></td>
-        <td><?= $items['fecha'] ?></td>
-        <td><?= $items['hora'] ?></td>
-        <td><?= $items['status'] ?></td> -->
-
-        <form action="" method="post">
+        <!-- 'cod_marc', 	
+            'id_mod', 		
+            'id_bien_mue', 	
+            'id_col', 		
+            'id_tp_comp', 	
+            'id_uni_adm', 	
+            'id_trb', 		
+            'id_ciu', 		
+            'id_mun', 		
+            'id_parr',		 -->
+        <form id="formCreate" action="guardarInv" method="post">
             <p>
                 <label>Marca
                     <span class="obligatorio">*</span>
                 </label>
-                <select class="form-selects" aria-label="Default select example">
+                <select id="marcaS" name="marcaS" class="form-selects">
                     <option selected>Selecionar</option>
                     <?php foreach ($marca as $key) : ?>
-                        <option><?= $key->den_com_marc ?></option>
+                        <option value="<?= $key->cod_marc ?>"><?= $key->den_com_marc ?></option>
                     <?php endforeach; ?>
                 </select>
             </p>
@@ -35,10 +29,10 @@
                 <label>Modelo
                     <span class="obligatorio">*</span>
                 </label>
-                <select class="form-selects" aria-label="Default select example">
+                <select id="modeloS" name="modeloS" class="form-selects">
                     <option selected>Selecionar</option>
                     <?php foreach ($modelo as $key) : ?>
-                        <option class="consultas"><?= $key->den_mod ?></option>
+                        <option value="<?= $key->id_mod ?>"><?= $key->den_mod ?></option>
                     <?php endforeach; ?>
                 </select>
             </p>
@@ -47,14 +41,14 @@
                 <label>Serial
                     <span class="obligatorio">*</span>
                 </label>
-                <input type="text" class="form-inputs" id="validationDefault03" required>
+                <input id="serialS" name="serialS" type="text" class="form-inputs" required>
             </p>
 
             <p>
                 <label>N&uacutemero de Bien
                     <span class="obligatorio">*</span>
                 </label>
-                <input type="text" class="form-inputs" id="validationDefault03" required>
+                <input id="numBienS" name="numBienS" type="text" class="form-inputs" required>
 
             </p>
 
@@ -62,10 +56,10 @@
                 <label>Color
                     <span class="obligatorio">*</span>
                 </label>
-                <select class="form-selects" aria-label="Default select example">
+                <select id="colorS" name="colorS" class="form-selects">
                     <option selected>Selecionar</option>
                     <?php foreach ($color as $key) : ?>
-                        <option><?= $key->desc_col ?></option>
+                        <option value="<?= $key->id_col ?>"><?= $key->desc_col ?></option>
                     <?php endforeach; ?>
                 </select>
             </p>
@@ -73,10 +67,10 @@
                 <label>Tipo de Componente
                     <span class="obligatorio">*</span>
                 </label>
-                <select class="form-selects" aria-label="Default select example">
+                <select id="componenteS" name="componenteS" class="form-selects">
                     <option selected>Selecionar</option>
                     <?php foreach ($componente as $key) : ?>
-                        <option><?= $key->mat_tp_comp ?></option>
+                        <option value="<?= $key->id_tp_comp ?>"><?= $key->mat_tp_comp ?></option>
                     <?php endforeach; ?>
                 </select>
             </p>
@@ -84,10 +78,10 @@
                 <label>Unidad Administrativa
                     <span class="obligatorio">*</span>
                 </label>
-                <select class="form-selects" aria-label="Default select example">
+                <select id="undAdmS" name="undAdmS" class="form-selects">
                     <option selected>Selecionar</option>
                     <?php foreach ($undAdm as $key) : ?>
-                        <option><?= $key->desc_uni_adm ?></option>
+                        <option value="<?= $key->id_uni_adm ?>"><?= $key->desc_uni_adm ?></option>
                     <?php endforeach; ?>
                 </select>
             </p>
@@ -95,10 +89,10 @@
                 <label>Trabajador a Cargo
                     <span class="obligatorio">*</span>
                 </label>
-                <select class="form-selects" aria-label="Default select example">
+                <select id="trabajadorS" name="trabajadorS" class="form-selects">
                     <option selected>Selecionar</option>
                     <?php foreach ($trabajador as $key) : ?>
-                        <option><?= $key->nombre_trb ?> <?= $key->apellido_trb ?></option>
+                        <option value="<?= $key->id_trb ?>"><?= $key->nombre_trb ?> <?= $key->apellido_trb ?></option>
                     <?php endforeach; ?>
                 </select>
             </p>
@@ -106,10 +100,10 @@
                 <label>Ciudad
                     <span class="obligatorio">*</span>
                 </label>
-                <select class="form-selects" aria-label="Default select example">
+                <select id="ciudadS" name="ciudadS" class="form-selects">
                     <option selected>Selecionar</option>
                     <?php foreach ($ciudad as $key) : ?>
-                        <option><?= $key->desc_ciu ?></option>
+                        <option value="<?= $key->id_ciu ?>"><?= $key->desc_ciu ?></option>
                     <?php endforeach; ?>
                 </select>
             </p>
@@ -117,21 +111,21 @@
                 <label>Municipio
                     <span class="obligatorio">*</span>
                 </label>
-                <select class="form-selects" aria-label="Default select example">
+                <select id="municipioS" name="municipioS" class="form-selects">
                     <option selected>Selecionar</option>
                     <?php foreach ($municipio as $key) : ?>
-                        <option><?= $key->desc_mun ?></option>
+                        <option value="<?= $key->id_mun ?>"><?= $key->desc_mun ?></option>
                     <?php endforeach; ?>
                 </select>
             </p>
             <p>
                 <label>Parroquia
-                    <span class="obligatorio">*</span>
+                    <span  class="obligatorio">*</span>
                 </label>
-                <select class="form-selects" aria-label="Default select example">
+                <select id="parroquiaS" name="parroquiaS" class="form-selects">
                     <option selected>Selecionar</option>
                     <?php foreach ($parroquia as $key) : ?>
-                        <option><?= $key->desc_parr ?></option>
+                        <option value="<?= $key->id_parr ?>"><?= $key->desc_parr ?></option>
                     <?php endforeach; ?>
                 </select>
             </p>

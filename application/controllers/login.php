@@ -20,7 +20,6 @@ class Login extends CI_Controller
 		// SignIn
 		$email_si = $this->input->post('txt_ema_l');
 		$password_si = $this->input->post('txt_pas_l');
-		$recordar = $this->input->post('chk_kpm');
 
 		// SignUp
 		$nombre_sp = $this->input->post('txt_nom_r');

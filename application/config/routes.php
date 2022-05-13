@@ -56,6 +56,8 @@ $route['logadd'] = 'Login/create';
 $route['logout'] = 'Login/logout';
 $route['controlInv'] = 'ControlPrincipal/ControlInventario';
 $route['newCreate'] = 'ControlCreate/ControladorCreate';
+$route['guardarInv'] = 'ControlCreate/ControladorCreate/Guardar';
+
 
 
 
