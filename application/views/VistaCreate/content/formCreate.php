@@ -38,7 +38,7 @@
                 <select class="form-selects" aria-label="Default select example">
                     <option selected>Selecionar</option>
                     <?php foreach ($modelo as $key) : ?>
-                        <option><?= $key->den_mod ?></option>
+                        <option class="consultas"><?= $key->den_mod ?></option>
                     <?php endforeach; ?>
                 </select>
             </p>
