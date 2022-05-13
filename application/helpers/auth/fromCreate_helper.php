@@ -1,22 +1,27 @@
 <?php
 function fromCreate_rules()
 {
+    $selected= 'Selecionar';
     return array(
+        
 
         array(
             'field' => 'marcaS',
             'label' => 'Marca',
-            'rules' => 'required',
+            'rules' => 'required|matches[-Seleccionar-]',
             'errors' => array(
                 'required' => 'La %s es Requerida.',
+                'matches' => ' Debe Seleccionar un elemento',
             ),
         ),
         array(
             'field' => 'modeloS',
             'label' => 'Modelo',
-            'rules' => 'required',
+            'rules' => 'required|matches[-Seleccionar-]',
             'errors' => array(
                 'required' => 'El %s es Requerido.',
+                'matches' => ' Debe Seleccionar un elemento',
+
             ),
         ),
         array(
@@ -40,57 +45,64 @@ function fromCreate_rules()
         array(
             'field' => 'colorS',
             'label' => 'Color',
-            'rules' => 'required',
+            'rules' => 'required|matches[-Seleccionar-]',
             'errors' => array(
                 'required' => 'El %s es Requerido.',
+                'matches' => ' Debe Seleccionar un elemento',
             ),
         ),
         array(
             'field' => 'componenteS',
             'label' => 'Tipo Componente',
-            'rules' => 'required',
+            'rules' => 'required|matches[-Seleccionar-]',
             'errors' => array(
                 'required' => 'El %s es Requerido.',
+                'matches' => ' Debe Seleccionar un elemento',
             ),
         ),
         array(
             'field' => 'undAdmS',
             'label' => 'Unidad Administrativa',
-            'rules' => 'required',
+            'rules' => 'required|matches[-Seleccionar-]',
             'errors' => array(
                 'required' => 'La %s es Requerida.',
+                'matches' => ' Debe Seleccionar un elemento',
             ),
         ),
         array(
             'field' => 'trabajadorS',
             'label' => 'Trabajadores',
-            'rules' => 'required',
+            'rules' => 'required|matches[-Seleccionar-]',
             'errors' => array(
                 'required' => 'El %s es Requerido.',
+                'matches' => ' Debe Seleccionar un elemento',
             ),
         ),
         array(
             'field' => 'ciudadS',
             'label' => 'Ciudad',
-            'rules' => 'required',
+            'rules' => 'required|matches[-Seleccionar-]',
             'errors' => array(
                 'required' => 'La %s es Requerida.',
+                'matches' => ' Debe Seleccionar un elemento',
             ),
         ),
         array(
             'field' => 'municipioS',
             'label' => 'Municipio',
-            'rules' => 'required',
+            'rules' => 'required|matches[-Seleccionar-]',
             'errors' => array(
                 'required' => 'El %s es Requerido.',
+                'matches' => ' Debe Seleccionar un elemento',
             ),
         ),
         array(
             'field' => 'parroquiaS',
             'label' => 'Parriquia',
-            'rules' => 'required',
+            'rules' => 'required|matches[-Seleccionar-]',
             'errors' => array(
                 'required' => 'La %s es Requerida.',
+                'matches' => ' Debe Seleccionar un elemento',
             ),
         ),
 
