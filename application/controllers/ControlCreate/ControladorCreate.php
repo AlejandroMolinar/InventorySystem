@@ -88,12 +88,38 @@ class ControladorCreate extends CI_Controller
 			$this->output->set_status_header(400);
 			exit;
 		} else {
+			if(!$this->ModelCreate->create('bien_mue', array('num_bien_mue' => $numBienF))){
+				
+				echo json_encode(array('msg' => 'Hubo un Error al Crear el Elemento'));
+				$this->output->set_status_header(401);
+				exit;
 
+			}else{
+				$idNumBien= $this->ModelCreate->GetTables('bien_mue', 'id_bien_mue', 'num_bien_mue', $numBienF);
+
+				$data= array(
+					'cod_marc' => $marcaF,			
+					'id_mod_bien' => $modeloF,			
+					'serial_bien' => $serialF,			
+					'id_num_bien' => $idNumBien->id_bien_mue,			
+					'id_clr_bien' => $colorF,			
+					'id_tpc_bien' => $componenteF,			
+					'id_adm_bien' => $undAdmF,			
+					'id_trb_bien' => $trabajadorF,			
+					'id_ciu_bien' => $ciudadF,			
+					'id_mun_bien' => $municipioF,			
+					'id_parr_bien' => $parroquiaF,			
+				);
+
+				if(!$this->ModelCreate->create('inventario', $data)){
+					echo json_encode(array('msg' => 'Hubo un Error al Crear el Elemento'));
+					$this->output->set_status_header(401);
+					exit;
+
+				}else{
+					echo json_encode(array("url" => base_url('controlInv')));
+				}
+			}
 		}
-
-
-
-		// redirect(base_url('controlInv'));
-
 	}
 }

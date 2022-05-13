@@ -1,7 +1,7 @@
 <div class="inventario">
 	<h1>Control de Inventario</h1>
 
-	<table id="example" class="table table-striped table-bordered">
+	<table id="example" class="table table-striped table-bordered" style="width: 80%;">
 		<thead>
 			<tr>
 				<th>Id</th>

@@ -6,13 +6,13 @@
 			type: "POST",
 			data: $(this).serialize(),
 			success: function (data) {
-				// var json = JSON.parse(data);
-				// window.location.replace(json.url);
+				var json = JSON.parse(data);
+				window.location.replace(json.url);
 
 			},
 			statusCode: {
 				400: function (xhr) {
-					
+
 					$("#marca_err").html('');
 					$("#modelo_err").html('');
 					$("#serial_err").html('');
@@ -81,6 +81,14 @@
 				},
 				401: function (xhr) {
 					var json = JSON.parse(xhr.responseText);
+					$("#create_err").html('');
+
+					if (json.msg != null) {
+						if (json.msg.length != 0) {
+							$("#create_err").html('<div class="alert alert-danger" role="alert">'
+								+ json.msg + '</div>');
+						}
+					}
 
 				}
 			},

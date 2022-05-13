@@ -2,16 +2,6 @@
     <div class="formulario">
         <h1>Crear Nuevo Bien</h1>
 
-        <!-- 'cod_marc', 	
-            'id_mod', 		
-            'id_bien_mue', 	
-            'id_col', 		
-            'id_tp_comp', 	
-            'id_uni_adm', 	
-            'id_trb', 		
-            'id_ciu', 		
-            'id_mun', 		
-            'id_parr',		 -->
         <form id="formCreate" action="guardarInv" method="post">
             <p>
                 <label>Marca
@@ -148,6 +138,8 @@
             <p class="aviso">
                 <span class="obligatorio"> * </span>los campos son obligatorios.
             </p>
+
+            <div id="create_err"></div>  
 
         </form>
     </div>

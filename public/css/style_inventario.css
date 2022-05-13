@@ -30,7 +30,7 @@ body {
 .inventario {
 	position: fixed;
 	left: 270px;
-	top: 45;
+	top: 50px;
 	bottom: 0;
 	width: 82vw; /* viewport width */
 	height: 94vh; /* viewport height */

@@ -25,8 +25,8 @@ class ModelCreate extends CI_model{
 
     }
 
-    public function create($data_sp){
-        if(!$this->db->insert('inventario', $data_sp)){
+    public function create($table, $data){
+        if(!$this->db->insert($table, $data)){
             return FALSE;
         }
         return TRUE;
