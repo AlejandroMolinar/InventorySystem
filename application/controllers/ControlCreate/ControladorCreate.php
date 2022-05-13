@@ -20,16 +20,23 @@ class ControladorCreate extends CI_Controller
 		$municipio= $this->ModelCreate->GetTable('municipio', 'desc_mun');
 		$parroquia= $this->ModelCreate->GetTable('parroquia', 'desc_parr');
 
-			foreach ($marca as $item) {			
-				var_dump($item->den_com_marc);
-			}
-		// $data = array(
-		// 	'head' => $this->load->view('VistaCreate/layout/head', '', TRUE),
-		// 	'nav' => $this->load->view('VistaCreate/layout/navbar', '', TRUE),
-		// 	'content' => $this->load->view('VistaCreate/content/formCreate', array(), TRUE),
-		// 	'footer' => $this->load->view('VistaCreate/layout/footer', '', TRUE),
-		// );
+		$data = array(
+			'head' => $this->load->view('VistaCreate/layout/head', '', TRUE),
+			'nav' => $this->load->view('VistaCreate/layout/navbar', '', TRUE),
+			'content' => $this->load->view('VistaCreate/content/formCreate', array(
+				'marca' => $marca, 
+				'modelo' => $modelo, 
+				'color' => $color, 
+				'componente' => $componente, 
+				'undAdm' => $undAdm, 
+				'trabajador' => $trabajador, 
+				'ciudad' => $ciudad, 
+				'municipio' => $municipio, 
+				'parroquia' => $parroquia
+			), TRUE),
+			'footer' => $this->load->view('VistaCreate/layout/footer', '', TRUE),
+		);
 
-		// $this->load->view('VistaCreate/vistaCreate', $data);
+		$this->load->view('VistaCreate/vistaCreate', $data);
 	}
 }

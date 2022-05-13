@@ -25,8 +25,8 @@
                 </label>
                 <select class="form-selects" aria-label="Default select example">
                     <option selected>Selecionar</option>
-                    <?php foreach ($data['marca'] as $key) : ?>
-                            <option><label><?php $key->den_com_marc ?></label></option>
+                    <?php foreach ($marca as $key) : ?>
+                        <option><?= $key->den_com_marc ?></option>
                     <?php endforeach; ?>
                 </select>
             </p>
@@ -37,9 +37,9 @@
                 </label>
                 <select class="form-selects" aria-label="Default select example">
                     <option selected>Selecionar</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
+                    <?php foreach ($modelo as $key) : ?>
+                        <option><?= $key->den_mod ?></option>
+                    <?php endforeach; ?>
                 </select>
             </p>
 
@@ -64,9 +64,9 @@
                 </label>
                 <select class="form-selects" aria-label="Default select example">
                     <option selected>Selecionar</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
+                    <?php foreach ($color as $key) : ?>
+                        <option><?= $key->desc_col ?></option>
+                    <?php endforeach; ?>
                 </select>
             </p>
             <p>
@@ -75,9 +75,9 @@
                 </label>
                 <select class="form-selects" aria-label="Default select example">
                     <option selected>Selecionar</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
+                    <?php foreach ($componente as $key) : ?>
+                        <option><?= $key->mat_tp_comp ?></option>
+                    <?php endforeach; ?>
                 </select>
             </p>
             <p>
@@ -86,9 +86,9 @@
                 </label>
                 <select class="form-selects" aria-label="Default select example">
                     <option selected>Selecionar</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
+                    <?php foreach ($undAdm as $key) : ?>
+                        <option><?= $key->desc_uni_adm ?></option>
+                    <?php endforeach; ?>
                 </select>
             </p>
             <p>
@@ -97,9 +97,9 @@
                 </label>
                 <select class="form-selects" aria-label="Default select example">
                     <option selected>Selecionar</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
+                    <?php foreach ($trabajador as $key) : ?>
+                        <option><?= $key->nombre_trb ?> <?= $key->apellido_trb ?></option>
+                    <?php endforeach; ?>
                 </select>
             </p>
             <p>
@@ -108,9 +108,9 @@
                 </label>
                 <select class="form-selects" aria-label="Default select example">
                     <option selected>Selecionar</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
+                    <?php foreach ($ciudad as $key) : ?>
+                        <option><?= $key->desc_ciu ?></option>
+                    <?php endforeach; ?>
                 </select>
             </p>
             <p>
@@ -119,9 +119,9 @@
                 </label>
                 <select class="form-selects" aria-label="Default select example">
                     <option selected>Selecionar</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
+                    <?php foreach ($municipio as $key) : ?>
+                        <option><?= $key->desc_mun ?></option>
+                    <?php endforeach; ?>
                 </select>
             </p>
             <p>
@@ -130,9 +130,9 @@
                 </label>
                 <select class="form-selects" aria-label="Default select example">
                     <option selected>Selecionar</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
+                    <?php foreach ($parroquia as $key) : ?>
+                        <option><?= $key->desc_parr ?></option>
+                    <?php endforeach; ?>
                 </select>
             </p>
 
