@@ -13,15 +13,19 @@ body {
 }
 
 .contact_form {
-	width: 460px;
-	height: auto;
+	width: 468px;
+	height: 94vh;
+	top: 40px;
+	left: 35%;
 	margin: 10px auto;
 	border-radius: 10px;
 	padding-top: 30px;
 	padding-bottom: 20px;
 	background-color: #fbfbfb;
 	padding-left: 30px;
-	position: static;
+	position: fixed;
+	overflow-y: scroll;
+	overflow-x: scroll;
 }
 
 .form-selects,
@@ -102,6 +106,18 @@ p {
 
 option{
 	text-transform: capitalize;
+}
+
+.alert{
+	position: relative;	
+	padding: 1rem 1rem;
+	margin-bottom: 1rem;
+	border: 1px solid transparent;
+	border-radius: .50rem;
+	height: .20rem;
+	width: 400px;
+	display: flex;
+   	align-items: center;
 }
 
 

@@ -11,9 +11,72 @@
 
 			},
 			statusCode: {
-				
 				400: function (xhr) {
+					
+					$("#marca_err").html('');
+					$("#modelo_err").html('');
+					$("#serial_err").html('');
+					$("#numBien_err").html('');
+					$("#color_err").html('');
+					$("#componente_err").html('');
+					$("#undAdm_err").html('');
+					$("#trabajador_err").html('');
+					$("#ciudad_err").html('');
+					$("#municipio_err").html('');
+					$("#parroquia_err").html('');
+
 					var json = JSON.parse(xhr.responseText);
+
+					if (json.marca != null || json.modelo != null || json.serial != null || 
+						json.numBien != null|| json.color != null || json.componente != null || 
+						json.undAdm != null || json.trabajador != null || json.ciudad != null
+						|| json.municipio != null || json.parroquia != null) {
+
+						if (json.marca.length != 0) {
+							$("#marca_err").html('<div class="alert alert-danger" role="alert">'
+								+ json.marca + '</div>');
+						}
+						if (json.modelo.length != 0) {
+							$("#modelo_err").html('<div class="alert alert-danger" role="alert">'
+								+ json.modelo + '</div>');
+						}
+						if (json.serial.length != 0) {
+							$("#serial_err").html('<div class="alert alert-danger" role="alert">'
+								+ json.serial + '</div>');
+						}
+						if (json.numBien.length != 0) {
+							$("#numBien_err").html('<div class="alert alert-danger" role="alert">'
+								+ json.numBien + '</div>');
+						}
+						if (json.color.length != 0) {
+							$("#color_err").html('<div class="alert alert-danger" role="alert">'
+								+ json.color + '</div>');
+						}
+						if (json.componente.length != 0) {
+							$("#componente_err").html('<div class="alert alert-danger" role="alert">'
+								+ json.componente + '</div>');
+						}
+						if (json.undAdm.length != 0) {
+							$("#undAdm_err").html('<div class="alert alert-danger" role="alert">'
+								+ json.undAdm + '</div>');
+						}
+						if (json.trabajador.length != 0) {
+							$("#trabajador_err").html('<div class="alert alert-danger" role="alert">'
+								+ json.trabajador + '</div>');
+						}
+						if (json.ciudad.length != 0) {
+							$("#ciudad_err").html('<div class="alert alert-danger" role="alert">'
+								+ json.ciudad + '</div>');
+						}
+						if (json.municipio.length != 0) {
+							$("#municipio_err").html('<div class="alert alert-danger" role="alert">'
+								+ json.municipio + '</div>');
+						}
+						if (json.parroquia.length != 0) {
+							$("#parroquia_err").html('<div class="alert alert-danger" role="alert">'
+								+ json.parroquia + '</div>');
+						}
+					}
 
 				},
 				401: function (xhr) {
