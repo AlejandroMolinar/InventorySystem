@@ -57,8 +57,9 @@ $route['logout'] = 'Login/logout';
 $route['controlInv'] = 'ControlPrincipal/ControlInventario';
 $route['newCreate'] = 'ControlCreate/ControladorCreate';
 $route['guardarInv'] = 'ControlCreate/ControladorCreate/Guardar';
-$route['updateInv/(:any)'] = 'ControlUpdate/ControladorUpdate/index/$1';
-$route['updateSave'] = 'ControlUpdate/ControladorUpdate/Guardar';
+$route['updateInv/(:num)'] = 'ControlUpdate/ControladorUpdate/index/$1';
+$route['guardarUp'] = 'ControlUpdate/ControladorUpdate/GuardarUp';
+
 
 
 

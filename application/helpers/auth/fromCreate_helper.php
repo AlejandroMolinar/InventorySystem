@@ -1,10 +1,6 @@
 <?php
-function fromCreate_rules()
-{
-    $selected= 'Selecionar';
+function fromCreate_rules(){
     return array(
-        
-
         array(
             'field' => 'marcaS',
             'label' => 'Marca',
