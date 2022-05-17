@@ -63,7 +63,7 @@ class ControlInventario extends CI_Controller{
 		if ($range != 1) {
 			$view = $this->load->view('VistaPrincipal/user/inventario_user', array('dataTable' => $dataTable), TRUE);
 		} else {
-			$view = $this->load->view('VistaPrincipal/admin/inventario_admin', array('dataTable' => $dataTable), TRUE);
+			$view = $this->load->view('VistaPrincipal/admin/inventario_admin', array('dataTable' => $dataTable, 'range' => $range), TRUE);
 		}
 		$data = array(
 			'head' => $this->load->view('VistaPrincipal/layout/head', '', TRUE),

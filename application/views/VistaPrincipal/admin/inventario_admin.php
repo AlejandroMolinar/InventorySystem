@@ -19,11 +19,14 @@
 				<th>Fecha Creaci&oacuten</th>
 				<th>Hora Creaci&oacuten</th>
 				<th>Status</th>
+				<th>Acciones</th>
+
 			</tr>
 		</thead>
+		<tbody>
 			<?php foreach ($dataTable as $items) : ?>
 				<tr class="tr_content">
-					<td><?= $items['id'] ?></td>
+					<td><?= $id= $items['id'] ?></td>
 					<td><?= $items['marca']-> den_com_marc ?></td>
 					<td><?= $items['modelo']-> den_mod ?></td>
 					<td><?= $items['serial'] ?></td>
@@ -38,6 +41,10 @@
 					<td><?= $items['fecha'] ?></td>
 					<td><?= $items['hora'] ?></td>
 					<td><?= $items['status'] ?></td>
+					<td>
+						<button type="button" class="btn btn-success" 
+						onclick="window.location.href=' <?= base_url("updateInv/$id") ?>'">Actualizar</button>
+					</td>
 				</tr>
 			<?php endforeach; ?>
 
@@ -59,6 +66,7 @@
 				<th>Fecha de Creaci&oacuten</th>
 				<th>Hora de Creaci&oacuten</th>
 				<th>Status</th>
+				<th>Acciones</th>
 			</tr>
 		</tfoot>
 	</table>

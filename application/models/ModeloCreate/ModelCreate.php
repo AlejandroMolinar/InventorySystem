@@ -31,4 +31,13 @@ class ModelCreate extends CI_model{
         }
         return TRUE;
     }
+
+    public function update($table, $data){
+        if(!$this->db->insert($table, $data)){
+            return FALSE;
+        }
+        return TRUE;
+    }
+
+
 }

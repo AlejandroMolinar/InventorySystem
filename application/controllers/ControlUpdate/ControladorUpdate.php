@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class ControladorCreate extends CI_Controller{
+class ControladorUpdate extends CI_Controller{
 
 	public function __construct(){
 		parent::__construct();
@@ -9,7 +9,11 @@ class ControladorCreate extends CI_Controller{
 		$this->load->model('ModeloCreate/ModelCreate');
 		$this->load->helper(array('auth/fromCreate'));
 	}
-	public function index(){
+	public function index($id){
+		$data= $this->ModelCreate->GetTables('inventario', '*', 'id_inv_bien', $id);
+
+		//----------------------Querys-------------------------------------------------------
+
 		$marca = $this->ModelCreate->GetTable('marca', 'cod_marc, den_com_marc');
 		$modelo = $this->ModelCreate->GetTable('modelo', 'id_mod, den_mod');
 		$color = $this->ModelCreate->GetTable('colores', 'id_col, desc_col');
@@ -19,22 +23,26 @@ class ControladorCreate extends CI_Controller{
 		$ciudad = $this->ModelCreate->GetTable('ciudad', 'id_ciu, desc_ciu');
 		$municipio = $this->ModelCreate->GetTable('municipio', 'id_mun, desc_mun');
 		$parroquia = $this->ModelCreate->GetTable('parroquia', 'id_parr, desc_parr');
+		
+		$numBien= $this->ModelCreate->GetTables('bien_mue', 'num_bien_mue', 'id_bien_mue', $data->id_num_bien);
 
 		//------------------Envio de Datos-----------------------------------------------------------
 
 		$data = array(
 			'head' => $this->load->view('VistaCreate/layout/head', '', TRUE),
 			'nav' => $this->load->view('VistaCreate/layout/navbar', '', TRUE),
-			'content' => $this->load->view('VistaCreate/content/formCreate', array(
+			'content' => $this->load->view('VistaCreate/content/formUpdate', array(
 				'marca' => $marca,
 				'modelo' => $modelo,
+				'numBien' => $numBien->num_bien_mue,
 				'color' => $color,
 				'componente' => $componente,
 				'undAdm' => $undAdm,
 				'trabajador' => $trabajador,
 				'ciudad' => $ciudad,
 				'municipio' => $municipio,
-				'parroquia' => $parroquia
+				'parroquia' => $parroquia,
+				'dataInv' => $data,
 			), TRUE),
 			'footer' => $this->load->view('VistaCreate/layout/footer', '', TRUE),
 		);
@@ -118,5 +126,6 @@ class ControladorCreate extends CI_Controller{
 			}
 		}
 	}
+
 
 }
