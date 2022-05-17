@@ -1,4 +1,13 @@
 <?php
+/* ===========================================================================================
+    Archivo: ControladorCreate.php
+    Descripcion: Controlador para la Creación de un nuevo Bienes.
+    Fecha de Creacion: 1-05-2022
+    Por: Alejandro Molinar.
+ * ===========================================================================================
+*/
+?>
+<?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
 class ControladorCreate extends CI_Controller{

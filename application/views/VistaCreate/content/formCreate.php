@@ -1,3 +1,13 @@
+<?php
+/* ===========================================================================================
+    Archivo: formCreate.php
+    Descripcion: Formulario para el Control de Inventario de Bienes.
+    Fecha de Creacion: 1-05-2022
+    Por: Alejandro Molinar.
+ * ===========================================================================================
+*/
+?>
+
 <div class="contact_form">
     <div class="formulario">
         <h1>Crear Nuevo Bien</h1>

@@ -1,10 +1,19 @@
+<?php
+/* ===========================================================================================
+    Archivo: navbar.php
+    Descripcion: Barra Superir HTML para la Creación de un nuevo Bienes.
+    Fecha de Creacion: 1-05-2022
+    Por: Alejandro Molinar.
+ * ===========================================================================================
+*/
+?>
+
 <div class="navbar">
     <ul class="nav bg-dark" id="navbar">
         <li class="nav-item">
             <?php if ($this->session->range == 1) : ?>
                 <button type="button" class="btn btn-outline-danger">
-                    <a style="color: white; width: 20px;"
-                    href="<?= base_url('controlInv') ?>">Regresar</a>
+                    <a style="color: white; width: 20px;" href="<?= base_url('controlInv') ?>">Regresar</a>
                 </button>
             <?php endif; ?>
         </li>

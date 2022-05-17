@@ -1,3 +1,12 @@
+<?php
+/* ===========================================================================================
+    Archivo: head.php
+    Descripcion: Inicio de código HTML para la Creación de un nuevo Bienes.
+    Fecha de Creacion: 1-05-2022
+    Por: Alejandro Molinar.
+ * ===========================================================================================
+*/
+?>
 <!DOCTYPE html>
 <html lang="en">
 

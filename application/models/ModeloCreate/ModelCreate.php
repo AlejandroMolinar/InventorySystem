@@ -1,4 +1,14 @@
 <?php
+/* ===========================================================================================
+    Archivo: ModelCreate.php
+    Descripcion: Modelo para la Creacion y la Actualizacion de un Bienes.
+    Fecha de Creacion: 5-04-2022
+    Por: Alejandro Molinar.
+ * ===========================================================================================
+*/
+?>
+
+<?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class ModelCreate extends CI_model{

@@ -1,6 +1,6 @@
 <?php
 /* ===========================================================================================
-    Archivo: Login.php
+    Archivo: login.php
     Descripcion: vista principal de Login.
     Fecha de Creacion: 12-04-2022
     Por: Alejandro Molinar.

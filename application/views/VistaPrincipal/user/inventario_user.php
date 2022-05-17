@@ -1,6 +1,15 @@
+<?php
+/* ===========================================================================================
+    Archivo: inventario_user.php
+    Descripcion: Vista tabla Usuario para el Control de Inventario de Bienes.
+    Fecha de Creacion: 20-04-2022
+    Por: Alejandro Molinar.
+ * ===========================================================================================
+*/
+?>
+
 <div class="inventario">
 	<h1>Control de Inventario</h1>
-
 
 	<table id="example" class="table table-striped table-bordered">
 		<thead>

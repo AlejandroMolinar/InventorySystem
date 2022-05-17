@@ -1,4 +1,13 @@
 <?php
+/* ===========================================================================================
+    Archivo: Login_model.php
+    Descripcion: Modelo principal de Login.
+    Fecha de Creacion: 12-04-2022
+    Por: Alejandro Molinar.
+ * ===========================================================================================
+*/
+?>
+<?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Login_model extends CI_model{

@@ -1,4 +1,14 @@
 <?php
+/* ===========================================================================================
+    Archivo: ControlInventario.php
+    Descripcion: Controlador para el Control de Inventario de Bienes.
+    Fecha de Creacion: 20-04-2022
+    Por: Alejandro Molinar.
+ * ===========================================================================================
+*/
+?>
+
+<?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
 class ControlInventario extends CI_Controller{
@@ -13,11 +23,11 @@ class ControlInventario extends CI_Controller{
 			$timeLog = $this->session->time;
 			$timeNow = time();
 
-			// if ($timeNow - $timeLog >= 300) {
-				// session_destroy();
-				// redirect(base_url());
+			if ($timeNow - $timeLog >= 300) {
+				session_destroy();
+				redirect(base_url());
 
-			// } else {
+			} else {
 				$timeLog = time();
 
 				$range = $this->session->range;
@@ -52,7 +62,7 @@ class ControlInventario extends CI_Controller{
 				if ($datatotal != null) {
 					$this->GetView($range, $datatotal);
 				}
-			// }
+			}
 		} else {
 			redirect(base_url());
 		}

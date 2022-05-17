@@ -1,3 +1,13 @@
+<?php
+/* ===========================================================================================
+    Archivo: inventario_admin.php
+    Descripcion: Vista tabla Administrador para el Control de Inventario de Bienes.
+    Fecha de Creacion: 20-04-2022
+    Por: Alejandro Molinar.
+ * ===========================================================================================
+*/
+?>
+
 <div class="inventario">
 	<h1>Control de Inventario</h1>
 

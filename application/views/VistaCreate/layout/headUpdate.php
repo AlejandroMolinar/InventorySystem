@@ -1,3 +1,13 @@
+<?php
+/* ===========================================================================================
+    Archivo: headUpdate.php
+    Descripcion: Inicio de código HTML para la Actualización de un Bien.
+    Fecha de Creacion: 17-04-2022
+    Por: Alejandro Molinar.
+ * ===========================================================================================
+*/
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 

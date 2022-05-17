@@ -1,3 +1,13 @@
+<?php
+/* ===========================================================================================
+    Archivo: head.php
+    Descripcion: Inicio de código HTML para el Control de Inventario de Bienes.
+    Fecha de Creacion: 20-04-2022
+    Por: Alejandro Molinar.
+ * ===========================================================================================
+*/
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 

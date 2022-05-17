@@ -1,4 +1,14 @@
 <?php
+/* ===========================================================================================
+    Archivo: ModelInventario.php
+    Descripcion: Modelo para el Control de Inventario de Bienes.
+    Fecha de Creacion: 20-04-2022
+    Por: Alejandro Molinar.
+ * ===========================================================================================
+*/
+?>
+
+<?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class ModelInventario extends CI_model{

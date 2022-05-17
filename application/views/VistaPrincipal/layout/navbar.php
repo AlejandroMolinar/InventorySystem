@@ -1,3 +1,13 @@
+<?php
+/* ===========================================================================================
+    Archivo: navbar.php
+    Descripcion: Barra Superir HTML para el Control de Inventario de Bienes.
+    Fecha de Creacion: 20-04-2022
+    Por: Alejandro Molinar.
+ * ===========================================================================================
+*/
+?>
+
 <div class="navbar">
     <ul class="nav justify-content-end bg-dark" id="navbar">
         <li class="nav-item">

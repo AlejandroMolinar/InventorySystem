@@ -1,3 +1,13 @@
+<?php
+/* ===========================================================================================
+    Archivo: FeorUpdate.php
+    Descripcion: Formulario para la Actualización de un Bien.
+    Fecha de Creacion: 17-04-2022
+    Por: Alejandro Molinar.
+ * ===========================================================================================
+*/
+?>
+
 <div class="contact_form">
     <div class="formulario">
         <h1>Actualizar Bien</h1>
