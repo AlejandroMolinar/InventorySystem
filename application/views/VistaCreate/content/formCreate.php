@@ -11,27 +11,24 @@
 <div class="contact_form">
     <div class="formulario">
         <h1>Crear Nuevo Bien</h1>
-
-        <form id="formCreate" action="#" method="post">
+        <form id="formCreate" action="guardarInv" method="post">
             <p>
                 <label>Marca
                     <span class="obligatorio">*</span>
                 </label>
                 <br>
                 <select id="marcaS" name="marcaS" class="form-selectAdd">
-                    <option selected>-Seleccionar-</option>
+                    <option value="0" selected>-Seleccionar-</option>
                     <?php foreach ($marca as $key) : ?>
                         <option value="<?= $key->cod_marc ?>"><?= $key->den_com_marc ?></option>
                     <?php endforeach; ?>
                 </select>
-                <input type="text" name="marcaAdd" id="marcaAdd" class="form-inputAdd" hidden>
                 
-                <button class="btn btn-success addContent" onclick="muestraMensaje('#marcaS', '#marcaAdd')">
+                <button type="button" class="btn btn-success addContent" onclick="crearElemento('#marcaS', 'marcaAdd')">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
                         <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"/>
                     </svg>
                 </button>
-
                 <div id="marca_err"></div>  
 
             </p>
@@ -42,14 +39,13 @@
                 </label>
                 <br>
                 <select id="modeloS" name="modeloS" class="form-selectAdd">
-                    <option selected>-Seleccionar-</option>
+                    <option value="0" selected>-Seleccionar-</option>
                     <?php foreach ($modelo as $key) : ?>
                         <option value="<?= $key->id_mod ?>"><?= $key->den_mod ?></option>
                     <?php endforeach; ?>
                 </select>
-                <input type="text" name="modeloAdd" id="modeloAdd" class="form-inputAdd" hidden>
                 
-                <button class="btn btn-success addContent" onclick="muestraMensaje('#modeloS', '#modeloAdd')">
+                <button type="button" class="btn btn-success addContent" onclick="crearElemento('#modeloS', 'modeloAdd')">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
                         <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"/>
                     </svg>
@@ -62,7 +58,7 @@
                     <span class="obligatorio">*</span>
                 </label>
                 <br>
-                <input id="serialS" name="serialS" type="text" class="form-inputs" required>
+                <input id="serialAdd" name="serialAdd" type="text" class="form-inputs" autocomplete="off" required>
                 <div id="serial_err"></div>  
             </p>
 
@@ -77,9 +73,8 @@
                         <option value="<?= $key->id_bien_mue ?>"><?= $key->num_bien_mue ?></option>
                     <?php endforeach; ?>
                 </select>
-                <input type="text" name="numBienAdd" id="numBienAdd" class="form-inputAdd" hidden>
                 
-                <button class="btn btn-success addContent" onclick="muestraMensaje('#numBienS', '#numBienAdd')">
+                <button type="button" class="btn btn-success addContent" onclick="crearElemento('#numBienS', 'numBienAdd')">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
                         <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"/>
                     </svg>
@@ -186,7 +181,6 @@
             <p class="aviso">
                 <span class="obligatorio"> * </span>los campos son obligatorios.
             </p>
-
             <div id="create_err"></div>  
 
         </form>

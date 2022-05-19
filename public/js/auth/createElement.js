@@ -27,61 +27,67 @@
 
 					var json = JSON.parse(xhr.responseText);
 
-					if (json.marca != null || json.modelo != null || json.serial != null ||
-						json.numBien != null || json.color != null || json.componente != null ||
-						json.undAdm != null || json.trabajador != null || json.ciudad != null
-						|| json.municipio != null || json.parroquia != null) {
-
-						if (json.marca.length != 0) {
-							$("#marca_err").html('<div class="alert alert-danger" role="alert">'
-								+ json.marca + '</div>');
-						}
-						if (json.modelo.length != 0) {
-							$("#modelo_err").html('<div class="alert alert-danger" role="alert">'
-								+ json.modelo + '</div>');
-						}
-						if (json.serial.length != 0) {
-							$("#serial_err").html('<div class="alert alert-danger" role="alert">'
-								+ json.serial + '</div>');
-						}
-						if (json.numBien.length != 0) {
-							$("#numBien_err").html('<div class="alert alert-danger" role="alert">'
-								+ json.numBien + '</div>');
-						}
-						if (json.color.length != 0) {
-							$("#color_err").html('<div class="alert alert-danger" role="alert">'
-								+ json.color + '</div>');
-						}
-						if (json.componente.length != 0) {
-							$("#componente_err").html('<div class="alert alert-danger" role="alert">'
-								+ json.componente + '</div>');
-						}
-						if (json.undAdm.length != 0) {
-							$("#undAdm_err").html('<div class="alert alert-danger" role="alert">'
-								+ json.undAdm + '</div>');
-						}
-						if (json.trabajador.length != 0) {
-							$("#trabajador_err").html('<div class="alert alert-danger" role="alert">'
-								+ json.trabajador + '</div>');
-						}
-						if (json.ciudad.length != 0) {
-							$("#ciudad_err").html('<div class="alert alert-danger" role="alert">'
-								+ json.ciudad + '</div>');
-						}
-						if (json.municipio.length != 0) {
-							$("#municipio_err").html('<div class="alert alert-danger" role="alert">'
-								+ json.municipio + '</div>');
-						}
-						if (json.parroquia.length != 0) {
-							$("#parroquia_err").html('<div class="alert alert-danger" role="alert">'
-								+ json.parroquia + '</div>');
-						}
+					if (json.marca.length != 0) {
+						$("#marca_err").html('<div class="alert alert-danger" role="alert">'
+							+ json.marca + '</div>');
 					}
-
+					// if (json.marcaAdd.length != 0) {
+					// 	$("#marca_err").html('<div class="alert alert-danger" role="alert">'
+					// 		+ json.marcaAdd + '</div>');
+					// }
+					if (json.modelo.length != 0) {
+						$("#modelo_err").html('<div class="alert alert-danger" role="alert">'
+							+ json.modelo + '</div>');
+					}
+					// if (json.modeloAdd.length != 0) {
+					// 	$("#modelo_err").html('<div class="alert alert-danger" role="alert">'
+					// 		+ json.modeloAdd + '</div>');
+					// }
+					if (json.serial.length != 0) {
+						$("#serial_err").html('<div class="alert alert-danger" role="alert">'
+							+ json.serial + '</div>');
+					}
+					if (json.numBien.length != 0) {
+						$("#numBien_err").html('<div class="alert alert-danger" role="alert">'
+							+ json.numBien + '</div>');
+					}
+					// if (json.numBienAdd.length != 0) {
+					// 	$("#numBien_err").html('<div class="alert alert-danger" role="alert">'
+					// 		+ json.numBienAdd + '</div>');
+					// }
+					if (json.color.length != 0) {
+						$("#color_err").html('<div class="alert alert-danger" role="alert">'
+							+ json.color + '</div>');
+					}
+					if (json.componente.length != 0) {
+						$("#componente_err").html('<div class="alert alert-danger" role="alert">'
+							+ json.componente + '</div>');
+					}
+					if (json.undAdm.length != 0) {
+						$("#undAdm_err").html('<div class="alert alert-danger" role="alert">'
+							+ json.undAdm + '</div>');
+					}
+					if (json.trabajador.length != 0) {
+						$("#trabajador_err").html('<div class="alert alert-danger" role="alert">'
+							+ json.trabajador + '</div>');
+					}
+					if (json.ciudad.length != 0) {
+						$("#ciudad_err").html('<div class="alert alert-danger" role="alert">'
+							+ json.ciudad + '</div>');
+					}
+					if (json.municipio.length != 0) {
+						$("#municipio_err").html('<div class="alert alert-danger" role="alert">'
+							+ json.municipio + '</div>');
+					}
+					if (json.parroquia.length != 0) {
+						$("#parroquia_err").html('<div class="alert alert-danger" role="alert">'
+							+ json.parroquia + '</div>');
+					}
 				},
 				401: function (xhr) {
-					var json = JSON.parse(xhr.responseText);
 					$("#create_err").html('');
+
+					var json = JSON.parse(xhr.responseText);
 
 					if (json.msg != null) {
 						if (json.msg.length != 0) {
@@ -95,38 +101,3 @@
 		});
 	});
 })(jQuery);
-
-function ordenarSelect(id_componente) {
-	var selectToSort = jQuery('#' + id_componente);
-	var optionActual = selectToSort.val();
-	selectToSort.html(selectToSort.children('option').sort(function (a, b) {
-		return a.text === b.text ? 0 : a.text < b.text ? -1 : 1;
-	})).val(optionActual);
-}
-
-$(document).ready(function () {
-	ordenarSelect('marcaS');
-	ordenarSelect('modeloS');
-	ordenarSelect('colorS');
-	ordenarSelect('componenteS');
-	ordenarSelect('trabajadorS');
-	ordenarSelect('ciudadS');
-	ordenarSelect('municipioS');
-	ordenarSelect('parroquiaS');
-});
-
-var band = true;
-function muestraMensaje($select, $input) {
-
-	if (band) {
-		$($select).attr('hidden', true);
-		$($input).removeAttr('hidden');
-		band = false;
-
-	} else {
-		$($input).attr('hidden', true);
-		$($select).removeAttr('hidden');
-		band = true;
-	}
-}
-

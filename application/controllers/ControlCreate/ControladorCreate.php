@@ -57,9 +57,9 @@ class ControladorCreate extends CI_Controller{
 
 		//---------------Elementos del Formulario-------------------------------------------------------------
 
+		//Select
 		$marcaF = $this->input->post('marcaS');
 		$modeloF = $this->input->post('modeloS');
-		$serialF = $this->input->post('serialS');
 		$numBienF = $this->input->post('numBienS');
 		$colorF = $this->input->post('colorS');
 		$componenteF = $this->input->post('componenteS');
@@ -68,7 +68,12 @@ class ControladorCreate extends CI_Controller{
 		$ciudadF =  $this->input->post('ciudadS');
 		$municipioF = $this->input->post('municipioS');
 		$parroquiaF = $this->input->post('parroquiaS');
-
+		
+		//Input 
+		$marcaAdd = $this->input->post('marcaAdd');
+		$modeloAdd = $this->input->post('modeloAdd');
+		$serialAdd = $this->input->post('serialAdd');
+		$numBienAdd = $this->input->post('numBienAdd');
 
 		//-------------------Validacion----------------------------------------------------------
 
@@ -76,11 +81,11 @@ class ControladorCreate extends CI_Controller{
 		$this->form_validation->set_rules($config);
 		$this->form_validation->set_error_delimiters('', '');
 
-		if ($this->form_validation->run() === FALSE) {
+		if ($this->form_validation->run() == FALSE) {
 			$error = array(
 				'marca' => form_error('marcaS'),
 				'modelo' => form_error('modeloS'),
-				'serial' => form_error('serialS'),
+				'serial' => form_error('serialAdd'),
 				'numBien' => form_error('numBienS'),
 				'color' => form_error('colorS'),
 				'componente' => form_error('componenteS'),
@@ -89,12 +94,12 @@ class ControladorCreate extends CI_Controller{
 				'ciudad' => form_error('ciudadS'),
 				'municipio' => form_error('municipioS'),
 				'parroquia' => form_error('parroquiaS'),
-
 			);
 			echo json_encode($error);
 			$this->output->set_status_header(400);
 			exit;
 		} else {
+			var_dump("entro");
 			if(!$this->ModelCreate->create('bien_mue', array('num_bien_mue' => $numBienF))){
 				
 				echo json_encode(array('msg' => 'Hubo un Error al Crear el Elemento'));
@@ -107,7 +112,7 @@ class ControladorCreate extends CI_Controller{
 				$data= array(
 					'cod_marc' => $marcaF,			
 					'id_mod_bien' => $modeloF,			
-					'serial_bien' => $serialF,			
+					'serial_bien' => $serialAdd,			
 					'id_num_bien' => $idNumBien->id_bien_mue,			
 					'id_clr_bien' => $colorF,			
 					'id_tpc_bien' => $componenteF,			

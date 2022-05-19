@@ -21,7 +21,7 @@ function fromCreate_rules(){
             ),
         ),
         array(
-            'field' => 'serialS',
+            'field' => 'serialAdd',
             'label' => 'Serial',
             'rules' => 'required|trim',
             'errors' => array(
