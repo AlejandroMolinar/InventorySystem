@@ -57,15 +57,15 @@ class ControlInventario extends CI_Controller{
 						'status' => $items->status,
 					);
 					array_push($datatotal, $datos);
-				// }
+				}
 
 				if ($datatotal != null) {
 					$this->GetView($range, $datatotal);
 				}
 			}
-		} else {
-			redirect(base_url());
-		}
+		// } else {
+		// 	redirect(base_url());
+		// }
 	}
 
 	public function GetView($range, $dataTable){

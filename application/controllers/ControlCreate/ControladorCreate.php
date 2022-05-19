@@ -98,22 +98,23 @@ class ControladorCreate extends CI_Controller{
 			echo json_encode($error);
 			$this->output->set_status_header(400);
 			exit;
-		} else {
-			var_dump("entro");
-			if(!$this->ModelCreate->create('bien_mue', array('num_bien_mue' => $numBienF))){
-				
-				echo json_encode(array('msg' => 'Hubo un Error al Crear el Elemento'));
-				$this->output->set_status_header(401);
-				exit;
+		}else{
 
-			}else{
-				$idNumBien= $this->ModelCreate->GetTables('bien_mue', 'id_bien_mue', 'num_bien_mue', $numBienF);
+			// if(
+			// 	!$this->ModelCreate->create('bien_mue', array('num_bien_mue' => $numBienF))){
+				
+			// 	echo json_encode(array('msg' => 'Hubo un Error al Crear el Elemento'));
+			// 	$this->output->set_status_header(401);
+			// 	exit;
+
+			// }else{
+				// $idNumBien= $this->ModelCreate->GetTables('bien_mue', 'id_bien_mue', 'num_bien_mue', $numBienF);
 
 				$data= array(
 					'cod_marc' => $marcaF,			
 					'id_mod_bien' => $modeloF,			
 					'serial_bien' => $serialAdd,			
-					'id_num_bien' => $idNumBien->id_bien_mue,			
+					'id_num_bien' => $numBienF,			
 					'id_clr_bien' => $colorF,			
 					'id_tpc_bien' => $componenteF,			
 					'id_adm_bien' => $undAdmF,			
@@ -131,7 +132,7 @@ class ControladorCreate extends CI_Controller{
 				}else{
 					echo json_encode(array("url" => base_url('controlInv')));
 				}
-			}
+			// }
 		}
 	}
 

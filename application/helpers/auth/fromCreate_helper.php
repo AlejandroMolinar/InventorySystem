@@ -4,19 +4,17 @@ function fromCreate_rules(){
         array(
             'field' => 'marcaS',
             'label' => 'Marca',
-            'rules' => 'required|matches[-Seleccionar-]',
+            'rules' => 'required',
             'errors' => array(
                 'required' => 'La %s es Requerida.',
-                'matches' => ' Debe Seleccionar un elemento',
             ),
         ),
         array(
             'field' => 'modeloS',
             'label' => 'Modelo',
-            'rules' => 'required|matches[-Seleccionar-]',
+            'rules' => 'required',
             'errors' => array(
                 'required' => 'El %s es Requerido.',
-                'matches' => ' Debe Seleccionar un elemento',
 
             ),
         ),
@@ -31,6 +29,94 @@ function fromCreate_rules(){
         array(
             'field' => 'numBienS',
             'label' => 'N&uacutemero de Bien',
+            'rules' => 'required',
+            'errors' => array(
+                'required' => 'El %s es Requerido.',
+            ),
+        ),
+        array(
+            'field' => 'colorS',
+            'label' => 'Color',
+            'rules' => 'required',
+            'errors' => array(
+                'required' => 'El %s es Requerido.',
+            ),
+        ),
+        array(
+            'field' => 'componenteS',
+            'label' => 'Tipo Componente',
+            'rules' => 'required',
+            'errors' => array(
+                'required' => 'El %s es Requerido.',
+            ),
+        ),
+        array(
+            'field' => 'undAdmS',
+            'label' => 'Unidad Administrativa',
+            'rules' => 'required',
+            'errors' => array(
+                'required' => 'La %s es Requerida.',
+            ),
+        ),
+        array(
+            'field' => 'trabajadorS',
+            'label' => 'Trabajadores',
+            'rules' => 'required',
+            'errors' => array(
+                'required' => 'El %s es Requerido.',
+            ),
+        ),
+        array(
+            'field' => 'ciudadS',
+            'label' => 'Ciudad',
+            'rules' => 'required',
+            'errors' => array(
+                'required' => 'La %s es Requerida.',
+            ),
+        ),
+        array(
+            'field' => 'municipioS',
+            'label' => 'Municipio',
+            'rules' => 'required',
+            'errors' => array(
+                'required' => 'El %s es Requerido.',
+            ),
+        ),
+        array(
+            'field' => 'parroquiaS',
+            'label' => 'Parriquia',
+            'rules' => 'required',
+            'errors' => array(
+                'required' => 'La %s es Requerida.',
+            ),
+        ),
+
+    );
+}
+
+function fromAdd_rules(){
+    return array(
+        array(
+            'field' => 'marcaAdd',
+            'label' => 'Marca',
+            'rules' => 'required|trim|min_length[4]',
+            'errors' => array(
+                'required' => 'La %s es Requerida.',
+                'matches' => ' Debe Seleccionar un elemento',
+            ),
+        ),
+        array(
+            'field' => 'modeloAdd',
+            'label' => 'Modelo',
+            'rules' => 'required|trim|min_length[4]',
+            'errors' => array(
+                'required' => 'El %s es Requerido.',
+                'min_length' => 'El %s debe tener M&iacutenimo 4 d&iacutegitos'
+            ),
+        ),
+        array(
+            'field' => 'numBienAdd',
+            'label' => 'N&uacutemero de Bien',
             'rules' => 'required|numeric|min_length[4]',
             'errors' => array(
                 'required' => 'El %s es Requerido.',
@@ -38,69 +124,5 @@ function fromCreate_rules(){
                 'min_length' => 'El %s debe tener M&iacutenimo 4 d&iacutegitos'
             ),
         ),
-        array(
-            'field' => 'colorS',
-            'label' => 'Color',
-            'rules' => 'required|matches[-Seleccionar-]',
-            'errors' => array(
-                'required' => 'El %s es Requerido.',
-                'matches' => ' Debe Seleccionar un elemento',
-            ),
-        ),
-        array(
-            'field' => 'componenteS',
-            'label' => 'Tipo Componente',
-            'rules' => 'required|matches[-Seleccionar-]',
-            'errors' => array(
-                'required' => 'El %s es Requerido.',
-                'matches' => ' Debe Seleccionar un elemento',
-            ),
-        ),
-        array(
-            'field' => 'undAdmS',
-            'label' => 'Unidad Administrativa',
-            'rules' => 'required|matches[-Seleccionar-]',
-            'errors' => array(
-                'required' => 'La %s es Requerida.',
-                'matches' => ' Debe Seleccionar un elemento',
-            ),
-        ),
-        array(
-            'field' => 'trabajadorS',
-            'label' => 'Trabajadores',
-            'rules' => 'required|matches[-Seleccionar-]',
-            'errors' => array(
-                'required' => 'El %s es Requerido.',
-                'matches' => ' Debe Seleccionar un elemento',
-            ),
-        ),
-        array(
-            'field' => 'ciudadS',
-            'label' => 'Ciudad',
-            'rules' => 'required|matches[-Seleccionar-]',
-            'errors' => array(
-                'required' => 'La %s es Requerida.',
-                'matches' => ' Debe Seleccionar un elemento',
-            ),
-        ),
-        array(
-            'field' => 'municipioS',
-            'label' => 'Municipio',
-            'rules' => 'required|matches[-Seleccionar-]',
-            'errors' => array(
-                'required' => 'El %s es Requerido.',
-                'matches' => ' Debe Seleccionar un elemento',
-            ),
-        ),
-        array(
-            'field' => 'parroquiaS',
-            'label' => 'Parriquia',
-            'rules' => 'required|matches[-Seleccionar-]',
-            'errors' => array(
-                'required' => 'La %s es Requerida.',
-                'matches' => ' Debe Seleccionar un elemento',
-            ),
-        ),
-
     );
 }

@@ -23,8 +23,10 @@
 $(document).ready(function () {
 	ordenarSelect('marcaS');
 	ordenarSelect('modeloS');
+	ordenarSelect('numBienS');
 	ordenarSelect('colorS');
 	ordenarSelect('componenteS');
+	ordenarSelect('undAdmS');
 	ordenarSelect('trabajadorS');
 	ordenarSelect('ciudadS');
 	ordenarSelect('municipioS');

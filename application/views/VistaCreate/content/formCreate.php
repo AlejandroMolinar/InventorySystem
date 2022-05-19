@@ -18,7 +18,7 @@
                 </label>
                 <br>
                 <select id="marcaS" name="marcaS" class="form-selectAdd">
-                    <option value="0" selected>-Seleccionar-</option>
+                    <option disabled selected>-Seleccionar-</option>
                     <?php foreach ($marca as $key) : ?>
                         <option value="<?= $key->cod_marc ?>"><?= $key->den_com_marc ?></option>
                     <?php endforeach; ?>
@@ -39,7 +39,7 @@
                 </label>
                 <br>
                 <select id="modeloS" name="modeloS" class="form-selectAdd">
-                    <option value="0" selected>-Seleccionar-</option>
+                    <option disabled selected>-Seleccionar-</option>
                     <?php foreach ($modelo as $key) : ?>
                         <option value="<?= $key->id_mod ?>"><?= $key->den_mod ?></option>
                     <?php endforeach; ?>
@@ -68,7 +68,7 @@
                 </label>
                 <br>
                 <select id="numBienS" name="numBienS" class="form-selectAdd">
-                    <option selected>-Seleccionar-</option>
+                    <option disabled selected>-Seleccionar-</option>
                     <?php foreach ($numBien as $key) : ?>
                         <option value="<?= $key->id_bien_mue ?>"><?= $key->num_bien_mue ?></option>
                     <?php endforeach; ?>
@@ -88,7 +88,7 @@
                 </label>
                 <br>
                 <select id="colorS" name="colorS" class="form-selects">
-                    <option selected>-Seleccionar-</option>
+                    <option disabled selected>-Seleccionar-</option>
                     <?php foreach ($color as $key) : ?>
                         <option value="<?= $key->id_col ?>"><?= $key->desc_col ?></option>
                     <?php endforeach; ?>
@@ -101,7 +101,7 @@
                 </label>
                 <br>
                 <select id="componenteS" name="componenteS" class="form-selects">
-                    <option selected>-Seleccionar-</option>
+                    <option disabled selected>-Seleccionar-</option>
                     <?php foreach ($componente as $key) : ?>
                         <option value="<?= $key->id_tp_comp ?>"><?= $key->mat_tp_comp ?></option>
                     <?php endforeach; ?>
@@ -114,7 +114,7 @@
                 </label>
                 <br>
                 <select id="undAdmS" name="undAdmS" class="form-selects">
-                    <option selected>-Seleccionar-</option>
+                    <option disabled selected>-Seleccionar-</option>
                     <?php foreach ($undAdm as $key) : ?>
                         <option value="<?= $key->id_uni_adm ?>"><?= $key->desc_uni_adm ?></option>
                     <?php endforeach; ?>
@@ -127,7 +127,7 @@
                 </label>
                 <br>
                 <select id="trabajadorS" name="trabajadorS" class="form-selects">
-                    <option selected>-Seleccionar-</option>
+                    <option disabled selected>-Seleccionar-</option>
                     <?php foreach ($trabajador as $key) : ?>
                         <option value="<?= $key->id_trb ?>"><?= $key->nombre_trb ?> <?= $key->apellido_trb ?></option>
                     <?php endforeach; ?>
@@ -140,7 +140,7 @@
                 </label>
                 <br>
                 <select id="ciudadS" name="ciudadS" class="form-selects">
-                    <option selected>-Seleccionar-</option>
+                    <option disabled selected>-Seleccionar-</option>
                     <?php foreach ($ciudad as $key) : ?>
                         <option value="<?= $key->id_ciu ?>"><?= $key->desc_ciu ?></option>
                     <?php endforeach; ?>
@@ -153,7 +153,7 @@
                 </label>
                 <br>
                 <select id="municipioS" name="municipioS" class="form-selects">
-                    <option selected>-Seleccionar-</option>
+                    <option disabled selected>-Seleccionar-</option>
                     <?php foreach ($municipio as $key) : ?>
                         <option value="<?= $key->id_mun ?>"><?= $key->desc_mun ?></option>
                     <?php endforeach; ?>
@@ -166,7 +166,7 @@
                 </label>
                 <br>
                 <select id="parroquiaS" name="parroquiaS" class="form-selects">
-                    <option selected>-Seleccionar-</option>
+                    <option disabled selected>-Seleccionar-</option>
                     <?php foreach ($parroquia as $key) : ?>
                         <option value="<?= $key->id_parr ?>"><?= $key->desc_parr ?></option>
                     <?php endforeach; ?>
