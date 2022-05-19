@@ -81,6 +81,12 @@ class ControladorCreate extends CI_Controller{
 		$this->form_validation->set_rules($config);
 		$this->form_validation->set_error_delimiters('', '');
 
+		if ($marcaAdd!=null || $modeloAdd!=null || $numBienAdd!=null ) {
+			$config = fromAdd_rules();
+			$this->form_validation->set_rules($config);
+			$this->form_validation->set_error_delimiters('', '');
+		}
+
 		if ($this->form_validation->run() == FALSE) {
 			$error = array(
 				'marca' => form_error('marcaS'),
