@@ -12,17 +12,26 @@
     <div class="formulario">
         <h1>Crear Nuevo Bien</h1>
 
-        <form id="formCreate" action="guardarInv" method="post">
+        <form id="formCreate" action="#" method="post">
             <p>
                 <label>Marca
                     <span class="obligatorio">*</span>
                 </label>
-                <select id="marcaS" name="marcaS" class="form-selects">
+                <br>
+                <select id="marcaS" name="marcaS" class="form-selectAdd">
                     <option selected>-Seleccionar-</option>
                     <?php foreach ($marca as $key) : ?>
                         <option value="<?= $key->cod_marc ?>"><?= $key->den_com_marc ?></option>
                     <?php endforeach; ?>
                 </select>
+                <input type="text" name="marcaAdd" id="marcaAdd" class="form-inputAdd" hidden>
+                
+                <button class="btn btn-success addContent" onclick="muestraMensaje('#marcaS', '#marcaAdd')">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"/>
+                    </svg>
+                </button>
+
                 <div id="marca_err"></div>  
 
             </p>
@@ -31,12 +40,20 @@
                 <label>Modelo
                     <span class="obligatorio">*</span>
                 </label>
-                <select id="modeloS" name="modeloS" class="form-selects">
+                <br>
+                <select id="modeloS" name="modeloS" class="form-selectAdd">
                     <option selected>-Seleccionar-</option>
                     <?php foreach ($modelo as $key) : ?>
                         <option value="<?= $key->id_mod ?>"><?= $key->den_mod ?></option>
                     <?php endforeach; ?>
                 </select>
+                <input type="text" name="modeloAdd" id="modeloAdd" class="form-inputAdd" hidden>
+                
+                <button class="btn btn-success addContent" onclick="muestraMensaje('#modeloS', '#modeloAdd')">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"/>
+                    </svg>
+                </button>
                 <div id="modelo_err"></div>  
             </p>
 
@@ -44,6 +61,7 @@
                 <label>Serial
                     <span class="obligatorio">*</span>
                 </label>
+                <br>
                 <input id="serialS" name="serialS" type="text" class="form-inputs" required>
                 <div id="serial_err"></div>  
             </p>
@@ -52,7 +70,20 @@
                 <label>N&uacutemero de Bien
                     <span class="obligatorio">*</span>
                 </label>
-                <input id="numBienS" name="numBienS" type="text" class="form-inputs" required>
+                <br>
+                <select id="numBienS" name="numBienS" class="form-selectAdd">
+                    <option selected>-Seleccionar-</option>
+                    <?php foreach ($numBien as $key) : ?>
+                        <option value="<?= $key->id_bien_mue ?>"><?= $key->num_bien_mue ?></option>
+                    <?php endforeach; ?>
+                </select>
+                <input type="text" name="numBienAdd" id="numBienAdd" class="form-inputAdd" hidden>
+                
+                <button class="btn btn-success addContent" onclick="muestraMensaje('#numBienS', '#numBienAdd')">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"/>
+                    </svg>
+                </button>
                 <div id="numBien_err"></div>  
             </p>
 
@@ -60,6 +91,7 @@
                 <label>Color
                     <span class="obligatorio">*</span>
                 </label>
+                <br>
                 <select id="colorS" name="colorS" class="form-selects">
                     <option selected>-Seleccionar-</option>
                     <?php foreach ($color as $key) : ?>
@@ -72,6 +104,7 @@
                 <label>Tipo de Componente
                     <span class="obligatorio">*</span>
                 </label>
+                <br>
                 <select id="componenteS" name="componenteS" class="form-selects">
                     <option selected>-Seleccionar-</option>
                     <?php foreach ($componente as $key) : ?>
@@ -84,6 +117,7 @@
                 <label>Unidad Administrativa
                     <span class="obligatorio">*</span>
                 </label>
+                <br>
                 <select id="undAdmS" name="undAdmS" class="form-selects">
                     <option selected>-Seleccionar-</option>
                     <?php foreach ($undAdm as $key) : ?>
@@ -96,6 +130,7 @@
                 <label>Trabajador a Cargo
                     <span class="obligatorio">*</span>
                 </label>
+                <br>
                 <select id="trabajadorS" name="trabajadorS" class="form-selects">
                     <option selected>-Seleccionar-</option>
                     <?php foreach ($trabajador as $key) : ?>
@@ -108,6 +143,7 @@
                 <label>Ciudad
                     <span class="obligatorio">*</span>
                 </label>
+                <br>
                 <select id="ciudadS" name="ciudadS" class="form-selects">
                     <option selected>-Seleccionar-</option>
                     <?php foreach ($ciudad as $key) : ?>
@@ -120,6 +156,7 @@
                 <label>Municipio
                     <span class="obligatorio">*</span>
                 </label>
+                <br>
                 <select id="municipioS" name="municipioS" class="form-selects">
                     <option selected>-Seleccionar-</option>
                     <?php foreach ($municipio as $key) : ?>
@@ -132,6 +169,7 @@
                 <label>Parroquia
                     <span  class="obligatorio">*</span>
                 </label>
+                <br>
                 <select id="parroquiaS" name="parroquiaS" class="form-selects">
                     <option selected>-Seleccionar-</option>
                     <?php foreach ($parroquia as $key) : ?>

@@ -21,6 +21,7 @@ class ControladorCreate extends CI_Controller{
 	public function index(){
 		$marca = $this->ModelCreate->GetTable('marca', 'cod_marc, den_com_marc');
 		$modelo = $this->ModelCreate->GetTable('modelo', 'id_mod, den_mod');
+		$numBien = $this->ModelCreate->GetTable('bien_mue', 'id_bien_mue, num_bien_mue');
 		$color = $this->ModelCreate->GetTable('colores', 'id_col, desc_col');
 		$componente = $this->ModelCreate->GetTable('tp_comp', 'id_tp_comp, mat_tp_comp');
 		$undAdm = $this->ModelCreate->GetTable('uni_adm', 'id_uni_adm, desc_uni_adm');
@@ -37,6 +38,7 @@ class ControladorCreate extends CI_Controller{
 			'content' => $this->load->view('VistaCreate/content/formCreate', array(
 				'marca' => $marca,
 				'modelo' => $modelo,
+				'numBien' => $numBien,
 				'color' => $color,
 				'componente' => $componente,
 				'undAdm' => $undAdm,

@@ -27,8 +27,8 @@
 
 					var json = JSON.parse(xhr.responseText);
 
-					if (json.marca != null || json.modelo != null || json.serial != null || 
-						json.numBien != null|| json.color != null || json.componente != null || 
+					if (json.marca != null || json.modelo != null || json.serial != null ||
+						json.numBien != null || json.color != null || json.componente != null ||
 						json.undAdm != null || json.trabajador != null || json.ciudad != null
 						|| json.municipio != null || json.parroquia != null) {
 
@@ -95,3 +95,38 @@
 		});
 	});
 })(jQuery);
+
+function ordenarSelect(id_componente) {
+	var selectToSort = jQuery('#' + id_componente);
+	var optionActual = selectToSort.val();
+	selectToSort.html(selectToSort.children('option').sort(function (a, b) {
+		return a.text === b.text ? 0 : a.text < b.text ? -1 : 1;
+	})).val(optionActual);
+}
+
+$(document).ready(function () {
+	ordenarSelect('marcaS');
+	ordenarSelect('modeloS');
+	ordenarSelect('colorS');
+	ordenarSelect('componenteS');
+	ordenarSelect('trabajadorS');
+	ordenarSelect('ciudadS');
+	ordenarSelect('municipioS');
+	ordenarSelect('parroquiaS');
+});
+
+var band = true;
+function muestraMensaje($select, $input) {
+
+	if (band) {
+		$($select).attr('hidden', true);
+		$($input).removeAttr('hidden');
+		band = false;
+
+	} else {
+		$($input).attr('hidden', true);
+		$($select).removeAttr('hidden');
+		band = true;
+	}
+}
+
