@@ -23,11 +23,11 @@ class ControlInventario extends CI_Controller{
 			$timeLog = $this->session->time;
 			$timeNow = time();
 
-			// if ($timeNow - $timeLog >= 300) {
-			// 	session_destroy();
-			// 	redirect(base_url());
+			if ($timeNow - $timeLog >= 300) {
+				session_destroy();
+				redirect(base_url());
 
-			// } else {
+			} else {
 				$timeLog = time();
 
 				$range = $this->session->range;
@@ -35,7 +35,6 @@ class ControlInventario extends CI_Controller{
 				$data = $this->ModelInventario->GetTable();
 
 				$datatotal = array();
-				$contador = 0;
 
 				foreach ($data as $items) {
 
@@ -63,9 +62,9 @@ class ControlInventario extends CI_Controller{
 					$this->GetView($range, $datatotal);
 				}
 			}
-		// } else {
-		// 	redirect(base_url());
-		// }
+		} else {
+			redirect(base_url());
+		}
 	}
 
 	public function GetView($range, $dataTable){

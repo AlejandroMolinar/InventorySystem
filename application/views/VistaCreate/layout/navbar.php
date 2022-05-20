@@ -12,8 +12,9 @@
     <ul class="nav bg-dark" id="navbar">
         <li class="nav-item">
             <?php if ($this->session->range == 1) : ?>
-                <button type="button" class="btn btn-outline-danger">
-                    <a style="color: white; width: 20px;" href="<?= base_url('controlInv') ?>">Regresar</a>
+                <button type="button" class="btn btn-outline-danger" 
+                onclick="window.location.href=' <?= base_url("controlInv") ?>'">
+                    Regresar
                 </button>
             <?php endif; ?>
         </li>

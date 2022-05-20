@@ -23,9 +23,9 @@
         </li>
         <li class="nav-item">
             <?php if ($this->session->range == 1) : ?>
-                <button type="button" class="btn btn-outline-success">
-                    <a style="color: white;"
-                    href="<?= base_url('newCreate') ?>">Agregar</a>
+                <button type="button" class="btn btn-outline-success" 
+                onclick="window.location.href=' <?= base_url("newCreate") ?>'">
+                    Agregar
                 </button>
             <?php endif; ?>
         </li>

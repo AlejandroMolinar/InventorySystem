@@ -22,38 +22,51 @@ class ControladorCreate extends CI_Controller
 	}
 	public function index()
 	{
-		$marca = $this->ModelCreate->GetTable('marca', 'cod_marc, den_com_marc');
-		$modelo = $this->ModelCreate->GetTable('modelo', 'id_mod, den_mod');
-		$numBien = $this->ModelCreate->GetTable('bien_mue', 'id_bien_mue, num_bien_mue');
-		$color = $this->ModelCreate->GetTable('colores', 'id_col, desc_col');
-		$componente = $this->ModelCreate->GetTable('tp_comp', 'id_tp_comp, mat_tp_comp');
-		$undAdm = $this->ModelCreate->GetTable('uni_adm', 'id_uni_adm, desc_uni_adm');
-		$trabajador = $this->ModelCreate->GetTable('trabajador', 'id_trb, nombre_trb, apellido_trb');
-		$ciudad = $this->ModelCreate->GetTable('ciudad', 'id_ciu, desc_ciu');
-		$municipio = $this->ModelCreate->GetTable('municipio', 'id_mun, desc_mun');
-		$parroquia = $this->ModelCreate->GetTable('parroquia', 'id_parr, desc_parr');
+		if ($this->session->userdata('is_logged')) {
 
-		//------------------Envio de Datos-----------------------------------------------------------
+			$timeLog = $this->session->time;
+			$timeNow = time();
 
-		$data = array(
-			'head' => $this->load->view('VistaCreate/layout/head', '', TRUE),
-			'nav' => $this->load->view('VistaCreate/layout/navbar', '', TRUE),
-			'content' => $this->load->view('VistaCreate/content/formCreate', array(
-				'marca' => $marca,
-				'modelo' => $modelo,
-				'numBien' => $numBien,
-				'color' => $color,
-				'componente' => $componente,
-				'undAdm' => $undAdm,
-				'trabajador' => $trabajador,
-				'ciudad' => $ciudad,
-				'municipio' => $municipio,
-				'parroquia' => $parroquia
-			), TRUE),
-			'footer' => $this->load->view('VistaCreate/layout/footer', '', TRUE),
-		);
+			if ($timeNow - $timeLog >= 300) {
+				session_destroy();
+				redirect(base_url());
+			} else {
+				$marca = $this->ModelCreate->GetTable('marca', 'cod_marc, den_com_marc');
+				$modelo = $this->ModelCreate->GetTable('modelo', 'id_mod, den_mod');
+				$numBien = $this->ModelCreate->GetTable('bien_mue', 'id_bien_mue, num_bien_mue');
+				$color = $this->ModelCreate->GetTable('colores', 'id_col, desc_col');
+				$componente = $this->ModelCreate->GetTable('tp_comp', 'id_tp_comp, mat_tp_comp');
+				$undAdm = $this->ModelCreate->GetTable('uni_adm', 'id_uni_adm, desc_uni_adm');
+				$trabajador = $this->ModelCreate->GetTable('trabajador', 'id_trb, nombre_trb, apellido_trb');
+				$ciudad = $this->ModelCreate->GetTable('ciudad', 'id_ciu, desc_ciu');
+				$municipio = $this->ModelCreate->GetTable('municipio', 'id_mun, desc_mun');
+				$parroquia = $this->ModelCreate->GetTable('parroquia', 'id_parr, desc_parr');
 
-		$this->load->view('VistaCreate/vistaCreate', $data);
+				//------------------Envio de Datos-----------------------------------------------------------
+
+				$data = array(
+					'head' => $this->load->view('VistaCreate/layout/head', '', TRUE),
+					'nav' => $this->load->view('VistaCreate/layout/navbar', '', TRUE),
+					'content' => $this->load->view('VistaCreate/content/formCreate', array(
+						'marca' => $marca,
+						'modelo' => $modelo,
+						'numBien' => $numBien,
+						'color' => $color,
+						'componente' => $componente,
+						'undAdm' => $undAdm,
+						'trabajador' => $trabajador,
+						'ciudad' => $ciudad,
+						'municipio' => $municipio,
+						'parroquia' => $parroquia
+					), TRUE),
+					'footer' => $this->load->view('VistaCreate/layout/footer', '', TRUE),
+				);
+
+				$this->load->view('VistaCreate/vistaCreate', $data);
+			}
+		} else {
+			redirect(base_url());
+		}
 	}
 
 	public function Guardar()
@@ -121,46 +134,44 @@ class ControladorCreate extends CI_Controller
 			echo json_encode($error);
 			$this->output->set_status_header(400);
 			exit;
-
 		} else {
-	
+
 			if ($modeloAdd != null) {
-				if (!$this->ModelCreate->create('modelo', array('cod_marc_mod'=>$marcaF , 'den_mod' => $modeloAdd))) {
+				if (!$this->ModelCreate->create('modelo', array('cod_marc_mod' => $marcaF, 'den_mod' => $modeloAdd))) {
 					$this->badCreate($this);
-					
-				}else {
+				} else {
 					$idModelo = $this->ModelCreate->GetTables('modelo', 'id_mod', 'den_mod', $modeloAdd);
-					$modeloF= $idModelo->id_mod; 
+					$modeloF = $idModelo->id_mod;
 				}
-			} 
+			}
 
 			if ($numBienAdd != null) {
 				if (!$this->ModelCreate->create('bien_mue', array('num_bien_mue' => $numBienAdd))) {
 					$this->badCreate($this);
-				}else {
-					$idNumBien = $this->ModelCreate->GetTables('bien_mue', 'id_bien_mue', 'num_bien_mue', $numBienAdd);
-					$numBienF= $idNumBien->id_bien_mue; 
-				}
-			} 
-				$data = array(
-					'cod_marc' => $marcaF,
-					'id_mod_bien' => $modeloF,
-					'serial_bien' => $serialAdd,
-					'id_num_bien' => $numBienF,
-					'id_clr_bien' => $colorF,
-					'id_tpc_bien' => $componenteF,
-					'id_adm_bien' => $undAdmF,
-					'id_trb_bien' => $trabajadorF,
-					'id_ciu_bien' => $ciudadF,
-					'id_mun_bien' => $municipioF,
-					'id_parr_bien' => $parroquiaF,
-				);
-
-				if (!$this->ModelCreate->create('inventario', $data)) {
-					$this->badCreate($this);
 				} else {
-					echo json_encode(array("url" => base_url('controlInv')));
+					$idNumBien = $this->ModelCreate->GetTables('bien_mue', 'id_bien_mue', 'num_bien_mue', $numBienAdd);
+					$numBienF = $idNumBien->id_bien_mue;
 				}
+			}
+			$data = array(
+				'cod_marc' => $marcaF,
+				'id_mod_bien' => $modeloF,
+				'serial_bien' => $serialAdd,
+				'id_num_bien' => $numBienF,
+				'id_clr_bien' => $colorF,
+				'id_tpc_bien' => $componenteF,
+				'id_adm_bien' => $undAdmF,
+				'id_trb_bien' => $trabajadorF,
+				'id_ciu_bien' => $ciudadF,
+				'id_mun_bien' => $municipioF,
+				'id_parr_bien' => $parroquiaF,
+			);
+
+			if (!$this->ModelCreate->create('inventario', $data)) {
+				$this->badCreate($this);
+			} else {
+				echo json_encode(array("url" => base_url('controlInv')));
+			}
 		}
 	}
 	public function badCreate($body){
