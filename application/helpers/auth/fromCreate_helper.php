@@ -1,35 +1,10 @@
 <?php
 function fromCreate_rules(){
     return array(
-        array(
-            'field' => 'marcaS',
-            'label' => 'Marca',
-            'rules' => 'required',
-            'errors' => array(
-                'required' => 'La %s es Requerida.',
-            ),
-        ),
-        array(
-            'field' => 'modeloS',
-            'label' => 'Modelo',
-            'rules' => 'required',
-            'errors' => array(
-                'required' => 'El %s es Requerido.',
-
-            ),
-        ),
-        array(
+                array(
             'field' => 'serialAdd',
             'label' => 'Serial',
             'rules' => 'required|trim',
-            'errors' => array(
-                'required' => 'El %s es Requerido.',
-            ),
-        ),
-        array(
-            'field' => 'numBienS',
-            'label' => 'N&uacutemero de Bien',
-            'rules' => 'required',
             'errors' => array(
                 'required' => 'El %s es Requerido.',
             ),
@@ -94,17 +69,46 @@ function fromCreate_rules(){
     );
 }
 
-function fromAdd_rules(){
+function fromMarcaS_rules(){
+    return array(
+        array(
+            'field' => 'marcaS',
+            'label' => 'Marca',
+            'rules' => 'required',
+            'errors' => array(
+                'required' => 'La %s es Requerida.',
+            ),
+        ),
+    );
+}
+function fromMarcaI_rules(){
     return array(
         array(
             'field' => 'marcaAdd',
             'label' => 'Marca',
-            'rules' => 'required|trim|min_length[4]',
+            'rules' => 'required|trim|min_length[2]',
             'errors' => array(
                 'required' => 'La %s es Requerida.',
-                'matches' => ' Debe Seleccionar un elemento',
+                'min_length' => 'La %s debe tener M&iacutenimo 4 d&iacutegitos'
             ),
         ),
+    );
+}
+
+function fromModeloS_rules(){
+    return array(
+        array(
+            'field' => 'modeloS',
+            'label' => 'Modelo',
+            'rules' => 'required',
+            'errors' => array(
+                'required' => 'El %s es Requerido.',
+            ),
+        ),
+    );
+}
+function fromModeloI_rules(){
+    return array(
         array(
             'field' => 'modeloAdd',
             'label' => 'Modelo',
@@ -114,6 +118,23 @@ function fromAdd_rules(){
                 'min_length' => 'El %s debe tener M&iacutenimo 4 d&iacutegitos'
             ),
         ),
+    );
+}
+
+function fromNumBienS_rules(){
+    return array(
+        array(
+            'field' => 'numBienS',
+            'label' => 'N&uacutemero de Bien',
+            'rules' => 'required',
+            'errors' => array(
+                'required' => 'El %s es Requerido.',
+            ),
+        ),
+    );
+}
+function fromNumBienI_rules(){
+    return array(
         array(
             'field' => 'numBienAdd',
             'label' => 'N&uacutemero de Bien',
@@ -126,3 +147,4 @@ function fromAdd_rules(){
         ),
     );
 }
+

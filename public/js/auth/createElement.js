@@ -31,18 +31,14 @@
 						$("#marca_err").html('<div class="alert alert-danger" role="alert">'
 							+ json.marca + '</div>');
 					}
-					// if (json.marcaAdd.length != 0) {
-					// 	$("#marca_err").html('<div class="alert alert-danger" role="alert">'
-					// 		+ json.marcaAdd + '</div>');
-					// }
 					if (json.modelo.length != 0) {
 						$("#modelo_err").html('<div class="alert alert-danger" role="alert">'
 							+ json.modelo + '</div>');
 					}
-					// if (json.modeloAdd.length != 0) {
-					// 	$("#modelo_err").html('<div class="alert alert-danger" role="alert">'
-					// 		+ json.modeloAdd + '</div>');
-					// }
+					if (json.modeloAdd.length != 0) {
+						$("#modelo_err").html('<div class="alert alert-danger" role="alert">'
+							+ json.modeloAdd + '</div>');
+					}
 					if (json.serial.length != 0) {
 						$("#serial_err").html('<div class="alert alert-danger" role="alert">'
 							+ json.serial + '</div>');
@@ -51,10 +47,10 @@
 						$("#numBien_err").html('<div class="alert alert-danger" role="alert">'
 							+ json.numBien + '</div>');
 					}
-					// if (json.numBienAdd.length != 0) {
-					// 	$("#numBien_err").html('<div class="alert alert-danger" role="alert">'
-					// 		+ json.numBienAdd + '</div>');
-					// }
+					if (json.numBienAdd.length != 0) {
+						$("#numBien_err").html('<div class="alert alert-danger" role="alert">'
+							+ json.numBienAdd + '</div>');
+					}
 					if (json.color.length != 0) {
 						$("#color_err").html('<div class="alert alert-danger" role="alert">'
 							+ json.color + '</div>');

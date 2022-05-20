@@ -17,18 +17,12 @@
                     <span class="obligatorio">*</span>
                 </label>
                 <br>
-                <select id="marcaS" name="marcaS" class="form-selectAdd">
+                <select id="marcaS" name="marcaS" class="form-selects">
                     <option disabled selected>-Seleccionar-</option>
                     <?php foreach ($marca as $key) : ?>
                         <option value="<?= $key->cod_marc ?>"><?= $key->den_com_marc ?></option>
                     <?php endforeach; ?>
                 </select>
-                
-                <button type="button" class="btn btn-success addContent" onclick="crearElemento('#marcaS', 'marcaAdd')">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
-                        <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"/>
-                    </svg>
-                </button>
                 <div id="marca_err"></div>  
 
             </p>
@@ -58,7 +52,7 @@
                     <span class="obligatorio">*</span>
                 </label>
                 <br>
-                <input id="serialAdd" name="serialAdd" type="text" class="form-inputs" autocomplete="off" required>
+                <input id="serialAdd" name="serialAdd" type="text" class="form-inputs" required>
                 <div id="serial_err"></div>  
             </p>
 

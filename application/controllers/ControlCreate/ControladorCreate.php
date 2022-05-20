@@ -10,15 +10,18 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class ControladorCreate extends CI_Controller{
+class ControladorCreate extends CI_Controller
+{
 
-	public function __construct(){
+	public function __construct()
+	{
 		parent::__construct();
 		$this->load->database();
 		$this->load->model('ModeloCreate/ModelCreate');
 		$this->load->helper(array('auth/fromCreate'));
 	}
-	public function index(){
+	public function index()
+	{
 		$marca = $this->ModelCreate->GetTable('marca', 'cod_marc, den_com_marc');
 		$modelo = $this->ModelCreate->GetTable('modelo', 'id_mod, den_mod');
 		$numBien = $this->ModelCreate->GetTable('bien_mue', 'id_bien_mue, num_bien_mue');
@@ -53,7 +56,8 @@ class ControladorCreate extends CI_Controller{
 		$this->load->view('VistaCreate/vistaCreate', $data);
 	}
 
-	public function Guardar(){
+	public function Guardar()
+	{
 
 		//---------------Elementos del Formulario-------------------------------------------------------------
 
@@ -68,31 +72,44 @@ class ControladorCreate extends CI_Controller{
 		$ciudadF =  $this->input->post('ciudadS');
 		$municipioF = $this->input->post('municipioS');
 		$parroquiaF = $this->input->post('parroquiaS');
-		
+
 		//Input 
-		$marcaAdd = $this->input->post('marcaAdd');
 		$modeloAdd = $this->input->post('modeloAdd');
 		$serialAdd = $this->input->post('serialAdd');
 		$numBienAdd = $this->input->post('numBienAdd');
 
 		//-------------------Validacion----------------------------------------------------------
-
 		$config = fromCreate_rules();
 		$this->form_validation->set_rules($config);
-		$this->form_validation->set_error_delimiters('', '');
 
-		if ($marcaAdd!=null || $modeloAdd!=null || $numBienAdd!=null ) {
-			$config = fromAdd_rules();
-			$this->form_validation->set_rules($config);
-			$this->form_validation->set_error_delimiters('', '');
+		//-----------------------Modelo-----------------------
+		if ($modeloAdd != null) {
+			$modeloI = fromModeloI_rules();
+			$this->form_validation->set_rules($modeloI);
+		} else {
+			$modeloS = fromModeloS_rules();
+			$this->form_validation->set_rules($modeloS);
 		}
+
+		//-----------------------Numero de Bien-----------------------
+		if ($numBienAdd != null) {
+			$numBienI = fromNumBienI_rules();
+			$this->form_validation->set_rules($numBienI);
+		} else {
+			$numBienS = fromNumBienS_rules();
+			$this->form_validation->set_rules($numBienS);
+		}
+		//-----------------------Delimitador----------------------
+		$this->form_validation->set_error_delimiters('', '');
 
 		if ($this->form_validation->run() == FALSE) {
 			$error = array(
 				'marca' => form_error('marcaS'),
 				'modelo' => form_error('modeloS'),
+				'modeloAdd' => form_error('modeloAdd'),
 				'serial' => form_error('serialAdd'),
 				'numBien' => form_error('numBienS'),
+				'numBienAdd' => form_error('numBienAdd'),
 				'color' => form_error('colorS'),
 				'componente' => form_error('componenteS'),
 				'undAdm' => form_error('undAdmS'),
@@ -104,42 +121,51 @@ class ControladorCreate extends CI_Controller{
 			echo json_encode($error);
 			$this->output->set_status_header(400);
 			exit;
-		}else{
 
-			// if(
-			// 	!$this->ModelCreate->create('bien_mue', array('num_bien_mue' => $numBienF))){
-				
-			// 	echo json_encode(array('msg' => 'Hubo un Error al Crear el Elemento'));
-			// 	$this->output->set_status_header(401);
-			// 	exit;
+		} else {
+	
+			if ($modeloAdd != null) {
+				if (!$this->ModelCreate->create('modelo', array('cod_marc_mod'=>$marcaF , 'den_mod' => $modeloAdd))) {
+					$this->badCreate($this);
+					
+				}else {
+					$idModelo = $this->ModelCreate->GetTables('modelo', 'id_mod', 'den_mod', $modeloAdd);
+					$modeloF= $idModelo->id_mod; 
+				}
+			} 
 
-			// }else{
-				// $idNumBien= $this->ModelCreate->GetTables('bien_mue', 'id_bien_mue', 'num_bien_mue', $numBienF);
-
-				$data= array(
-					'cod_marc' => $marcaF,			
-					'id_mod_bien' => $modeloF,			
-					'serial_bien' => $serialAdd,			
-					'id_num_bien' => $numBienF,			
-					'id_clr_bien' => $colorF,			
-					'id_tpc_bien' => $componenteF,			
-					'id_adm_bien' => $undAdmF,			
-					'id_trb_bien' => $trabajadorF,			
-					'id_ciu_bien' => $ciudadF,			
-					'id_mun_bien' => $municipioF,			
-					'id_parr_bien' => $parroquiaF,			
+			if ($numBienAdd != null) {
+				if (!$this->ModelCreate->create('bien_mue', array('num_bien_mue' => $numBienAdd))) {
+					$this->badCreate($this);
+				}else {
+					$idNumBien = $this->ModelCreate->GetTables('bien_mue', 'id_bien_mue', 'num_bien_mue', $numBienAdd);
+					$numBienF= $idNumBien->id_bien_mue; 
+				}
+			} 
+				$data = array(
+					'cod_marc' => $marcaF,
+					'id_mod_bien' => $modeloF,
+					'serial_bien' => $serialAdd,
+					'id_num_bien' => $numBienF,
+					'id_clr_bien' => $colorF,
+					'id_tpc_bien' => $componenteF,
+					'id_adm_bien' => $undAdmF,
+					'id_trb_bien' => $trabajadorF,
+					'id_ciu_bien' => $ciudadF,
+					'id_mun_bien' => $municipioF,
+					'id_parr_bien' => $parroquiaF,
 				);
 
-				if(!$this->ModelCreate->create('inventario', $data)){
-					echo json_encode(array('msg' => 'Hubo un Error al Crear el Elemento'));
-					$this->output->set_status_header(401);
-					exit;
-
-				}else{
+				if (!$this->ModelCreate->create('inventario', $data)) {
+					$this->badCreate($this);
+				} else {
 					echo json_encode(array("url" => base_url('controlInv')));
 				}
-			// }
 		}
 	}
-
+	public function badCreate($body){
+		echo json_encode(array('msg' => 'Hubo un Error al Crear el Elemento'));
+		$body->output->set_status_header(401);
+		exit;
+	}
 }
