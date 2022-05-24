@@ -127,7 +127,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
           <br>
 
           <div class="group">
-            <input type="submit" class="button" value="Ingresar">
+            <input type="submit" class="button" value="Registrar">
           </div>
 
           <div class="foot-lnk" id="err_register">

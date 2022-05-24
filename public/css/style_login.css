@@ -187,11 +187,11 @@ a {
 
 .input_area{
 	width: 105%;
-	height: 60px;
+	height: 62px;
 	color: rgb(0, 0, 0);
 	display: block;
 	border: none;
-	border-radius: 25px;
+	border-radius: 15px;
 	background: rgba(113, 113, 113, 0.9);
 }
 
