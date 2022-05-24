@@ -124,6 +124,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <div id="cfpass_err"></div>  
                      
           </div>
+          <br>
 
           <div class="group">
             <input type="submit" class="button" value="Ingresar">

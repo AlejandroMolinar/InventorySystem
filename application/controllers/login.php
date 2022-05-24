@@ -11,8 +11,8 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Login extends CI_Controller
-{
+class Login extends CI_Controller{
+
 	public function __construct(){
 		parent::__construct();
 		$this->load->database();
@@ -100,7 +100,7 @@ class Login extends CI_Controller
 			$this->form_validation->set_error_delimiters('', '');
 
 			//-----------------------------------------------------------------------
-			if ($this->form_validation->run() === FALSE) {
+			if ($this->form_validation->run() == FALSE) {
 				$error = array(
 					'nombre_sp' => form_error('txt_nom_r'),
 					'apellido_sp' => form_error('txt_ape_r'),
