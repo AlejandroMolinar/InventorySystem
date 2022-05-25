@@ -32,11 +32,28 @@ class ControlUsuarios extends CI_Controller{
 
 				$dataTrb = $this->ModelInventario->GetTable('trabajador', '*');
 
-								
+				$dataTotal= array();
+				foreach ($dataTrb as $items) {
+					$data= array(
+						'id' => $items->id_trb,
+						'rango' => $items->id_tp_trb,
+						'email' => $items->email_trb,
+						'nombre' => $items->nombre_trb,
+						'apellido' => $items->apellido_trb,
+						'cedula' => $items->cedula_trb,
+						'areaAdm' => $this->ModelInventario->GetTables('uni_adm', 'desc_uni_adm', 'id_uni_adm', $items->id_area_trb),
+						'fecha' => $items->fecha_crt_trb,
+						'hora' => $items->hora_crt_trb ,
+						'status' => $items->status,
+					);
+
+					array_push($dataTotal, $data);
+				}
+
 				$data = array(
 					'head' => $this->load->view('VistaUsuarios/layout/head', '', TRUE),
 					'nav' => $this->load->view('VistaUsuarios/layout/navbar', '', TRUE),
-					'content' => $this->load->view('VistaUsuarios/admin/tablaUsuarios', array('dataTable' => $dataTrb), TRUE),
+					'content' => $this->load->view('VistaUsuarios/admin/tablaUsuarios', array('dataTable' => $dataTotal), TRUE),
 					'footer' => $this->load->view('VistaUsuarios/layout/footer', '', TRUE),
 				);
 		

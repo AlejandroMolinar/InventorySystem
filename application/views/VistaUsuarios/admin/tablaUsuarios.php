@@ -27,23 +27,24 @@
 				<th>Acciones</th>
 
 			</tr>
+
 		</thead>
 		<tbody>
 			<?php foreach ($dataTable as $items) : ?>
 				<tr class="tr_content">
-					<td><?= $id=$items->id_trb ?></td>		
-					<td><?= ($items->id_tp_trb == 1)? 'Admin': 'User';  ?></td>		
-					<td><?= $items->email_trb ?></td>		
-					<td><?= $items->nombre_trb ?></td>		
-					<td><?= $items->apellido_trb ?></td>		
-					<td><?= $items->cedula_trb ?></td>		
-					<td><?= $items->area_trb ?></td>		
-					<td><?= $items->fecha_crt_trb ?></td>		
-					<td><?= $items->hora_crt_trb ?></td>		
-					<td><?= $items->status ?></td>		
+					<td><?= $id=$items['id'] ?></td>		
+					<td><?= ($items['rango'] == 1)? 'Admin': 'User';  ?></td>		
+					<td><?= $items['email'] ?></td>		
+					<td><?= $items['nombre'] ?></td>		
+					<td><?= $items['apellido'] ?></td>		
+					<td><?= $items['cedula'] ?></td>		
+					<td><?= $items['areaAdm']->desc_uni_adm ?></td>		
+					<td><?= $items['fecha'] ?></td>		
+					<td><?= $items['hora'] ?></td>		
+					<td><?= $items['status'] ?></td>		
 					<td>
 						<button type="button" class="btn btn-success" 
-						onclick="window.location.href=' <?= base_url("updateInv/$id") ?>'">Actualizar</button>
+						onclick="window.location.href=' <?= base_url("updateUser/$id") ?>'">Actualizar</button>
 					</td>
 				</tr>
 			<?php endforeach; ?>
