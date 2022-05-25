@@ -17,10 +17,13 @@ class ModelInventario extends CI_model{
         $this->load->database();
     }
 
-    public function GetTable(){
+    public function GetTable($table, $select){
         
-        $data_log= $this->db->get('inventario');
+        $this->db->select($select);
+        $this->db->from($table);
+        $data_log= $this->db->get();
         return $data_log->result();
+
 
     }
 

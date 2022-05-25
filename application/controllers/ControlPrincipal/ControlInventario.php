@@ -32,7 +32,7 @@ class ControlInventario extends CI_Controller{
 
 				$range = $this->session->range;
 
-				$data = $this->ModelInventario->GetTable();
+				$data = $this->ModelInventario->GetTable('inventario', '*');
 
 				$datatotal = array();
 
