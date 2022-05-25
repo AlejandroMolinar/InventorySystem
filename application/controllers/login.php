@@ -117,24 +117,7 @@ class Login extends CI_Controller{
 			} else {
 
 				if ($password_sp == $rep_password_sp) {
-					switch ($area_sp) {
-						case '1':
-							$area_sp = "Desarrollo de Software";
-							break;
-						case '2':
-							$area_sp = "Telecom";
-							break;
-						case '3':
-							$area_sp = "Servidores";
-							break;
-						case '4':
-							$area_sp = "Soporte Tecnico";
-							break;
-						case '5':
-							$area_sp = "Cobro Pasaje";
-							break;
-					}
-
+					
 					$password_sp = password_hash($password_sp, PASSWORD_DEFAULT);
 
 					$data_sp = array(
@@ -142,7 +125,7 @@ class Login extends CI_Controller{
 						'email_trb' => $email_sp,
 						'nombre_trb' => $nombre_sp,
 						'apellido_trb' => $apellido_sp,
-						'area_trb' => $area_sp,
+						'id_area_trb' => $area_sp,
 						'cedula_trb' => $cedula_sp,
 						'password_trb' => $password_sp,
 

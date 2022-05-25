@@ -7,7 +7,7 @@ class ControlUpdate extends CI_Controller{
 		parent::__construct();
 		$this->load->database();
 		$this->load->model('ModeloCreate/ModelCreate');
-		$this->load->helper(array('auth/fromUpdate'));
+		$this->load->helper(array('auth/userUpdate'));
 	}
 	public function index($id){
 		if ($this->session->userdata('is_logged')) {
@@ -67,22 +67,20 @@ class ControlUpdate extends CI_Controller{
 		$statusU = $this->input->post('statusU');
 
 		//-------------------Validacion----------------------------------------------------------
-		$datosBien = $this->ModelCreate->GetTables('inventario', 'id_num_bien', 'id_inv_bien', $idU);
-		//-------------------Validacion----------------------------------------------------------
 
-		// $config = fromUpdate_rules();
-		// $this->form_validation->set_rules($config);
-		// $this->form_validation->set_error_delimiters('', '');
+		$config = userUpdate_rules();
+		$this->form_validation->set_rules($config);
+		$this->form_validation->set_error_delimiters('', '');
 
-		// if ($this->form_validation->run() === FALSE) {
-		// 	$error = array(
-		// 		'serial' => form_error('serialS'),
-		// 		'numBien' => form_error('numBienS'),
-		// 	);
-		// 	echo json_encode($error);
-		// 	$this->output->set_status_header(400);
-		// 	exit;
-		// } else {
+		if ($this->form_validation->run() === FALSE) {
+			$error = array(
+				'serial' => form_error('serialS'),
+				'numBien' => form_error('numBienS'),
+			);
+			echo json_encode($error);
+			$this->output->set_status_header(400);
+			exit;
+		} else {}
 
 		// 	if (!$this->ModelCreate->update('bien_mue', array('num_bien_mue' => $numBienF), 'id_bien_mue', $datosBien->id_num_bien)) {
 		// 		echo json_encode(array('msg' => 'Hubo un Error al Crear el Elemento'));
