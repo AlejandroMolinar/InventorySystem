@@ -39,6 +39,7 @@ class ControladorCreate extends CI_Controller
 				$undAdm = $this->ModelCreate->GetTable('uni_adm', 'id_uni_adm, desc_uni_adm');
 				$trabajador = $this->ModelCreate->GetTable('trabajador', 'id_trb, nombre_trb, apellido_trb');
 				$ciudad = $this->ModelCreate->GetTable('ciudad', 'id_ciu, desc_ciu');
+				$estado = $this->ModelCreate->GetTable('estado', 'id_est, desc_est');
 				$municipio = $this->ModelCreate->GetTable('municipio', 'id_mun, desc_mun');
 				$parroquia = $this->ModelCreate->GetTable('parroquia', 'id_parr, desc_parr');
 
@@ -55,6 +56,7 @@ class ControladorCreate extends CI_Controller
 						'componente' => $componente,
 						'undAdm' => $undAdm,
 						'trabajador' => $trabajador,
+						'estado' => $estado,
 						'ciudad' => $ciudad,
 						'municipio' => $municipio,
 						'parroquia' => $parroquia

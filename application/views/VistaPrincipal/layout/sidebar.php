@@ -43,10 +43,12 @@
     </ul>
     <hr>
     <div class="dropdown">
+        <?php if ($this->session->range == 1) : ?>
         <a href="controlUser" class="d-flex align-items-center text-white text-decoration-none" id="dropdownUser1">
             <strong>Gestionar Usuarios</strong>
         </a>
         <hr>
+        <?php endif; ?>
 
         <a href="logout" class="d-flex align-items-center text-white text-decoration-none" id="dropdownUser1">
             <strong>Cerrar Sesi&oacuten</strong>

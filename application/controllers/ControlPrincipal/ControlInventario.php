@@ -48,6 +48,7 @@ class ControlInventario extends CI_Controller{
 						'componente' => $this->GetElements('tp_comp', 'mat_tp_comp', 'id_tp_comp', $items->id_tpc_bien),
 						'undAdm' => $this->GetElements('uni_adm', 'desc_uni_adm', 'id_uni_adm', $items->id_adm_bien),
 						'trabajador' => $this->GetElements('trabajador', 'nombre_trb, apellido_trb', 'id_trb', $items->id_trb_bien),
+						'estado' => $this->GetElements('estado', 'desc_est', 'id_est',  $items->id_est_bien),
 						'ciudad' => $this->GetElements('ciudad', 'desc_ciu', 'id_ciu', $items->id_ciu_bien),
 						'municipio' => $this->GetElements('municipio', 'desc_mun', 'id_mun', $items->id_mun_bien),
 						'parroquia' => $this->GetElements('parroquia', 'desc_parr', 'id_parr', $items->id_parr_bien),

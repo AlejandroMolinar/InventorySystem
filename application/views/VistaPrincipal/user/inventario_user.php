@@ -14,7 +14,6 @@
 	<table id="example" class="table table-striped table-bordered">
 		<thead>
 			<tr>
-				<th>Id</th>
 				<th>Marca</th>
 				<th>Modelo</th>
 				<th>Serial</th>
@@ -23,6 +22,7 @@
 				<th>Tipo de Componente</th>
 				<th>Unidad Administrativa</th>
 				<th>Trabajador a Cargo</th>
+				<th>Estado</th>
 				<th>Ciudad</th>
 				<th>Municipio</th>
 				<th>Parroquia</th>
@@ -33,8 +33,10 @@
 		</thead>
 		<tbody>
 			<?php foreach ($dataTable as $items) : ?>
+				<!-- <?= $id=( $items['id']); ?> -->
+
+
 				<tr class="tr_content">
-					<td><?= $items['id'] ?></td>
 					<td><?= $items['marca']-> den_com_marc ?></td>
 					<td><?= $items['modelo']-> den_mod ?></td>
 					<td><?= $items['serial'] ?></td>
@@ -43,6 +45,7 @@
 					<td><?= $items['componente']-> mat_tp_comp ?></td>
 					<td><?= $items['undAdm']-> desc_uni_adm ?></td>
 					<td><?= $items['trabajador']-> nombre_trb ?> <?= $items['trabajador']-> apellido_trb ?></td>
+					<td><?= $items['estado']-> desc_est ?></td>
 					<td><?= $items['ciudad']-> desc_ciu ?></td>
 					<td><?= $items['municipio']-> desc_mun ?></td>
 					<td><?= $items['parroquia'] -> desc_parr ?></td>
@@ -55,7 +58,6 @@
 		</tbody>
 		<tfoot>
 			<tr>
-				<th>Id</th>
 				<th>Marca</th>
 				<th>Modelo</th>
 				<th>Serial</th>
@@ -64,6 +66,7 @@
 				<th>Tipo de Componente</th>
 				<th>Unidad Administrativa</th>
 				<th>Trabajador a Cargo</th>
+				<th>Estado</th>
 				<th>Ciudad</th>
 				<th>Municipio</th>
 				<th>Parroquia</th>
