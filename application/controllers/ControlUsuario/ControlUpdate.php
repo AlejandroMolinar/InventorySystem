@@ -74,42 +74,36 @@ class ControlUpdate extends CI_Controller{
 
 		if ($this->form_validation->run() === FALSE) {
 			$error = array(
-				'serial' => form_error('serialS'),
-				'numBien' => form_error('numBienS'),
+				'rango' => form_error('rangoU'),
+				'email' => form_error('emailU'),
+				'nombre' => form_error('nombreU'),
+				'apellido' => form_error('apellidoU'),
+				'cedula' => form_error('cedulaU'),
+				'undAdm' => form_error('undAdmU'),
+				'status' => form_error('statusU'),
 			);
 			echo json_encode($error);
 			$this->output->set_status_header(400);
 			exit;
-		} else {}
+		} else {
 
-		// 	if (!$this->ModelCreate->update('bien_mue', array('num_bien_mue' => $numBienF), 'id_bien_mue', $datosBien->id_num_bien)) {
-		// 		echo json_encode(array('msg' => 'Hubo un Error al Crear el Elemento'));
-		// 		$this->output->set_status_header(401);
-		// 		exit;
-		// 	}
+			$data = array(
+				'id_tp_trb' => $rangoU,
+				'email_trb' => $emailU,
+				'nombre_trb' => $nombreU,
+				'apellido_trb' => $apellidoU,
+				'cedula_trb' => $cedulaU,
+				'id_adm_trb' => $undAdmU,
+				'status' => $statusU,
+			);
 
-		// 	$data = array(
-		// 		'cod_marc' => $marcaF,
-		// 		'id_mod_bien' => $modeloF,
-		// 		'serial_bien' => $serialF,
-		// 		'id_num_bien' => $datosBien->id_num_bien,
-		// 		'id_clr_bien' => $colorF,
-		// 		'id_tpc_bien' => $componenteF,
-		// 		'id_adm_bien' => $undAdmF,
-		// 		'id_trb_bien' => $trabajadorF,
-		// 		'id_ciu_bien' => $ciudadF,
-		// 		'id_mun_bien' => $municipioF,
-		// 		'id_parr_bien' => $parroquiaF,
-		// 		'status' => $statusF,
-		// 	);
-
-		// 	if (!$this->ModelCreate->update('inventario', $data, 'id_inv_bien', $idF)) {
-		// 		echo json_encode(array('msg' => 'Hubo un Error al Crear el Elemento'));
-		// 		$this->output->set_status_header(401);
-		// 		exit;
-		// 	} else {
-		// 		echo json_encode(array("url" => base_url('controlInv')));
-		// 	}
-		// }
+			if (!$this->ModelCreate->update('inventario', $data, 'id_inv_bien', $idU)) {
+				echo json_encode(array('msg' => 'Hubo un Error al Crear el Elemento'));
+				$this->output->set_status_header(401);
+				exit;
+			} else {
+				echo json_encode(array("url" => base_url('controlInv')));
+			}
+		}
 	}
 }
