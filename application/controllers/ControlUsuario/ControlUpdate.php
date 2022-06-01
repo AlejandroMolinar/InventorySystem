@@ -25,7 +25,6 @@ class ControlUpdate extends CI_Controller{
 
 				$undAdm = $this->ModelCreate->GetTable('uni_adm', 'id_uni_adm, desc_uni_adm');
 
-
 				//------------------Envio de Datos-----------------------------------------------------------
 
 				$data = array(
@@ -43,7 +42,6 @@ class ControlUpdate extends CI_Controller{
 						'status' => $datos->status,	
 						'areaAdm' => $datos->id_area_trb,
 						'areaAdmSelect' => $undAdm,
-						
 					), TRUE),
 					'footer' => $this->load->view('VistaUsuarios/layout/footerUpdate', '', TRUE),
 				);

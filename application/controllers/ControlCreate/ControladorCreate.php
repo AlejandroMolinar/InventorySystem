@@ -10,18 +10,15 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class ControladorCreate extends CI_Controller
-{
+class ControladorCreate extends CI_Controller{
 
-	public function __construct()
-	{
+	public function __construct(){
 		parent::__construct();
 		$this->load->database();
 		$this->load->model('ModeloCreate/ModelCreate');
 		$this->load->helper(array('auth/fromCreate'));
 	}
-	public function index()
-	{
+	public function index(){
 		if ($this->session->userdata('is_logged')) {
 
 			$timeLog = $this->session->time;
@@ -38,10 +35,10 @@ class ControladorCreate extends CI_Controller
 				$componente = $this->ModelCreate->GetTable('tp_comp', 'id_tp_comp, mat_tp_comp');
 				$undAdm = $this->ModelCreate->GetTable('uni_adm', 'id_uni_adm, desc_uni_adm');
 				$trabajador = $this->ModelCreate->GetTable('trabajador', 'id_trb, nombre_trb, apellido_trb');
-				$ciudad = $this->ModelCreate->GetTable('ciudad', 'id_ciu, desc_ciu');
 				$estado = $this->ModelCreate->GetTable('estado', 'id_est, desc_est');
-				$municipio = $this->ModelCreate->GetTable('municipio', 'id_mun, desc_mun');
-				$parroquia = $this->ModelCreate->GetTable('parroquia', 'id_parr, desc_parr');
+				$ciudad = $this->ModelCreate->GetTable('ciudad', 'id_ciu, desc_ciu');
+				$municipio = $this->ModelCreate->GetTable('municipio', 'id_mun, id_est_mun, desc_mun');
+				$parroquia = $this->ModelCreate->GetTable('parroquia', 'id_parr, id_mun_par, desc_parr');
 
 				//------------------Envio de Datos-----------------------------------------------------------
 
@@ -71,8 +68,7 @@ class ControladorCreate extends CI_Controller
 		}
 	}
 
-	public function Guardar()
-	{
+	public function Guardar(){
 
 		//---------------Elementos del Formulario-------------------------------------------------------------
 
@@ -84,6 +80,7 @@ class ControladorCreate extends CI_Controller
 		$componenteF = $this->input->post('componenteS');
 		$undAdmF = $this->input->post('undAdmS');
 		$trabajadorF = $this->input->post('trabajadorS');
+		$estadoF = $this->input->post('estadoS');
 		$ciudadF =  $this->input->post('ciudadS');
 		$municipioF = $this->input->post('municipioS');
 		$parroquiaF = $this->input->post('parroquiaS');
@@ -129,6 +126,7 @@ class ControladorCreate extends CI_Controller
 				'componente' => form_error('componenteS'),
 				'undAdm' => form_error('undAdmS'),
 				'trabajador' => form_error('trabajadorS'),
+				'estado' => form_error('estadoS'),
 				'ciudad' => form_error('ciudadS'),
 				'municipio' => form_error('municipioS'),
 				'parroquia' => form_error('parroquiaS'),
@@ -164,6 +162,7 @@ class ControladorCreate extends CI_Controller
 				'id_tpc_bien' => $componenteF,
 				'id_adm_bien' => $undAdmF,
 				'id_trb_bien' => $trabajadorF,
+				'id_est_bien' => $estadoF,
 				'id_ciu_bien' => $ciudadF,
 				'id_mun_bien' => $municipioF,
 				'id_parr_bien' => $parroquiaF,

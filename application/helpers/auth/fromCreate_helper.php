@@ -42,6 +42,14 @@ function fromCreate_rules(){
             ),
         ),
         array(
+            'field' => 'estadoS',
+            'label' => 'Estado',
+            'rules' => 'required',
+            'errors' => array(
+                'required' => 'La %s es Requerida.',
+            ),
+        ),
+        array(
             'field' => 'ciudadS',
             'label' => 'Ciudad',
             'rules' => 'required',

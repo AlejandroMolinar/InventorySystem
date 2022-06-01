@@ -129,6 +129,20 @@
                 <div id="trabajador_err"></div>  
             </p>
             <p>
+                <label>Estado
+                    <span class="obligatorio">*</span>
+                </label>
+                <br>
+                <select id="estadoS" name="estadoS" class="form-selects">
+                    <option disabled selected>-Seleccionar-</option>
+                    <?php foreach ($estado as $key) : ?>
+                        <option onclick="setId(<?= $key->id_est ?>)" value="<?= $key->id_est ?>"><?= $key->desc_est ?></option>
+                        <!-- <option onclick="<?= $idMun= $key->id_est ?>" value="<?= $key->id_est ?>"><?= $key->desc_est ?></option> -->
+                    <?php endforeach; ?>
+                </select>
+                <div id="estado_err"></div>  
+            </p>
+            <p>
                 <label>Ciudad
                     <span class="obligatorio">*</span>
                 </label>
@@ -149,7 +163,18 @@
                 <select id="municipioS" name="municipioS" class="form-selects">
                     <option disabled selected>-Seleccionar-</option>
                     <?php foreach ($municipio as $key) : ?>
-                        <option value="<?= $key->id_mun ?>"><?= $key->desc_mun ?></option>
+
+                        <script> var idMun= getId(); 
+                            if (idMun == <?= $key->id_est_mun ?>){
+                                <option onclick="setId(<?= $key->id_mun ?>)" value="<?= $key->id_mun ?>"><?= $key->desc_mun ?></option>
+                            }
+                        </script>
+
+                        <!-- php -->
+                        <!-- <?php if ($idMun == $key->id_est_mun) : ?>
+                            <option onclick="<?= $idPar= $key->id_est ?>" value="<?= $key->id_mun ?>"><?= $key->desc_mun ?></option>
+                        <?php endif; ?>   -->
+
                     <?php endforeach; ?>
                 </select>
                 <div id="municipio_err"></div>  
@@ -162,7 +187,18 @@
                 <select id="parroquiaS" name="parroquiaS" class="form-selects">
                     <option disabled selected>-Seleccionar-</option>
                     <?php foreach ($parroquia as $key) : ?>
-                        <option value="<?= $key->id_parr ?>"><?= $key->desc_parr ?></option>
+                        
+                        <script> var idPar= getId(); 
+                            if (idPar == <?= $key->id_mun_par ?>){
+                                <option value="<?= $key->id_parr ?>"><?= $key->desc_parr ?></option>
+                            }
+                        </script>
+
+                        <!-- php -->
+                        <!-- <?php if ($idPar == $key->id_mun_par) : ?>
+                            <option value="<?= $key->id_parr ?>"><?= $key->desc_parr ?></option>
+                        <?php endif; ?>  -->
+
                     <?php endforeach; ?>
                 </select>
                 <div id="parroquia_err"></div>  

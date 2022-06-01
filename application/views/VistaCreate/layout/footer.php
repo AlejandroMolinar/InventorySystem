@@ -28,6 +28,7 @@ $(document).ready(function () {
 	ordenarSelect('componenteS');
 	ordenarSelect('undAdmS');
 	ordenarSelect('trabajadorS');
+	ordenarSelect('estadoS');
 	ordenarSelect('ciudadS');
 	ordenarSelect('municipioS');
 	ordenarSelect('parroquiaS');
@@ -54,6 +55,15 @@ function crearElemento($object, $name) {
 		$($object).removeAttr('hidden');
 		band = true;
 	}
+}
+
+var idObj;
+
+function setId($id) {
+	idObj=id;
+}
+function getId() {
+	return idObj;
 }
 
 

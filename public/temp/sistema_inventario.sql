@@ -1,112 +1,116 @@
---
--- PostgreSQL database dump
---
+CREATE TABLE public.uni_adm (
+    id_uni_adm serial,
+    desc_uni_adm character varying(80) NOT NULL,
+    fec_cre date DEFAULT now(),
+    hor_cre time without time zone DEFAULT now(),
+    status smallint DEFAULT 1,
+    cod_uni_adm character varying(10) NOT NULL
+);
 
--- Dumped from database version 9.5.25
--- Dumped by pg_dump version 9.5.25
+CREATE TABLE public.tp_comp (
+    id_tp_comp serial,
+    mat_tp_comp character varying,
+    fec_crt_comp date DEFAULT now(),
+    hor_crt_comp time without time zone DEFAULT now(),
+    status smallint DEFAULT 0
+);
 
--- Started on 2022-04-21 09:31:11
-
-SET statement_timeout = 0;
-SET lock_timeout = 0;
-SET client_encoding = 'UTF8';
-SET standard_conforming_strings = on;
-SELECT pg_catalog.set_config('search_path', '', false);
-SET check_function_bodies = false;
-SET xmloption = content;
-SET client_min_messages = warning;
-SET row_security = off;
-
---
--- TOC entry 2255 (class 1262 OID 16393)
--- Name: sistema_inventario; Type: DATABASE; Schema: -; Owner: postgres
---
-
-CREATE DATABASE sistema_inventario WITH TEMPLATE = template0 ENCODING = 'UTF8' LC_COLLATE = 'Spanish_Venezuela.1252' LC_CTYPE = 'Spanish_Venezuela.1252';
-
-
-ALTER DATABASE sistema_inventario OWNER TO postgres;
-
-\connect sistema_inventario
-
-SET statement_timeout = 0;
-SET lock_timeout = 0;
-SET client_encoding = 'UTF8';
-SET standard_conforming_strings = on;
-SELECT pg_catalog.set_config('search_path', '', false);
-SET check_function_bodies = false;
-SET xmloption = content;
-SET client_min_messages = warning;
-SET row_security = off;
-
---
--- TOC entry 1 (class 3079 OID 12355)
--- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: 
---
-
-CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
+CREATE TABLE public.parroquia (
+    id_parr serial,
+    id_mun integer NOT NULL,
+    cod_parr character varying(25) NOT NULL,
+    desc_parr character varying(70) NOT NULL,
+    fec_crt_parr date DEFAULT now(),
+    hor_crt_parr time without time zone DEFAULT now(),
+    status smallint DEFAULT 1
+);
 
 
---
--- TOC entry 2258 (class 0 OID 0)
--- Dependencies: 1
--- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
---
+CREATE TABLE public.municipio (
+    id_mun serial,
+    cod_mun character varying(25) NOT NULL,
+    desc_mun character varying(70) NOT NULL,
+    fec_crt_mun date DEFAULT now(),
+    hor_crt_mun time without time zone DEFAULT now(),
+    status smallint DEFAULT 1
+);
 
-COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
+
+CREATE TABLE public.modelo (
+    id_mod serial,
+    cod_marc_mod character varying(10) NOT NULL,
+    id_cat_esp integer NOT NULL,
+    cod_mod character varying(10) NOT NULL,
+    den_mod character varying(100) NOT NULL,
+    fec_crt_mod date DEFAULT now() NOT NULL,
+    hor_crt_mod time without time zone DEFAULT now() NOT NULL,
+    status smallint DEFAULT 1
+);
 
 
-SET default_tablespace = '';
+CREATE TABLE public.marca (
+    id_marc serial,
+    cod_marc character varying(10) NOT NULL,
+    den_com_marc character varying(100) NOT NULL,
+    nom_fab character varying(100) NOT NULL,
+    fec_crt_marc date DEFAULT now() NOT NULL,
+    hor_crt_marc time without time zone DEFAULT now() NOT NULL,
+    status smallint DEFAULT 1
+);
 
-SET default_with_oids = false;
+CREATE TABLE public.inventario (
+    id_bien serial,
+    id_bien_bien integer,
+    id_clr_bien integer,
+    id_mod_bien integer,
+    id_tpc_bien integer,
+    id_adm_bien integer,
+    id_trb_bien integer,
+    id_est_bien integer,
+    id_ciu_bien integer,
+    id_mun_bien integer,
+    id_parr_bien integer,
+    cod_marc character varying,
+    fec_crt_inv date DEFAULT now(),
+    hor_crt_inv time without time zone DEFAULT now(),
+    status smallint DEFAULT 0
+);
+CREATE TABLE public.colores (
+    id_col serial,
+    cod_col integer NOT NULL,
+    desc_col character varying(50) NOT NULL,
+    fec_crt_col date DEFAULT now(),
+    hor_crt_col time without time zone DEFAULT now(),
+    status smallint DEFAULT 1
+);
+CREATE TABLE public.ciudad (
+    id_ciu serial,
+    id_mun integer NOT NULL,
+    cod_ciu character varying(25) NOT NULL,
+    desc_ciu character varying(70) NOT NULL,
+    fec_crt_ciu date DEFAULT now(),
+    hor_crt_ciu time without time zone DEFAULT now(),
+    status smallint DEFAULT 1
+);
 
---
--- TOC entry 182 (class 1259 OID 16410)
--- Name: tipo_trb; Type: TABLE; Schema: public; Owner: postgres
---
+CREATE TABLE public.bien_mue (
+    id_bien_mue serial,
+    num_bien_mue character varying,
+    fec_crt_mue date DEFAULT now(),
+    hor_crt_mue time without time zone DEFAULT now(),
+    status smallint DEFAULT 0
+);
 
 CREATE TABLE public.tipo_trb (
-    id_tp_trb integer NOT NULL,
+    id_tp_trb serial,
     tp_trb character varying,
     fec_crt_tp date DEFAULT now(),
     hor_crt_tp time without time zone DEFAULT now(),
     status smallint DEFAULT 0
 );
 
-
-ALTER TABLE public.tipo_trb OWNER TO postgres;
-
---
--- TOC entry 181 (class 1259 OID 16408)
--- Name: Tipo_User_Id_tp_user_seq; Type: SEQUENCE; Schema: public; Owner: postgres
---
-
-CREATE SEQUENCE public."Tipo_User_Id_tp_user_seq"
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
-ALTER TABLE public."Tipo_User_Id_tp_user_seq" OWNER TO postgres;
-
---
--- TOC entry 2260 (class 0 OID 0)
--- Dependencies: 181
--- Name: Tipo_User_Id_tp_user_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
---
-
-ALTER SEQUENCE public."Tipo_User_Id_tp_user_seq" OWNED BY public.tipo_trb.id_tp_trb;
-
-
---
--- TOC entry 184 (class 1259 OID 16421)
--- Name: trabajador; Type: TABLE; Schema: public; Owner: postgres
---
-
 CREATE TABLE public.trabajador (
-    id_trb integer NOT NULL,
+    id_trb serial,
     id_tp_trb integer,
     id_adm_trb integer,
     email_trb character varying,
@@ -120,365 +124,6 @@ CREATE TABLE public.trabajador (
 );
 
 
-ALTER TABLE public.trabajador OWNER TO postgres;
-
---
--- TOC entry 183 (class 1259 OID 16419)
--- Name: Usuario_Id_user_seq; Type: SEQUENCE; Schema: public; Owner: postgres
---
-
-CREATE SEQUENCE public."Usuario_Id_user_seq"
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
-ALTER TABLE public."Usuario_Id_user_seq" OWNER TO postgres;
-
---
--- TOC entry 2262 (class 0 OID 0)
--- Dependencies: 183
--- Name: Usuario_Id_user_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
---
-
-ALTER SEQUENCE public."Usuario_Id_user_seq" OWNED BY public.trabajador.id_trb;
-
-
---
--- TOC entry 188 (class 1259 OID 16534)
--- Name: bien_mue; Type: TABLE; Schema: public; Owner: postgres
---
-
-CREATE TABLE public.bien_mue (
-    id_bien_mue integer NOT NULL,
-    num_bien_mue character varying,
-    fec_crt_mue date DEFAULT now(),
-    hor_crt_mue time without time zone DEFAULT now(),
-    status smallint DEFAULT 0
-);
-
-
-ALTER TABLE public.bien_mue OWNER TO postgres;
-
---
--- TOC entry 187 (class 1259 OID 16532)
--- Name: bien_mue_id_bien_mue_seq; Type: SEQUENCE; Schema: public; Owner: postgres
---
-
-CREATE SEQUENCE public.bien_mue_id_bien_mue_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
-ALTER TABLE public.bien_mue_id_bien_mue_seq OWNER TO postgres;
-
---
--- TOC entry 2264 (class 0 OID 0)
--- Dependencies: 187
--- Name: bien_mue_id_bien_mue_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
---
-
-ALTER SEQUENCE public.bien_mue_id_bien_mue_seq OWNED BY public.bien_mue.id_bien_mue;
-
-
---
--- TOC entry 191 (class 1259 OID 16635)
--- Name: ciudad; Type: TABLE; Schema: public; Owner: postgres
---
-
-CREATE TABLE public.ciudad (
-    id_ciu integer NOT NULL,
-    id_mun integer NOT NULL,
-    cod_ciu character varying(25) NOT NULL,
-    desc_ciu character varying(70) NOT NULL,
-    fec_crt_ciu date DEFAULT now(),
-    hor_crt_ciu time without time zone DEFAULT now(),
-    status smallint DEFAULT 1
-);
-
-
-ALTER TABLE public.ciudad OWNER TO postgres;
-
---
--- TOC entry 194 (class 1259 OID 16671)
--- Name: colores; Type: TABLE; Schema: public; Owner: postgres
---
-
-CREATE TABLE public.colores (
-    id_col integer NOT NULL,
-    cod_col integer NOT NULL,
-    desc_col character varying(50) NOT NULL,
-    fec_crt_col date DEFAULT now(),
-    hor_crt_col time without time zone DEFAULT now(),
-    status smallint DEFAULT 1
-);
-
-
-ALTER TABLE public.colores OWNER TO postgres;
-
---
--- TOC entry 190 (class 1259 OID 16591)
--- Name: inventario; Type: TABLE; Schema: public; Owner: postgres
---
-
-CREATE TABLE public.inventario (
-    id_eqp integer NOT NULL,
-    id_bien_eqp integer,
-    id_clr_eqp integer,
-    id_mod_eqp integer,
-    id_tpc_eqp integer,
-    id_adm_eqp integer,
-    id_trb_eqp integer,
-    id_ciu_eqp integer,
-    id_mun_eqp integer,
-    id_parr_eqp integer,
-    cod_marc character varying,
-    fec_crt_inv date DEFAULT now(),
-    hor_crt_inv time without time zone DEFAULT now(),
-    status smallint DEFAULT 0
-);
-
-
-ALTER TABLE public.inventario OWNER TO postgres;
-
---
--- TOC entry 189 (class 1259 OID 16589)
--- Name: inventario_id_eqp_seq; Type: SEQUENCE; Schema: public; Owner: postgres
---
-
-CREATE SEQUENCE public.inventario_id_eqp_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
-ALTER TABLE public.inventario_id_eqp_seq OWNER TO postgres;
-
---
--- TOC entry 2268 (class 0 OID 0)
--- Dependencies: 189
--- Name: inventario_id_eqp_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
---
-
-ALTER SEQUENCE public.inventario_id_eqp_seq OWNED BY public.inventario.id_eqp;
-
-
---
--- TOC entry 195 (class 1259 OID 16678)
--- Name: marca; Type: TABLE; Schema: public; Owner: postgres
---
-
-CREATE TABLE public.marca (
-    id_marc integer NOT NULL,
-    cod_marc character varying(10) NOT NULL,
-    den_com_marc character varying(100) NOT NULL,
-    nom_fab character varying(100) NOT NULL,
-    fec_crt_marc date DEFAULT now() NOT NULL,
-    hor_crt_marc time without time zone DEFAULT now() NOT NULL,
-    status smallint DEFAULT 1
-);
-
-
-ALTER TABLE public.marca OWNER TO postgres;
-
---
--- TOC entry 196 (class 1259 OID 16688)
--- Name: modelo; Type: TABLE; Schema: public; Owner: postgres
---
-
-CREATE TABLE public.modelo (
-    id_mod integer NOT NULL,
-    cod_marc_mod character varying(10) NOT NULL,
-    id_cat_esp integer NOT NULL,
-    cod_mod character varying(10) NOT NULL,
-    den_mod character varying(100) NOT NULL,
-    fec_crt_mod date DEFAULT now() NOT NULL,
-    hor_crt_mod time without time zone DEFAULT now() NOT NULL,
-    status smallint DEFAULT 1
-);
-
-
-ALTER TABLE public.modelo OWNER TO postgres;
-
---
--- TOC entry 192 (class 1259 OID 16644)
--- Name: municipio; Type: TABLE; Schema: public; Owner: postgres
---
-
-CREATE TABLE public.municipio (
-    id_mun integer NOT NULL,
-    cod_mun character varying(25) NOT NULL,
-    desc_mun character varying(70) NOT NULL,
-    fec_crt_mun date DEFAULT now(),
-    hor_crt_mun time without time zone DEFAULT now(),
-    status smallint DEFAULT 1
-);
-
-
-ALTER TABLE public.municipio OWNER TO postgres;
-
---
--- TOC entry 193 (class 1259 OID 16652)
--- Name: parroquia; Type: TABLE; Schema: public; Owner: postgres
---
-
-CREATE TABLE public.parroquia (
-    id_parr integer NOT NULL,
-    id_mun integer NOT NULL,
-    cod_parr character varying(25) NOT NULL,
-    desc_parr character varying(70) NOT NULL,
-    fec_crt_parr date DEFAULT now(),
-    hor_crt_parr time without time zone DEFAULT now(),
-    status smallint DEFAULT 1
-);
-
-
-ALTER TABLE public.parroquia OWNER TO postgres;
-
---
--- TOC entry 186 (class 1259 OID 16510)
--- Name: tp_comp; Type: TABLE; Schema: public; Owner: postgres
---
-
-CREATE TABLE public.tp_comp (
-    id_tp_comp integer NOT NULL,
-    mat_tp_comp character varying,
-    fec_crt_comp date DEFAULT now(),
-    hor_crt_comp time without time zone DEFAULT now(),
-    status smallint DEFAULT 0
-);
-
-
-ALTER TABLE public.tp_comp OWNER TO postgres;
-
---
--- TOC entry 185 (class 1259 OID 16508)
--- Name: tp_comp_id_tp_comp_seq; Type: SEQUENCE; Schema: public; Owner: postgres
---
-
-CREATE SEQUENCE public.tp_comp_id_tp_comp_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
-ALTER TABLE public.tp_comp_id_tp_comp_seq OWNER TO postgres;
-
---
--- TOC entry 2274 (class 0 OID 0)
--- Dependencies: 185
--- Name: tp_comp_id_tp_comp_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
---
-
-ALTER SEQUENCE public.tp_comp_id_tp_comp_seq OWNED BY public.tp_comp.id_tp_comp;
-
-
---
--- TOC entry 197 (class 1259 OID 16694)
--- Name: uni_adm; Type: TABLE; Schema: public; Owner: postgres
---
-
-CREATE TABLE public.uni_adm (
-    id_uni_adm integer NOT NULL,
-    desc_uni_adm character varying(80) NOT NULL,
-    fec_cre date DEFAULT now(),
-    hor_cre time without time zone DEFAULT now(),
-    status smallint DEFAULT 1,
-    cod_uni_adm character varying(10) NOT NULL
-);
-
-
-ALTER TABLE public.uni_adm OWNER TO postgres;
-
---
--- TOC entry 2051 (class 2604 OID 16537)
--- Name: id_bien_mue; Type: DEFAULT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.bien_mue ALTER COLUMN id_bien_mue SET DEFAULT nextval('public.bien_mue_id_bien_mue_seq'::regclass);
-
-
---
--- TOC entry 2055 (class 2604 OID 16594)
--- Name: id_eqp; Type: DEFAULT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.inventario ALTER COLUMN id_eqp SET DEFAULT nextval('public.inventario_id_eqp_seq'::regclass);
-
-
---
--- TOC entry 2039 (class 2604 OID 16413)
--- Name: id_tp_trb; Type: DEFAULT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.tipo_trb ALTER COLUMN id_tp_trb SET DEFAULT nextval('public."Tipo_User_Id_tp_user_seq"'::regclass);
-
-
---
--- TOC entry 2047 (class 2604 OID 16513)
--- Name: id_tp_comp; Type: DEFAULT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.tp_comp ALTER COLUMN id_tp_comp SET DEFAULT nextval('public.tp_comp_id_tp_comp_seq'::regclass);
-
-
---
--- TOC entry 2043 (class 2604 OID 16424)
--- Name: id_trb; Type: DEFAULT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.trabajador ALTER COLUMN id_trb SET DEFAULT nextval('public."Usuario_Id_user_seq"'::regclass);
-
-
---
--- TOC entry 2276 (class 0 OID 0)
--- Dependencies: 181
--- Name: Tipo_User_Id_tp_user_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('public."Tipo_User_Id_tp_user_seq"', 2, true);
-
-
---
--- TOC entry 2277 (class 0 OID 0)
--- Dependencies: 183
--- Name: Usuario_Id_user_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('public."Usuario_Id_user_seq"', 1, false);
-
-
---
--- TOC entry 2240 (class 0 OID 16534)
--- Dependencies: 188
--- Data for Name: bien_mue; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-
-
---
--- TOC entry 2278 (class 0 OID 0)
--- Dependencies: 187
--- Name: bien_mue_id_bien_mue_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('public.bien_mue_id_bien_mue_seq', 1, false);
-
-
---
--- TOC entry 2243 (class 0 OID 16635)
--- Dependencies: 191
--- Data for Name: ciudad; Type: TABLE DATA; Schema: public; Owner: postgres
---
 
 INSERT INTO public.ciudad (id_ciu, id_mun, cod_ciu, desc_ciu, fec_crt_ciu, hor_crt_ciu, status) VALUES (1, 1, '0001', 'Caracas', '2017-03-29', '11:45:31.585866', 1);
 INSERT INTO public.ciudad (id_ciu, id_mun, cod_ciu, desc_ciu, fec_crt_ciu, hor_crt_ciu, status) VALUES (2, 2, '0001', 'La Esmeralda', '2017-03-29', '11:45:31.585866', 1);
@@ -2581,420 +2226,126 @@ INSERT INTO public.uni_adm (id_uni_adm, desc_uni_adm, fec_cre, hor_cre, status, 
 INSERT INTO public.uni_adm (id_uni_adm, desc_uni_adm, fec_cre, hor_cre, status, cod_uni_adm) VALUES (19, 'Area de Trabajo', '2017-03-07', '09:33:04.722974', 1, '19');
 INSERT INTO public.uni_adm (id_uni_adm, desc_uni_adm, fec_cre, hor_cre, status, cod_uni_adm) VALUES (20, 'Otra Categoria', '2017-03-07', '09:33:18.187406', 1, '20');
 
-
---
--- TOC entry 2099 (class 2606 OID 16705)
--- Name: pk_cod_marc; Type: CONSTRAINT; Schema: public; Owner: postgres
---
+//-----------------------------------PRIMARY KEY ------------------------------------------------
 
 ALTER TABLE ONLY public.marca
     ADD CONSTRAINT pk_cod_marc PRIMARY KEY (cod_marc);
 
 
---
--- TOC entry 2103 (class 2606 OID 16701)
--- Name: pk_id_adm; Type: CONSTRAINT; Schema: public; Owner: postgres
---
 
 ALTER TABLE ONLY public.uni_adm
     ADD CONSTRAINT pk_id_adm PRIMARY KEY (id_uni_adm);
 
 
---
--- TOC entry 2087 (class 2606 OID 16553)
--- Name: pk_id_bien; Type: CONSTRAINT; Schema: public; Owner: postgres
---
 
 ALTER TABLE ONLY public.bien_mue
     ADD CONSTRAINT pk_id_bien PRIMARY KEY (id_bien_mue);
 
 
---
--- TOC entry 2091 (class 2606 OID 16643)
--- Name: pk_id_ciu; Type: CONSTRAINT; Schema: public; Owner: postgres
---
 
 ALTER TABLE ONLY public.ciudad
     ADD CONSTRAINT pk_id_ciu PRIMARY KEY (id_ciu);
 
 
---
--- TOC entry 2097 (class 2606 OID 16687)
--- Name: pk_id_col; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
 ALTER TABLE ONLY public.colores
     ADD CONSTRAINT pk_id_col PRIMARY KEY (id_col);
 
-
---
--- TOC entry 2085 (class 2606 OID 16521)
--- Name: pk_id_comp; Type: CONSTRAINT; Schema: public; Owner: postgres
---
 
 ALTER TABLE ONLY public.tp_comp
     ADD CONSTRAINT pk_id_comp PRIMARY KEY (id_tp_comp);
 
 
---
--- TOC entry 2089 (class 2606 OID 16596)
--- Name: pk_id_eqp; Type: CONSTRAINT; Schema: public; Owner: postgres
---
 
 ALTER TABLE ONLY public.inventario
     ADD CONSTRAINT pk_id_eqp PRIMARY KEY (id_eqp);
 
 
---
--- TOC entry 2101 (class 2606 OID 16703)
--- Name: pk_id_mod; Type: CONSTRAINT; Schema: public; Owner: postgres
---
 
 ALTER TABLE ONLY public.modelo
     ADD CONSTRAINT pk_id_mod PRIMARY KEY (id_mod);
 
 
---
--- TOC entry 2093 (class 2606 OID 16651)
--- Name: pk_id_mun; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
 ALTER TABLE ONLY public.municipio
     ADD CONSTRAINT pk_id_mun PRIMARY KEY (id_mun);
 
 
---
--- TOC entry 2095 (class 2606 OID 16660)
--- Name: pk_id_parr; Type: CONSTRAINT; Schema: public; Owner: postgres
---
 
 ALTER TABLE ONLY public.parroquia
     ADD CONSTRAINT pk_id_parr PRIMARY KEY (id_parr);
 
 
---
--- TOC entry 2081 (class 2606 OID 16561)
--- Name: pk_id_tp; Type: CONSTRAINT; Schema: public; Owner: postgres
---
 
 ALTER TABLE ONLY public.tipo_trb
     ADD CONSTRAINT pk_id_tp PRIMARY KEY (id_tp_trb);
 
 
---
--- TOC entry 2083 (class 2606 OID 16559)
--- Name: pk_id_trb; Type: CONSTRAINT; Schema: public; Owner: postgres
---
 
 ALTER TABLE ONLY public.trabajador
     ADD CONSTRAINT pk_id_trb PRIMARY KEY (id_trb);
 
 
---
--- TOC entry 2118 (class 2606 OID 16706)
--- Name: fk_cod_marc; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
 
 ALTER TABLE ONLY public.modelo
     ADD CONSTRAINT fk_cod_marc FOREIGN KEY (cod_marc_mod) REFERENCES public.marca(cod_marc);
 
-
---
--- TOC entry 2115 (class 2606 OID 16759)
--- Name: fk_cod_marc; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
+//-----------------------------------FOREIGN KEY ------------------------------------------------
 
 ALTER TABLE ONLY public.inventario
     ADD CONSTRAINT fk_cod_marc FOREIGN KEY (cod_marc) REFERENCES public.marca(cod_marc);
 
 
---
--- TOC entry 2105 (class 2606 OID 16711)
--- Name: fk_id_adm; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
 ALTER TABLE ONLY public.trabajador
     ADD CONSTRAINT fk_id_adm FOREIGN KEY (id_adm_trb) REFERENCES public.uni_adm(id_uni_adm);
 
-
---
--- TOC entry 2109 (class 2606 OID 16716)
--- Name: fk_id_adm; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
 
 ALTER TABLE ONLY public.inventario
     ADD CONSTRAINT fk_id_adm FOREIGN KEY (id_adm_eqp) REFERENCES public.uni_adm(id_uni_adm);
 
 
---
--- TOC entry 2106 (class 2606 OID 16597)
--- Name: fk_id_bien; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
 ALTER TABLE ONLY public.inventario
     ADD CONSTRAINT fk_id_bien FOREIGN KEY (id_bien_eqp) REFERENCES public.bien_mue(id_bien_mue);
 
-
---
--- TOC entry 2110 (class 2606 OID 16731)
--- Name: fk_id_ciu; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
 
 ALTER TABLE ONLY public.inventario
     ADD CONSTRAINT fk_id_ciu FOREIGN KEY (id_ciu_eqp) REFERENCES public.ciudad(id_ciu);
 
 
---
--- TOC entry 2111 (class 2606 OID 16736)
--- Name: fk_id_col; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
 ALTER TABLE ONLY public.inventario
     ADD CONSTRAINT fk_id_col FOREIGN KEY (id_clr_eqp) REFERENCES public.colores(id_col);
 
-
---
--- TOC entry 2112 (class 2606 OID 16741)
--- Name: fk_id_mod; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
 
 ALTER TABLE ONLY public.inventario
     ADD CONSTRAINT fk_id_mod FOREIGN KEY (id_mod_eqp) REFERENCES public.modelo(id_mod);
 
 
---
--- TOC entry 2117 (class 2606 OID 16661)
--- Name: fk_id_mun; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
 ALTER TABLE ONLY public.parroquia
     ADD CONSTRAINT fk_id_mun FOREIGN KEY (id_mun) REFERENCES public.municipio(id_mun);
 
-
---
--- TOC entry 2116 (class 2606 OID 16666)
--- Name: fk_id_mun; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
 
 ALTER TABLE ONLY public.ciudad
     ADD CONSTRAINT fk_id_mun FOREIGN KEY (id_mun) REFERENCES public.municipio(id_mun);
 
 
---
--- TOC entry 2113 (class 2606 OID 16746)
--- Name: fk_id_mun; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
 ALTER TABLE ONLY public.inventario
     ADD CONSTRAINT fk_id_mun FOREIGN KEY (id_mun_eqp) REFERENCES public.municipio(id_mun);
 
-
---
--- TOC entry 2114 (class 2606 OID 16751)
--- Name: fk_id_parr; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
 
 ALTER TABLE ONLY public.inventario
     ADD CONSTRAINT fk_id_parr FOREIGN KEY (id_parr_eqp) REFERENCES public.parroquia(id_parr);
 
 
---
--- TOC entry 2108 (class 2606 OID 16622)
--- Name: fk_id_tbr; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
 
 ALTER TABLE ONLY public.inventario
     ADD CONSTRAINT fk_id_tbr FOREIGN KEY (id_trb_eqp) REFERENCES public.trabajador(id_trb);
 
 
---
--- TOC entry 2104 (class 2606 OID 16562)
--- Name: fk_id_tp; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
 ALTER TABLE ONLY public.trabajador
     ADD CONSTRAINT fk_id_tp FOREIGN KEY (id_tp_trb) REFERENCES public.tipo_trb(id_tp_trb);
 
-
---
--- TOC entry 2107 (class 2606 OID 16617)
--- Name: fk_id_tpc; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
 
 ALTER TABLE ONLY public.inventario
     ADD CONSTRAINT fk_id_tpc FOREIGN KEY (id_tpc_eqp) REFERENCES public.tp_comp(id_tp_comp);
 
 
---
--- TOC entry 2257 (class 0 OID 0)
--- Dependencies: 6
--- Name: SCHEMA public; Type: ACL; Schema: -; Owner: postgres
---
 
-REVOKE ALL ON SCHEMA public FROM PUBLIC;
-REVOKE ALL ON SCHEMA public FROM postgres;
-GRANT ALL ON SCHEMA public TO postgres;
-GRANT ALL ON SCHEMA public TO PUBLIC;
-
-
---
--- TOC entry 2259 (class 0 OID 0)
--- Dependencies: 182
--- Name: TABLE tipo_trb; Type: ACL; Schema: public; Owner: postgres
---
-
-REVOKE ALL ON TABLE public.tipo_trb FROM PUBLIC;
-REVOKE ALL ON TABLE public.tipo_trb FROM postgres;
-GRANT ALL ON TABLE public.tipo_trb TO postgres;
-GRANT ALL ON TABLE public.tipo_trb TO PUBLIC;
-
-
---
--- TOC entry 2261 (class 0 OID 0)
--- Dependencies: 184
--- Name: TABLE trabajador; Type: ACL; Schema: public; Owner: postgres
---
-
-REVOKE ALL ON TABLE public.trabajador FROM PUBLIC;
-REVOKE ALL ON TABLE public.trabajador FROM postgres;
-GRANT ALL ON TABLE public.trabajador TO postgres;
-GRANT ALL ON TABLE public.trabajador TO PUBLIC;
-
-
---
--- TOC entry 2263 (class 0 OID 0)
--- Dependencies: 188
--- Name: TABLE bien_mue; Type: ACL; Schema: public; Owner: postgres
---
-
-REVOKE ALL ON TABLE public.bien_mue FROM PUBLIC;
-REVOKE ALL ON TABLE public.bien_mue FROM postgres;
-GRANT ALL ON TABLE public.bien_mue TO postgres;
-GRANT ALL ON TABLE public.bien_mue TO PUBLIC;
-
-
---
--- TOC entry 2265 (class 0 OID 0)
--- Dependencies: 191
--- Name: TABLE ciudad; Type: ACL; Schema: public; Owner: postgres
---
-
-REVOKE ALL ON TABLE public.ciudad FROM PUBLIC;
-REVOKE ALL ON TABLE public.ciudad FROM postgres;
-GRANT ALL ON TABLE public.ciudad TO postgres;
-GRANT ALL ON TABLE public.ciudad TO PUBLIC;
-
-
---
--- TOC entry 2266 (class 0 OID 0)
--- Dependencies: 194
--- Name: TABLE colores; Type: ACL; Schema: public; Owner: postgres
---
-
-REVOKE ALL ON TABLE public.colores FROM PUBLIC;
-REVOKE ALL ON TABLE public.colores FROM postgres;
-GRANT ALL ON TABLE public.colores TO postgres;
-GRANT ALL ON TABLE public.colores TO PUBLIC;
-
-
---
--- TOC entry 2267 (class 0 OID 0)
--- Dependencies: 190
--- Name: TABLE inventario; Type: ACL; Schema: public; Owner: postgres
---
-
-REVOKE ALL ON TABLE public.inventario FROM PUBLIC;
-REVOKE ALL ON TABLE public.inventario FROM postgres;
-GRANT ALL ON TABLE public.inventario TO postgres;
-GRANT ALL ON TABLE public.inventario TO PUBLIC;
-
-
---
--- TOC entry 2269 (class 0 OID 0)
--- Dependencies: 195
--- Name: TABLE marca; Type: ACL; Schema: public; Owner: postgres
---
-
-REVOKE ALL ON TABLE public.marca FROM PUBLIC;
-REVOKE ALL ON TABLE public.marca FROM postgres;
-GRANT ALL ON TABLE public.marca TO postgres;
-GRANT ALL ON TABLE public.marca TO PUBLIC;
-
-
---
--- TOC entry 2270 (class 0 OID 0)
--- Dependencies: 196
--- Name: TABLE modelo; Type: ACL; Schema: public; Owner: postgres
---
-
-REVOKE ALL ON TABLE public.modelo FROM PUBLIC;
-REVOKE ALL ON TABLE public.modelo FROM postgres;
-GRANT ALL ON TABLE public.modelo TO postgres;
-GRANT ALL ON TABLE public.modelo TO PUBLIC;
-
-
---
--- TOC entry 2271 (class 0 OID 0)
--- Dependencies: 192
--- Name: TABLE municipio; Type: ACL; Schema: public; Owner: postgres
---
-
-REVOKE ALL ON TABLE public.municipio FROM PUBLIC;
-REVOKE ALL ON TABLE public.municipio FROM postgres;
-GRANT ALL ON TABLE public.municipio TO postgres;
-GRANT ALL ON TABLE public.municipio TO PUBLIC;
-
-
---
--- TOC entry 2272 (class 0 OID 0)
--- Dependencies: 193
--- Name: TABLE parroquia; Type: ACL; Schema: public; Owner: postgres
---
-
-REVOKE ALL ON TABLE public.parroquia FROM PUBLIC;
-REVOKE ALL ON TABLE public.parroquia FROM postgres;
-GRANT ALL ON TABLE public.parroquia TO postgres;
-GRANT ALL ON TABLE public.parroquia TO PUBLIC;
-
-
---
--- TOC entry 2273 (class 0 OID 0)
--- Dependencies: 186
--- Name: TABLE tp_comp; Type: ACL; Schema: public; Owner: postgres
---
-
-REVOKE ALL ON TABLE public.tp_comp FROM PUBLIC;
-REVOKE ALL ON TABLE public.tp_comp FROM postgres;
-GRANT ALL ON TABLE public.tp_comp TO postgres;
-GRANT ALL ON TABLE public.tp_comp TO PUBLIC;
-
-
---
--- TOC entry 2275 (class 0 OID 0)
--- Dependencies: 197
--- Name: TABLE uni_adm; Type: ACL; Schema: public; Owner: postgres
---
-
-REVOKE ALL ON TABLE public.uni_adm FROM PUBLIC;
-REVOKE ALL ON TABLE public.uni_adm FROM postgres;
-GRANT ALL ON TABLE public.uni_adm TO postgres;
-GRANT ALL ON TABLE public.uni_adm TO PUBLIC;
-
-
---
--- TOC entry 1690 (class 826 OID 16406)
--- Name: DEFAULT PRIVILEGES FOR TABLES; Type: DEFAULT ACL; Schema: -; Owner: postgres
---
-
-ALTER DEFAULT PRIVILEGES FOR ROLE postgres REVOKE ALL ON TABLES  FROM PUBLIC;
-ALTER DEFAULT PRIVILEGES FOR ROLE postgres REVOKE ALL ON TABLES  FROM postgres;
-ALTER DEFAULT PRIVILEGES FOR ROLE postgres GRANT ALL ON TABLES  TO postgres;
-ALTER DEFAULT PRIVILEGES FOR ROLE postgres GRANT ALL ON TABLES  TO PUBLIC;
-
-
--- Completed on 2022-04-21 09:31:12
-
---
--- PostgreSQL database dump complete
---
 
