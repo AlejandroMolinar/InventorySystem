@@ -39,10 +39,9 @@
                     <?php endif; ?>
                     <?php endforeach; ?>
                 </select>
-            <div id="marca_err"></div>
+                <div id="marca_err"></div>
 
             </p>
-
             <p>
                 <label>Modelo
                     <span class="obligatorio">*</span>
@@ -156,6 +155,19 @@
                     <?php endforeach; ?>
                 </select>
             <div id="trabajador_err"></div>
+            </p>
+            <p>
+                <label>Estado
+                    <span class="obligatorio">*</span>
+                </label>
+                <br>
+                <select id="estadoS" name="estadoS" class="form-selects">
+                    <option disabled selected>-Seleccionar-</option>
+                    <?php foreach ($estado as $key) : ?>
+                        <option onclick="setId(<?= $key->id_est ?>)" value="<?= $key->id_est ?>"><?= $key->desc_est ?></option>
+                    <?php endforeach; ?>
+                </select>
+                <div id="estado_err"></div>  
             </p>
             <p>
                 <label>Ciudad

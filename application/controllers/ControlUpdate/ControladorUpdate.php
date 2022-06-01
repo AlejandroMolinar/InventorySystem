@@ -1,11 +1,9 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class ControladorUpdate extends CI_Controller
-{
+class ControladorUpdate extends CI_Controller{
 
-	public function __construct()
-	{
+	public function __construct(){
 		parent::__construct();
 		$this->load->database();
 		$this->load->model('ModeloCreate/ModelCreate');
@@ -31,6 +29,7 @@ class ControladorUpdate extends CI_Controller
 				$componente = $this->ModelCreate->GetTable('tp_comp', 'id_tp_comp, mat_tp_comp');
 				$undAdm = $this->ModelCreate->GetTable('uni_adm', 'id_uni_adm, desc_uni_adm');
 				$trabajador = $this->ModelCreate->GetTable('trabajador', 'id_trb, nombre_trb, apellido_trb');
+				$estado = $this->ModelCreate->GetTable('estado', 'id_est, desc_est');
 				$ciudad = $this->ModelCreate->GetTable('ciudad', 'id_ciu, desc_ciu');
 				$municipio = $this->ModelCreate->GetTable('municipio', 'id_mun, desc_mun');
 				$parroquia = $this->ModelCreate->GetTable('parroquia', 'id_parr, desc_parr');
@@ -50,6 +49,7 @@ class ControladorUpdate extends CI_Controller
 						'componente' => $componente,
 						'undAdm' => $undAdm,
 						'trabajador' => $trabajador,
+						'estado' => $estado,
 						'ciudad' => $ciudad,
 						'municipio' => $municipio,
 						'parroquia' => $parroquia,
@@ -76,6 +76,7 @@ class ControladorUpdate extends CI_Controller
 		$componenteF = $this->input->post('componenteS');
 		$undAdmF = $this->input->post('undAdmS');
 		$trabajadorF = $this->input->post('trabajadorS');
+		$estadoF = $this->input->post('estadoS');
 		$ciudadF =  $this->input->post('ciudadS');
 		$municipioF = $this->input->post('municipioS');
 		$parroquiaF = $this->input->post('parroquiaS');
@@ -114,6 +115,7 @@ class ControladorUpdate extends CI_Controller
 				'id_tpc_bien' => $componenteF,
 				'id_adm_bien' => $undAdmF,
 				'id_trb_bien' => $trabajadorF,
+				'id_est_bien' => $estadoF,
 				'id_ciu_bien' => $ciudadF,
 				'id_mun_bien' => $municipioF,
 				'id_parr_bien' => $parroquiaF,
