@@ -87,6 +87,18 @@ class ControlUpdate extends CI_Controller{
 			exit;
 		} else {
 
+			// id_trb			
+			// id_tp_trb			
+			// id_adm_trb			
+			// email_trb			
+			// nombre_trb			
+			// apellido_trb			
+			// cedula_trb			
+			// password_trb			
+			// fecha_crt_trb			
+			// hora_crt_trb			
+			// status
+			
 			$data = array(
 				'id_tp_trb' => $rangoU,
 				'email_trb' => $emailU,
@@ -97,7 +109,7 @@ class ControlUpdate extends CI_Controller{
 				'status' => $statusU,
 			);
 
-			if (!$this->ModelCreate->update('inventario', $data, 'id_inv_bien', $idU)) {
+			if (!$this->ModelCreate->update('trabajador', $data, 'id_trb', $idU)) {
 				echo json_encode(array('msg' => 'Hubo un Error al Crear el Elemento'));
 				$this->output->set_status_header(401);
 				exit;
