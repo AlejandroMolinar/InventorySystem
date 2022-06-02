@@ -37,8 +37,8 @@ class ControladorCreate extends CI_Controller{
 				$trabajador = $this->ModelCreate->GetTable('trabajador', 'id_trb, nombre_trb, apellido_trb');
 				$estado = $this->ModelCreate->GetTable('estado', 'id_est, desc_est');
 				$ciudad = $this->ModelCreate->GetTable('ciudad', 'id_ciu, desc_ciu');
-				$municipio = $this->ModelCreate->GetTable('municipio', 'id_mun, id_est_mun, desc_mun');
-				$parroquia = $this->ModelCreate->GetTable('parroquia', 'id_parr, id_mun_par, desc_parr');
+				$municipio = $this->ModelCreate->GetTable('municipio', 'id_mun, id_est, desc_mun');
+				$parroquia = $this->ModelCreate->GetTable('parroquia', 'id_parr, id_mun, desc_parr');
 
 				//------------------Envio de Datos-----------------------------------------------------------
 
@@ -58,7 +58,10 @@ class ControladorCreate extends CI_Controller{
 						'municipio' => $municipio,
 						'parroquia' => $parroquia
 					), TRUE),
-					'footer' => $this->load->view('VistaCreate/layout/footer', '', TRUE),
+					'footer' => $this->load->view('VistaCreate/layout/footer', array(
+						'municipio' => $municipio,
+						'parroquia' => $parroquia,
+					), TRUE),
 				);
 
 				$this->load->view('VistaCreate/vistaCreate', $data);
@@ -67,6 +70,7 @@ class ControladorCreate extends CI_Controller{
 			redirect(base_url());
 		}
 	}
+
 
 	public function Guardar(){
 

@@ -57,16 +57,6 @@ function crearElemento($object, $name) {
 	}
 }
 
-var idObj;
-
-function setId($id) {
-	idObj=id;
-}
-function getId() {
-	return idObj;
-}
-
-
 </script>
 </body>
 

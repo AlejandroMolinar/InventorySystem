@@ -28,12 +28,12 @@ class ControlInventario extends CI_Controller{
 				redirect(base_url());
 
 			} else {
+
 				$timeLog = time();
 
 				$range = $this->session->range;
 
 				$data = $this->ModelInventario->GetTable('inventario', '*');
-
 				$datatotal = array();
 
 				foreach ($data as $items) {
@@ -59,9 +59,7 @@ class ControlInventario extends CI_Controller{
 					array_push($datatotal, $datos);
 				}
 
-				if ($datatotal != null) {
-					$this->GetView($range, $datatotal);
-				}
+				$this->GetView($range, $datatotal);
 			}
 		} else {
 			redirect(base_url());
@@ -70,10 +68,10 @@ class ControlInventario extends CI_Controller{
 
 	public function GetView($range, $dataTable){
 
-		if ($range != 1) {
-			$view = $this->load->view('VistaPrincipal/user/inventario_user', array('dataTable' => $dataTable), TRUE);
-		} else {
+		if ($range == 1) {
 			$view = $this->load->view('VistaPrincipal/admin/inventario_admin', array('dataTable' => $dataTable, 'range' => $range), TRUE);
+		} else {
+			$view = $this->load->view('VistaPrincipal/user/inventario_user', array('dataTable' => $dataTable), TRUE);
 		}
 		$data = array(
 			'head' => $this->load->view('VistaPrincipal/layout/head', '', TRUE),

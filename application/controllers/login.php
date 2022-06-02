@@ -18,11 +18,16 @@ class Login extends CI_Controller{
 		$this->load->database();
 		$this->load->helper(array('auth/login', 'auth/register'));
 		$this->load->model('ModeloLogIn/Login_model');
-		$this->load->library('session');
 
 	}
 	public function index(){
-		$data['url'] = main_menu();
+		$undAdm = $this->Login_model->GetTable('uni_adm', 'id_uni_adm, desc_uni_adm');
+
+
+		$data= array(
+			'url' => main_menu(),
+			'undAdm' => $undAdm,
+		);
 		$this->load->view('VistaLogIn/login', $data);
 	}
 	public function create(){
@@ -125,7 +130,7 @@ class Login extends CI_Controller{
 						'email_trb' => $email_sp,
 						'nombre_trb' => $nombre_sp,
 						'apellido_trb' => $apellido_sp,
-						'id_area_trb' => $area_sp,
+						'id_adm_trb' => $area_sp,
 						'cedula_trb' => $cedula_sp,
 						'password_trb' => $password_sp,
 

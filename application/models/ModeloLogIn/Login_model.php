@@ -25,15 +25,23 @@ class Login_model extends CI_model{
 
     }
         
-    // public function read($user, $password){
-               
-    //     $data_log= $this->db->get_where('trabajador', array('email_trb' => $user , 'password_trb' => $password), 1);
-    //     if(!$data_log->result()){
-    //         return FALSE;
-    //     }
-    //     return $data_log->row();
+    public function GetTable($table, $select){
+        
+        $this->db->select($select);
+        $this->db->from($table);
+        $data_log= $this->db->get();
+        return $data_log->result();
 
-    // }
+    }
+
+    public function GetTables($table, $select, $key, $search){
+        $this->db->select($select);
+        $this->db->from($table);
+        $this->db->where($key , $search);
+        $data_log= $this->db->get();
+        return $data_log->row();
+
+    }
 
     public function create($data_sp){
         if(!$this->db->insert('trabajador', $data_sp)){

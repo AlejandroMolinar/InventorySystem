@@ -91,12 +91,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
           <div class="group" id="area_sp">
             <label for="lab_ced" class="label">&aacuterea</label>
             <select class="input_area" id="opcion_area_r" name="opcion_area_r"> 
-              <option value="" disabled selected>Selecionar</option>
-              <option value="1">Desarrollo de Software</option>
-              <option value="2">Telecom</option>
-              <option value="3">Servidores</option>
-              <option value="4">Soporte Tecnico</option>
-              <option value="5">Cobro Pasaje</option>
+              <option disabled selected>-Seleccionar-</option>
+              <?php foreach ($undAdm as $key) : ?>
+                  <option value="<?= $key->id_uni_adm ?>"><?= $key->desc_uni_adm ?></option>
+              <?php endforeach; ?>
             </select>
             <div id="are_err"></div>  
                    

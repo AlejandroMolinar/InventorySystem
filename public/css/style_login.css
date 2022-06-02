@@ -27,8 +27,6 @@ a {
 	height: 100vh;
 	margin: auto;
 	position: relative;
-	background: url(https://raw.githubusercontent.com/khadkamhn/day-01-login-form/master/img/bg.jpg)
-		no-repeat center;
 	box-shadow: 0 12px 15px 0 rgba(0, 0, 0, 0.24),
 		0 17px 90px 0 rgba(0, 0, 0, 0.19);
 }

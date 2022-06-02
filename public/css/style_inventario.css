@@ -15,7 +15,7 @@ body {
 .nav {
 	position: fixed;
 	top: 0px;
-	width: 100%;
+	width: 100vw;
 }
 
 .nav-link{
@@ -32,8 +32,8 @@ body {
 	left: 270px;
 	top: 50px;
 	bottom: 0;
-	width: 80vw; /* viewport width */
-	height: 92vh; /* viewport height */
+	width: 83vw; /* viewport width */
+	height: 94vh; /* viewport height */
 	overflow-y: scroll;
 	overflow-x: scroll;
 	font-size: smaller;
