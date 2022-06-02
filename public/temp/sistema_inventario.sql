@@ -2205,26 +2205,13 @@ SELECT pg_catalog.setval('public.tp_comp_id_tp_comp_seq', 1, false);
 -- Data for Name: uni_adm; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public.uni_adm (id_uni_adm, desc_uni_adm, fec_cre, hor_cre, status, cod_uni_adm) VALUES (1, 'Despacho del Presidente', '2017-03-07', '09:28:49.97043', 1, '1');
-INSERT INTO public.uni_adm (id_uni_adm, desc_uni_adm, fec_cre, hor_cre, status, cod_uni_adm) VALUES (2, 'Despacho del Vicepresidente', '2017-03-07', '09:28:59.482415', 1, '2');
-INSERT INTO public.uni_adm (id_uni_adm, desc_uni_adm, fec_cre, hor_cre, status, cod_uni_adm) VALUES (4, 'Despacho del Viceministro', '2017-03-07', '09:29:58.354588', 1, '4');
-INSERT INTO public.uni_adm (id_uni_adm, desc_uni_adm, fec_cre, hor_cre, status, cod_uni_adm) VALUES (3, 'Despacho del Ministro', '2017-03-07', '09:29:44.810533', 1, '3');
-INSERT INTO public.uni_adm (id_uni_adm, desc_uni_adm, fec_cre, hor_cre, status, cod_uni_adm) VALUES (5, 'Direccion General', '2017-03-07', '09:30:15.97072', 1, '5');
-INSERT INTO public.uni_adm (id_uni_adm, desc_uni_adm, fec_cre, hor_cre, status, cod_uni_adm) VALUES (6, 'Direccion de Linea', '2017-03-07', '09:30:21.848189', 1, '6');
-INSERT INTO public.uni_adm (id_uni_adm, desc_uni_adm, fec_cre, hor_cre, status, cod_uni_adm) VALUES (7, 'Coordinacion', '2017-03-07', '09:30:32.842709', 1, '7');
-INSERT INTO public.uni_adm (id_uni_adm, desc_uni_adm, fec_cre, hor_cre, status, cod_uni_adm) VALUES (8, 'Division', '2017-03-07', '09:30:48.394485', 1, '8');
-INSERT INTO public.uni_adm (id_uni_adm, desc_uni_adm, fec_cre, hor_cre, status, cod_uni_adm) VALUES (9, 'Departamento', '2017-03-07', '09:30:55.506751', 1, '9');
-INSERT INTO public.uni_adm (id_uni_adm, desc_uni_adm, fec_cre, hor_cre, status, cod_uni_adm) VALUES (10, 'Presidencia', '2017-03-07', '09:31:06.76251', 1, '10');
-INSERT INTO public.uni_adm (id_uni_adm, desc_uni_adm, fec_cre, hor_cre, status, cod_uni_adm) VALUES (11, 'Gerencia General', '2017-03-07', '09:31:17.634903', 1, '11');
-INSERT INTO public.uni_adm (id_uni_adm, desc_uni_adm, fec_cre, hor_cre, status, cod_uni_adm) VALUES (12, 'Gerencia', '2017-03-07', '09:31:21.626873', 1, '12');
-INSERT INTO public.uni_adm (id_uni_adm, desc_uni_adm, fec_cre, hor_cre, status, cod_uni_adm) VALUES (13, 'Sub-Gerencia', '2017-03-07', '09:31:42.874697', 1, '13');
-INSERT INTO public.uni_adm (id_uni_adm, desc_uni_adm, fec_cre, hor_cre, status, cod_uni_adm) VALUES (14, 'Despacho del Superintendente', '2017-03-07', '09:31:50.451043', 1, '14');
-INSERT INTO public.uni_adm (id_uni_adm, desc_uni_adm, fec_cre, hor_cre, status, cod_uni_adm) VALUES (15, 'Direccion General Adjunta', '2017-03-07', '09:32:12.954782', 1, '15');
-INSERT INTO public.uni_adm (id_uni_adm, desc_uni_adm, fec_cre, hor_cre, status, cod_uni_adm) VALUES (16, 'Intendencia', '2017-03-07', '09:32:17.899194', 1, '16');
-INSERT INTO public.uni_adm (id_uni_adm, desc_uni_adm, fec_cre, hor_cre, status, cod_uni_adm) VALUES (17, 'Unidad Ad-Hoc', '2017-03-07', '09:32:43.626871', 1, '17');
-INSERT INTO public.uni_adm (id_uni_adm, desc_uni_adm, fec_cre, hor_cre, status, cod_uni_adm) VALUES (18, 'Area Organizacional', '2017-03-07', '09:32:49.411205', 1, '18');
-INSERT INTO public.uni_adm (id_uni_adm, desc_uni_adm, fec_cre, hor_cre, status, cod_uni_adm) VALUES (19, 'Area de Trabajo', '2017-03-07', '09:33:04.722974', 1, '19');
-INSERT INTO public.uni_adm (id_uni_adm, desc_uni_adm, fec_cre, hor_cre, status, cod_uni_adm) VALUES (20, 'Otra Categoria', '2017-03-07', '09:33:18.187406', 1, '20');
+INSERT INTO public.uni_adm (id_uni_adm, desc_uni_adm, fec_cre, hor_cre, status) VALUES (1, 'ÁREA DE DESARROLLO DE SISTEMAS', '2022-05-31', '17:09:51.89132', 1);
+INSERT INTO public.uni_adm (id_uni_adm, desc_uni_adm, fec_cre, hor_cre, status) VALUES (2, 'ÁREA DE REDES Y TELECOMUNICACIONES', '2022-05-31', '17:09:57.509462', 1);
+INSERT INTO public.uni_adm (id_uni_adm, desc_uni_adm, fec_cre, hor_cre, status) VALUES (3, 'ÁREA DE ADMINISTRACIÓN DE SERVIDORES', '2022-05-31', '17:14:20.01113', 1);
+INSERT INTO public.uni_adm (id_uni_adm, desc_uni_adm, fec_cre, hor_cre, status) VALUES (4, 'ÁREA DE SOPORTE TÉCNICO A USUARIOS', '2022-05-31', '17:14:31.976051', 1);
+INSERT INTO public.uni_adm (id_uni_adm, desc_uni_adm, fec_cre, hor_cre, status) VALUES (5, 'ÁREA DE SEGURIDAD DE LA INFORMACION Y GESTION TECNOLOGICA', '2022-05-31', '17:14:53.922568', 1);
+INSERT INTO public.uni_adm (id_uni_adm, desc_uni_adm, fec_cre, hor_cre, status) VALUES (6, 'ÁREA COBRO DE PASAJE', '2022-05-31', '17:15:33.750627', 1);
+INSERT INTO public.uni_adm (id_uni_adm, desc_uni_adm, fec_cre, hor_cre, status) VALUES (7, 'ÁREA DE TECNOLOGIA DE INFORMACIÓN Y COMUNICACIÓN', '2022-05-31', '17:15:41.211713', 1);
 
 //-----------------------------------PRIMARY KEY ------------------------------------------------
 
