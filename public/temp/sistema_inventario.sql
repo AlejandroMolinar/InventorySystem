@@ -18,15 +18,6 @@ SET row_security = off;
 
 CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
 
-CREATE TABLE public.uni_adm (
-    id_uni_adm serial,
-    desc_uni_adm character varying(80) NOT NULL,
-    fec_cre date DEFAULT now(),
-    hor_cre time without time zone DEFAULT now(),
-    status smallint DEFAULT 1,
-    cod_uni_adm character varying(10) NOT NULL
-);
-
 //----------------------------------- Create Table ------------------------------------------------
 
 CREATE TABLE public.uni_adm (
@@ -34,7 +25,7 @@ CREATE TABLE public.uni_adm (
     desc_uni_adm character varying(80) NOT NULL,
     fec_cre date DEFAULT now(),
     hor_cre time without time zone DEFAULT now(),
-    status smallint DEFAULT 1,
+    status smallint DEFAULT 0
 );
 
 CREATE TABLE public.tp_comp (
@@ -52,7 +43,7 @@ CREATE TABLE public.parroquia (
     desc_parr character varying(70) NOT NULL,
     fec_crt_parr date DEFAULT now(),
     hor_crt_parr time without time zone DEFAULT now(),
-    status smallint DEFAULT 1
+    status smallint DEFAULT 0
 );
 
 
@@ -63,7 +54,7 @@ CREATE TABLE public.municipio (
     desc_mun character varying(70) NOT NULL,
     fec_cre date DEFAULT now(),
     hor_cre time without time zone DEFAULT now(),
-    status smallint DEFAULT 1
+    status smallint DEFAULT 0
 );
 
 
@@ -75,7 +66,7 @@ CREATE TABLE public.modelo (
     den_mod character varying(100) NOT NULL,
     fec_crt_mod date DEFAULT now() NOT NULL,
     hor_crt_mod time without time zone DEFAULT now() NOT NULL,
-    status smallint DEFAULT 1
+    status smallint DEFAULT 0
 );
 
 
@@ -86,7 +77,7 @@ CREATE TABLE public.marca (
     nom_fab character varying(100) NOT NULL,
     fec_crt_marc date DEFAULT now() NOT NULL,
     hor_crt_marc time without time zone DEFAULT now() NOT NULL,
-    status smallint DEFAULT 1
+    status smallint DEFAULT 0
 );
 
 CREATE TABLE public.inventario (
@@ -112,7 +103,7 @@ CREATE TABLE public.colores (
     desc_col character varying(50) NOT NULL,
     fec_crt_col date DEFAULT now(),
     hor_crt_col time without time zone DEFAULT now(),
-    status smallint DEFAULT 1
+    status smallint DEFAULT 0
 );
 CREATE TABLE public.ciudad (
     id_ciu serial,
@@ -121,7 +112,7 @@ CREATE TABLE public.ciudad (
     desc_ciu character varying(70) NOT NULL,
     fec_crt_ciu date DEFAULT now(),
     hor_crt_ciu time without time zone DEFAULT now(),
-    status smallint DEFAULT 1
+    status smallint DEFAULT 0
 );
 
 CREATE TABLE public.bien_mue (
@@ -160,7 +151,7 @@ CREATE TABLE public.estado (
     desc_est character varying(50) NOT NULL,
     fec_cre date DEFAULT now(),
     hor_cre time without time zone DEFAULT now(),
-    status smallint DEFAULT 1
+    status smallint DEFAULT 0
 );
 
 
@@ -567,10 +558,6 @@ INSERT INTO public.colores (id_col, cod_col, desc_col, fec_crt_col, hor_crt_col,
 -- Dependencies: 189
 -- Name: inventario_id_eqp_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
-
-SELECT pg_catalog.setval('public.inventario_id_eqp_seq', 1, false);
-
-
 --
 -- TOC entry 2247 (class 0 OID 16678)
 -- Dependencies: 195
@@ -2229,7 +2216,33 @@ INSERT INTO public.tipo_trb (id_tp_trb, tp_trb, fec_crt_tp, hor_crt_tp, status) 
 -- Name: tp_comp_id_tp_comp_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.tp_comp_id_tp_comp_seq', 1, false);
+
+INSERT INTO public.tp_comp VALUES (1, 'Acero', '2022-06-02', '18:44:55.041285', 0);
+INSERT INTO public.tp_comp VALUES (2, 'Plastico', '2022-06-02', '18:45:03.491476', 0);
+INSERT INTO public.tp_comp VALUES (3, 'Madera', '2022-06-02', '18:45:11.881773', 0);
+INSERT INTO public.tp_comp VALUES (4, 'Vidrio ', '2022-06-02', '18:45:17.328206', 0);
+INSERT INTO public.tp_comp VALUES (5, 'Corcho', '2022-06-02', '18:45:24.86797', 0);
+INSERT INTO public.tp_comp VALUES (6, 'Hierro', '2022-06-02', '18:55:02.737638', 0);
+INSERT INTO public.tp_comp VALUES (7, 'Ferrita', '2022-06-02', '18:55:12.540304', 0);
+INSERT INTO public.tp_comp VALUES (8, 'Mortero', '2022-06-02', '19:12:53.577911', 0);
+INSERT INTO public.tp_comp VALUES (9, 'Hormigón', '2022-06-02', '19:12:53.577911', 0);
+INSERT INTO public.tp_comp VALUES (10, 'Yeso', '2022-06-02', '19:12:53.577911', 0);
+INSERT INTO public.tp_comp VALUES (11, 'Cemento', '2022-06-02', '19:12:53.577911', 0);
+INSERT INTO public.tp_comp VALUES (12, 'Estaño', '2022-06-02', '19:12:53.577911', 0);
+INSERT INTO public.tp_comp VALUES (13, 'Aluminio', '2022-06-02', '19:12:53.577911', 0);
+INSERT INTO public.tp_comp VALUES (14, 'goma', '2022-06-02', '19:12:53.577911', 0);
+INSERT INTO public.tp_comp VALUES (15, 'celofán', '2022-06-02', '19:12:53.577911', 0);
+INSERT INTO public.tp_comp VALUES (16, 'metacrilato', '2022-06-02', '19:12:53.577911', 0);
+INSERT INTO public.tp_comp VALUES (17, 'polietileno', '2022-06-02', '19:12:53.577911', 0);
+INSERT INTO public.tp_comp VALUES (18, 'Roble', '2022-06-02', '19:12:53.577911', 0);
+INSERT INTO public.tp_comp VALUES (19, 'Castaño', '2022-06-02', '19:12:53.577911', 0);
+INSERT INTO public.tp_comp VALUES (20, 'Pino', '2022-06-02', '19:12:53.577911', 0);
+INSERT INTO public.tp_comp VALUES (21, 'Iroko', '2022-06-02', '19:12:53.577911', 0);
+INSERT INTO public.tp_comp VALUES (22, 'Abeto', '2022-06-02', '19:12:53.577911', 0);
+INSERT INTO public.tp_comp VALUES (23, 'Cerámica', '2022-06-02', '19:12:53.577911', 0);
+INSERT INTO public.tp_comp VALUES (24, 'Porcelana', '2022-06-02', '19:12:53.577911', 0);
+INSERT INTO public.tp_comp VALUES (25, 'Teja', '2022-06-02', '19:12:53.577911', 0);
+INSERT INTO public.tp_comp VALUES (26, 'Otros tipo', '2022-06-02', '19:12:53.577911', 0);
 
 
 --
@@ -2289,7 +2302,6 @@ INSERT INTO public.estado (id_est, cod_est, desc_est, fec_cre, hor_cre, status) 
 INSERT INTO public.estado (id_est, cod_est, desc_est, fec_cre, hor_cre, status) VALUES (26, '26', 'OTRAS DEPENDENCIAS FEDERALES', '2017-03-29', '11:42:45.371831', 1);
 INSERT INTO public.estado (id_est, cod_est, desc_est, fec_cre, hor_cre, status) VALUES (27, '27', 'Registro de Normalización (Estado)', '2017-03-29', '11:42:45.371831', 1);
 INSERT INTO public.estado (id_est, cod_est, desc_est, fec_cre, hor_cre, status) VALUES (28, '99', 'NO APLICA', '2017-10-14', '15:54:44.94228', 1);
-
 
 
 //-----------------------------------PRIMARY KEY ------------------------------------------------
