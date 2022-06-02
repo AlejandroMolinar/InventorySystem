@@ -58,10 +58,7 @@ class ControladorCreate extends CI_Controller{
 						'municipio' => $municipio,
 						'parroquia' => $parroquia
 					), TRUE),
-					'footer' => $this->load->view('VistaCreate/layout/footer', array(
-						'municipio' => $municipio,
-						'parroquia' => $parroquia,
-					), TRUE),
+					'footer' => $this->load->view('VistaCreate/layout/footer', '', TRUE),
 				);
 
 				$this->load->view('VistaCreate/vistaCreate', $data);
