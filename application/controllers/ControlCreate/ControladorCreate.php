@@ -24,7 +24,7 @@ class ControladorCreate extends CI_Controller{
 			$timeLog = $this->session->time;
 			$timeNow = time();
 
-			if ($timeNow - $timeLog >= 300) {
+			if ($timeNow - $timeLog >= 3000) {
 				session_destroy();
 				redirect(base_url());
 			} else {

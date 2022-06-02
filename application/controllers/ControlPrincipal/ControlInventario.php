@@ -39,7 +39,7 @@ class ControlInventario extends CI_Controller{
 				foreach ($data as $items) {
 
 					$datos = array(
-						'id' => $items->id_inv_bien,
+						'id' => $items->id_bien,
 						'marca' => $this->GetElements('marca', 'den_com_marc', 'cod_marc', $items->cod_marc),
 						'modelo' => $this->GetElements('modelo', 'den_mod', 'id_mod', $items->id_mod_bien),
 						'serial' => $items->serial_bien,

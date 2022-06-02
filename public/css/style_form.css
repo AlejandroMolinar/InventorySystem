@@ -39,8 +39,8 @@ body {
 .form-selects,
 .form-inputs{
 	background-color: #fbfbfb;
-	width: 400px;
-	height: 40px;
+	width: 30vw;
+	height: 7vh;
 	border-radius: 5px;
 	border-style: solid;
 	border-width: 1px;
@@ -53,8 +53,8 @@ body {
 .form-selectAdd,
 .form-inputAdd{
 	background-color: #fbfbfb;
-	width: 355px;
-	height: 40px;
+	width: 26vw;
+	height: 7vh;
 	border-radius: 5px;
 	border-style: solid;
 	border-width: 1px;
@@ -82,7 +82,7 @@ label {
 	border-color: #0e0e0e;
 	border-style: solid;
 	border-radius: 10px;
-	width: 405px;
+	width: 30vw;
 	cursor: pointer;
 }
 
