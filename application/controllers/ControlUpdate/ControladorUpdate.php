@@ -15,12 +15,12 @@ class ControladorUpdate extends CI_Controller{
 			$timeLog = $this->session->time;
 			$timeNow = time();
 
-			if ($timeNow - $timeLog >= 300) {
+			if ($timeNow - $timeLog >= 3000) {
 				session_destroy();
 				redirect(base_url());
 			} else {
 
-				$datos = $this->ModelCreate->GetTables('inventario', '*', 'id_inv_bien', $id);
+				$datos = $this->ModelCreate->GetTables('inventario', '*', 'id_bien', $id);
 
 				//----------------------Querys-------------------------------------------------------
 				$marca = $this->ModelCreate->GetTable('marca', 'cod_marc, den_com_marc');
@@ -122,7 +122,7 @@ class ControladorUpdate extends CI_Controller{
 				'status' => $statusF,
 			);
 
-			if (!$this->ModelCreate->update('inventario', $data, 'id_inv_bien', $idF)) {
+			if (!$this->ModelCreate->update('inventario', $data, 'id_bien', $idF)) {
 				echo json_encode(array('msg' => 'Hubo un Error al Crear el Elemento'));
 				$this->output->set_status_header(401);
 				exit;

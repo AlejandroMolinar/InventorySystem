@@ -1,9 +1,9 @@
 (function ($) {
-	$("#userUpdate").submit(function (ev) {
+	$("#formUpdate").submit(function (ev) {
 		ev.preventDefault();
 		$.ajax({
-			// url: "http://localhost/SystemInventory/guardarUser",
-			url: "guardarUser",
+			// url: "http://localhost/InventorySystem/guardarUp",
+			url: "guardarUp",
 			type: "POST",
 			data: $(this).serialize(),
 			success: function (data) {

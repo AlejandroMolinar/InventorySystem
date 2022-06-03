@@ -59,31 +59,25 @@ class ControlInventario extends CI_Controller{
 					array_push($datatotal, $datos);
 				}
 
-				$this->GetView($range, $datatotal);
+				if ($range == 1) {
+					$view = $this->load->view('VistaPrincipal/admin/inventario_admin', array('dataTable' => $datatotal, 'range' => $range), TRUE);
+				} else {
+					$view = $this->load->view('VistaPrincipal/user/inventario_user', array('dataTable' => $datatotal), TRUE);
+				}
+				$data = array(
+					'head' => $this->load->view('VistaPrincipal/layout/head', '', TRUE),
+					'nav' => $this->load->view('VistaPrincipal/layout/navbar', '', TRUE),
+					'content' => $view,
+					'side' => $this->load->view('VistaPrincipal/layout/sidebar', '', TRUE),
+					'footer' => $this->load->view('VistaPrincipal/layout/footer', '', TRUE),
+				);
+		
+				$this->load->view('VistaPrincipal/vistaInventario', $data);
 			}
 		} else {
 			redirect(base_url());
 		}
 	}
-
-	public function GetView($range, $dataTable){
-
-		if ($range == 1) {
-			$view = $this->load->view('VistaPrincipal/admin/inventario_admin', array('dataTable' => $dataTable, 'range' => $range), TRUE);
-		} else {
-			$view = $this->load->view('VistaPrincipal/user/inventario_user', array('dataTable' => $dataTable), TRUE);
-		}
-		$data = array(
-			'head' => $this->load->view('VistaPrincipal/layout/head', '', TRUE),
-			'nav' => $this->load->view('VistaPrincipal/layout/navbar', '', TRUE),
-			'content' => $view,
-			'side' => $this->load->view('VistaPrincipal/layout/sidebar', '', TRUE),
-			'footer' => $this->load->view('VistaPrincipal/layout/footer', '', TRUE),
-		);
-
-		$this->load->view('VistaPrincipal/vistaInventario', $data);
-	}
-
 	public function GetElements($table, $select, $key, $item){
 		return $this->ModelInventario->GetTables($table, $select, $key, $item);
 	}

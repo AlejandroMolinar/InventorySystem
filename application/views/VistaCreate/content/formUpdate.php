@@ -18,7 +18,7 @@
                     <span class="obligatorio">*</span>
                 </label>
                 <input id="idS" name="idS" type="text" class="form-inputs" 
-                value="<?= $dataInv->id_inv_bien ?>" readonly>
+                value="<?= $dataInv->id_bien ?>" readonly>
             <div id="id_err"></div>
 
             </p>
