@@ -1,34 +1,10 @@
---
--- PostgreSQL database dump
---
-
--- Dumped from database version 9.5.25
--- Dumped by pg_dump version 9.5.25
-
--- Started on 2022-06-02 22:26:48
-
-SET statement_timeout = 0;
-SET lock_timeout = 0;
-SET client_encoding = 'UTF8';
-SET standard_conforming_strings = on;
-SELECT pg_catalog.set_config('search_path', '', false);
-SET check_function_bodies = false;
-SET xmloption = content;
-SET client_min_messages = warning;
-SET row_security = off;
-
---
--- TOC entry 2291 (class 1262 OID 32769)
--- Name: sistema_inventario; Type: DATABASE; Schema: -; Owner: postgres
---
+//----------------------------------- Create database------------------------------------------------
 
 CREATE DATABASE sistema_inventario WITH TEMPLATE = template0 ENCODING = 'UTF8' LC_COLLATE = 'Spanish_Venezuela.1252' LC_CTYPE = 'Spanish_Venezuela.1252';
 
 
 ALTER DATABASE sistema_inventario OWNER TO postgres;
 
-\connect sistema_inventario
-
 SET statement_timeout = 0;
 SET lock_timeout = 0;
 SET client_encoding = 'UTF8';
@@ -39,305 +15,37 @@ SET xmloption = content;
 SET client_min_messages = warning;
 SET row_security = off;
 
---
--- TOC entry 1 (class 3079 OID 12355)
--- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: 
---
 
 CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
 
+//----------------------------------- Create Table ------------------------------------------------
 
---
--- TOC entry 2294 (class 0 OID 0)
--- Dependencies: 1
--- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
---
-
-COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
-
-
-SET default_tablespace = '';
-
-SET default_with_oids = false;
-
---
--- TOC entry 199 (class 1259 OID 33094)
--- Name: bien_mue; Type: TABLE; Schema: public; Owner: postgres
---
-
-CREATE TABLE public.bien_mue (
-    id_bien_mue integer NOT NULL,
-    num_bien_mue character varying,
-    fec_crt_mue date DEFAULT now(),
-    hor_crt_mue time without time zone DEFAULT now(),
-    status smallint DEFAULT 0
-);
-
-
-ALTER TABLE public.bien_mue OWNER TO postgres;
-
---
--- TOC entry 198 (class 1259 OID 33092)
--- Name: bien_mue_id_bien_mue_seq; Type: SEQUENCE; Schema: public; Owner: postgres
---
-
-CREATE SEQUENCE public.bien_mue_id_bien_mue_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
-ALTER TABLE public.bien_mue_id_bien_mue_seq OWNER TO postgres;
-
---
--- TOC entry 2295 (class 0 OID 0)
--- Dependencies: 198
--- Name: bien_mue_id_bien_mue_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
---
-
-ALTER SEQUENCE public.bien_mue_id_bien_mue_seq OWNED BY public.bien_mue.id_bien_mue;
-
-
---
--- TOC entry 197 (class 1259 OID 33085)
--- Name: ciudad; Type: TABLE; Schema: public; Owner: postgres
---
-
-CREATE TABLE public.ciudad (
-    id_ciu integer NOT NULL,
-    id_mun integer NOT NULL,
-    cod_ciu character varying(25) NOT NULL,
-    desc_ciu character varying(70) NOT NULL,
-    fec_crt_ciu date DEFAULT now(),
-    hor_crt_ciu time without time zone DEFAULT now(),
-    status smallint DEFAULT 0
-);
-
-
-ALTER TABLE public.ciudad OWNER TO postgres;
-
---
--- TOC entry 196 (class 1259 OID 33083)
--- Name: ciudad_id_ciu_seq; Type: SEQUENCE; Schema: public; Owner: postgres
---
-
-CREATE SEQUENCE public.ciudad_id_ciu_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
-ALTER TABLE public.ciudad_id_ciu_seq OWNER TO postgres;
-
---
--- TOC entry 2296 (class 0 OID 0)
--- Dependencies: 196
--- Name: ciudad_id_ciu_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
---
-
-ALTER SEQUENCE public.ciudad_id_ciu_seq OWNED BY public.ciudad.id_ciu;
-
-
---
--- TOC entry 195 (class 1259 OID 33076)
--- Name: colores; Type: TABLE; Schema: public; Owner: postgres
---
-
-CREATE TABLE public.colores (
-    id_col integer NOT NULL,
-    cod_col integer NOT NULL,
-    desc_col character varying(50) NOT NULL,
-    fec_crt_col date DEFAULT now(),
-    hor_crt_col time without time zone DEFAULT now(),
-    status smallint DEFAULT 0
-);
-
-
-ALTER TABLE public.colores OWNER TO postgres;
-
---
--- TOC entry 194 (class 1259 OID 33074)
--- Name: colores_id_col_seq; Type: SEQUENCE; Schema: public; Owner: postgres
---
-
-CREATE SEQUENCE public.colores_id_col_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
-ALTER TABLE public.colores_id_col_seq OWNER TO postgres;
-
---
--- TOC entry 2297 (class 0 OID 0)
--- Dependencies: 194
--- Name: colores_id_col_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
---
-
-ALTER SEQUENCE public.colores_id_col_seq OWNED BY public.colores.id_col;
-
-
---
--- TOC entry 204 (class 1259 OID 33128)
--- Name: estado; Type: TABLE; Schema: public; Owner: postgres
---
-
-CREATE TABLE public.estado (
-    id_est integer NOT NULL,
-    cod_est character varying(10) NOT NULL,
-    desc_est character varying(50) NOT NULL,
+CREATE TABLE public.uni_adm (
+    id_uni_adm serial,
+    desc_uni_adm character varying(80) NOT NULL,
     fec_cre date DEFAULT now(),
     hor_cre time without time zone DEFAULT now(),
     status smallint DEFAULT 0
 );
 
-
-ALTER TABLE public.estado OWNER TO postgres;
-
---
--- TOC entry 193 (class 1259 OID 33064)
--- Name: inventario; Type: TABLE; Schema: public; Owner: postgres
---
-
-CREATE TABLE public.inventario (
-    id_bien integer NOT NULL,
-    id_num_bien integer,
-    id_clr_bien integer,
-    id_mod_bien integer,
-    id_tpc_bien integer,
-    id_adm_bien integer,
-    id_trb_bien integer,
-    id_est_bien integer,
-    id_ciu_bien integer,
-    id_mun_bien integer,
-    id_parr_bien integer,
-    cod_marc character varying,
-    fec_crt_inv date DEFAULT now(),
-    hor_crt_inv time without time zone DEFAULT now(),
-    status smallint DEFAULT 0,
-    serial_bien character varying
-);
-
-
-ALTER TABLE public.inventario OWNER TO postgres;
-
---
--- TOC entry 192 (class 1259 OID 33062)
--- Name: inventario_id_bien_seq; Type: SEQUENCE; Schema: public; Owner: postgres
---
-
-CREATE SEQUENCE public.inventario_id_bien_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
-ALTER TABLE public.inventario_id_bien_seq OWNER TO postgres;
-
---
--- TOC entry 2298 (class 0 OID 0)
--- Dependencies: 192
--- Name: inventario_id_bien_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
---
-
-ALTER SEQUENCE public.inventario_id_bien_seq OWNED BY public.inventario.id_bien;
-
-
---
--- TOC entry 191 (class 1259 OID 33055)
--- Name: marca; Type: TABLE; Schema: public; Owner: postgres
---
-
-CREATE TABLE public.marca (
-    id_marc integer NOT NULL,
-    cod_marc character varying(10) NOT NULL,
-    den_com_marc character varying(100) NOT NULL,
-    nom_fab character varying(100) NOT NULL,
-    fec_crt_marc date DEFAULT now() NOT NULL,
-    hor_crt_marc time without time zone DEFAULT now() NOT NULL,
+CREATE TABLE public.tp_comp (
+    id_tp_comp serial,
+    mat_tp_comp character varying,
+    fec_crt_comp date DEFAULT now(),
+    hor_crt_comp time without time zone DEFAULT now(),
     status smallint DEFAULT 0
 );
 
-
-ALTER TABLE public.marca OWNER TO postgres;
-
---
--- TOC entry 190 (class 1259 OID 33053)
--- Name: marca_id_marc_seq; Type: SEQUENCE; Schema: public; Owner: postgres
---
-
-CREATE SEQUENCE public.marca_id_marc_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
-ALTER TABLE public.marca_id_marc_seq OWNER TO postgres;
-
---
--- TOC entry 2299 (class 0 OID 0)
--- Dependencies: 190
--- Name: marca_id_marc_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
---
-
-ALTER SEQUENCE public.marca_id_marc_seq OWNED BY public.marca.id_marc;
-
-
---
--- TOC entry 189 (class 1259 OID 33046)
--- Name: modelo; Type: TABLE; Schema: public; Owner: postgres
---
-
-CREATE TABLE public.modelo (
-    id_mod integer NOT NULL,
-    cod_marc_mod character varying(10) NOT NULL,
-    den_mod character varying(100) NOT NULL,
-    fec_crt_mod date DEFAULT now() NOT NULL,
-    hor_crt_mod time without time zone DEFAULT now() NOT NULL,
+CREATE TABLE public.parroquia (
+    id_parr serial,
+    id_mun integer NOT NULL,
+    cod_parr character varying(25) NOT NULL,
+    desc_parr character varying(70) NOT NULL,
+    fec_crt_parr date DEFAULT now(),
+    hor_crt_parr time without time zone DEFAULT now(),
     status smallint DEFAULT 0
 );
 
-
-ALTER TABLE public.modelo OWNER TO postgres;
-
---
--- TOC entry 188 (class 1259 OID 33044)
--- Name: modelo_id_mod_seq; Type: SEQUENCE; Schema: public; Owner: postgres
---
-
-CREATE SEQUENCE public.modelo_id_mod_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
-ALTER TABLE public.modelo_id_mod_seq OWNER TO postgres;
-
---
--- TOC entry 2300 (class 0 OID 0)
--- Dependencies: 188
--- Name: modelo_id_mod_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
---
-
-ALTER SEQUENCE public.modelo_id_mod_seq OWNED BY public.modelo.id_mod;
-
-
---
--- TOC entry 187 (class 1259 OID 33038)
--- Name: municipio; Type: TABLE; Schema: public; Owner: postgres
---
 
 CREATE TABLE public.municipio (
     id_mun integer NOT NULL,
@@ -350,137 +58,81 @@ CREATE TABLE public.municipio (
 );
 
 
-ALTER TABLE public.municipio OWNER TO postgres;
-
---
--- TOC entry 186 (class 1259 OID 33031)
--- Name: parroquia; Type: TABLE; Schema: public; Owner: postgres
---
-
-CREATE TABLE public.parroquia (
-    id_parr integer NOT NULL,
-    id_mun integer NOT NULL,
-    cod_parr character varying(25) NOT NULL,
-    desc_parr character varying(70) NOT NULL,
-    fec_crt_parr date DEFAULT now(),
-    hor_crt_parr time without time zone DEFAULT now(),
+CREATE TABLE public.modelo (
+    id_mod serial,
+    cod_marc_mod character varying(10) NOT NULL,
+    id_cat_esp integer NOT NULL,
+    cod_mod character varying(10) NOT NULL,
+    den_mod character varying(100) NOT NULL,
+    fec_crt_mod date DEFAULT now() NOT NULL,
+    hor_crt_mod time without time zone DEFAULT now() NOT NULL,
     status smallint DEFAULT 0
 );
 
 
-ALTER TABLE public.parroquia OWNER TO postgres;
+CREATE TABLE public.marca (
+    id_marc serial,
+    cod_marc character varying(10) NOT NULL,
+    den_com_marc character varying(100) NOT NULL,
+    nom_fab character varying(100) NOT NULL,
+    fec_crt_marc date DEFAULT now() NOT NULL,
+    hor_crt_marc time without time zone DEFAULT now() NOT NULL,
+    status smallint DEFAULT 0
+);
 
---
--- TOC entry 185 (class 1259 OID 33029)
--- Name: parroquia_id_parr_seq; Type: SEQUENCE; Schema: public; Owner: postgres
---
+CREATE TABLE public.inventario (
+    id_bien serial,
+    id_bien_bien integer,
+    id_clr_bien integer,
+    id_mod_bien integer,
+    id_tpc_bien integer,
+    id_adm_bien integer,
+    id_trb_bien integer,
+    id_est_bien integer,
+    id_ciu_bien integer,
+    id_mun_bien integer,
+    id_parr_bien integer,
+    cod_marc character varying,
+    fec_crt_inv date DEFAULT now(),
+    hor_crt_inv time without time zone DEFAULT now(),
+    status smallint DEFAULT 0
+);
+CREATE TABLE public.colores (
+    id_col serial,
+    cod_col integer NOT NULL,
+    desc_col character varying(50) NOT NULL,
+    fec_crt_col date DEFAULT now(),
+    hor_crt_col time without time zone DEFAULT now(),
+    status smallint DEFAULT 0
+);
+CREATE TABLE public.ciudad (
+    id_ciu serial,
+    id_mun integer NOT NULL,
+    cod_ciu character varying(25) NOT NULL,
+    desc_ciu character varying(70) NOT NULL,
+    fec_crt_ciu date DEFAULT now(),
+    hor_crt_ciu time without time zone DEFAULT now(),
+    status smallint DEFAULT 0
+);
 
-CREATE SEQUENCE public.parroquia_id_parr_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
-ALTER TABLE public.parroquia_id_parr_seq OWNER TO postgres;
-
---
--- TOC entry 2301 (class 0 OID 0)
--- Dependencies: 185
--- Name: parroquia_id_parr_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
---
-
-ALTER SEQUENCE public.parroquia_id_parr_seq OWNED BY public.parroquia.id_parr;
-
-
---
--- TOC entry 201 (class 1259 OID 33106)
--- Name: tipo_trb; Type: TABLE; Schema: public; Owner: postgres
---
+CREATE TABLE public.bien_mue (
+    id_bien_mue serial,
+    num_bien_mue character varying,
+    fec_crt_mue date DEFAULT now(),
+    hor_crt_mue time without time zone DEFAULT now(),
+    status smallint DEFAULT 0
+);
 
 CREATE TABLE public.tipo_trb (
-    id_tp_trb integer NOT NULL,
+    id_tp_trb serial,
     tp_trb character varying,
     fec_crt_tp date DEFAULT now(),
     hor_crt_tp time without time zone DEFAULT now(),
     status smallint DEFAULT 0
 );
 
-
-ALTER TABLE public.tipo_trb OWNER TO postgres;
-
---
--- TOC entry 200 (class 1259 OID 33104)
--- Name: tipo_trb_id_tp_trb_seq; Type: SEQUENCE; Schema: public; Owner: postgres
---
-
-CREATE SEQUENCE public.tipo_trb_id_tp_trb_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
-ALTER TABLE public.tipo_trb_id_tp_trb_seq OWNER TO postgres;
-
---
--- TOC entry 2302 (class 0 OID 0)
--- Dependencies: 200
--- Name: tipo_trb_id_tp_trb_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
---
-
-ALTER SEQUENCE public.tipo_trb_id_tp_trb_seq OWNED BY public.tipo_trb.id_tp_trb;
-
-
---
--- TOC entry 184 (class 1259 OID 33019)
--- Name: tp_comp; Type: TABLE; Schema: public; Owner: postgres
---
-
-CREATE TABLE public.tp_comp (
-    id_tp_comp integer NOT NULL,
-    mat_tp_comp character varying,
-    fec_crt_comp date DEFAULT now(),
-    hor_crt_comp time without time zone DEFAULT now(),
-    status smallint DEFAULT 0
-);
-
-
-ALTER TABLE public.tp_comp OWNER TO postgres;
-
---
--- TOC entry 183 (class 1259 OID 33017)
--- Name: tp_comp_id_tp_comp_seq; Type: SEQUENCE; Schema: public; Owner: postgres
---
-
-CREATE SEQUENCE public.tp_comp_id_tp_comp_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
-ALTER TABLE public.tp_comp_id_tp_comp_seq OWNER TO postgres;
-
---
--- TOC entry 2303 (class 0 OID 0)
--- Dependencies: 183
--- Name: tp_comp_id_tp_comp_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
---
-
-ALTER SEQUENCE public.tp_comp_id_tp_comp_seq OWNED BY public.tp_comp.id_tp_comp;
-
-
---
--- TOC entry 203 (class 1259 OID 33118)
--- Name: trabajador; Type: TABLE; Schema: public; Owner: postgres
---
-
 CREATE TABLE public.trabajador (
-    id_trb integer NOT NULL,
+    id_trb serial,
     id_tp_trb integer,
     id_adm_trb integer,
     email_trb character varying,
@@ -493,185 +145,17 @@ CREATE TABLE public.trabajador (
     status smallint DEFAULT 0
 );
 
-
-ALTER TABLE public.trabajador OWNER TO postgres;
-
---
--- TOC entry 202 (class 1259 OID 33116)
--- Name: trabajador_id_trb_seq; Type: SEQUENCE; Schema: public; Owner: postgres
---
-
-CREATE SEQUENCE public.trabajador_id_trb_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
-ALTER TABLE public.trabajador_id_trb_seq OWNER TO postgres;
-
---
--- TOC entry 2304 (class 0 OID 0)
--- Dependencies: 202
--- Name: trabajador_id_trb_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
---
-
-ALTER SEQUENCE public.trabajador_id_trb_seq OWNED BY public.trabajador.id_trb;
-
-
---
--- TOC entry 182 (class 1259 OID 33010)
--- Name: uni_adm; Type: TABLE; Schema: public; Owner: postgres
---
-
-CREATE TABLE public.uni_adm (
-    id_uni_adm integer NOT NULL,
-    desc_uni_adm character varying(80) NOT NULL,
+CREATE TABLE public.estado (
+    id_est integer NOT NULL,
+    cod_est character varying(10) NOT NULL,
+    desc_est character varying(50) NOT NULL,
     fec_cre date DEFAULT now(),
     hor_cre time without time zone DEFAULT now(),
     status smallint DEFAULT 0
 );
 
 
-ALTER TABLE public.uni_adm OWNER TO postgres;
-
---
--- TOC entry 181 (class 1259 OID 33008)
--- Name: uni_adm_id_uni_adm_seq; Type: SEQUENCE; Schema: public; Owner: postgres
---
-
-CREATE SEQUENCE public.uni_adm_id_uni_adm_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
-ALTER TABLE public.uni_adm_id_uni_adm_seq OWNER TO postgres;
-
---
--- TOC entry 2305 (class 0 OID 0)
--- Dependencies: 181
--- Name: uni_adm_id_uni_adm_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
---
-
-ALTER SEQUENCE public.uni_adm_id_uni_adm_seq OWNED BY public.uni_adm.id_uni_adm;
-
-
---
--- TOC entry 2089 (class 2604 OID 33097)
--- Name: id_bien_mue; Type: DEFAULT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.bien_mue ALTER COLUMN id_bien_mue SET DEFAULT nextval('public.bien_mue_id_bien_mue_seq'::regclass);
-
-
---
--- TOC entry 2085 (class 2604 OID 33088)
--- Name: id_ciu; Type: DEFAULT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.ciudad ALTER COLUMN id_ciu SET DEFAULT nextval('public.ciudad_id_ciu_seq'::regclass);
-
-
---
--- TOC entry 2081 (class 2604 OID 33079)
--- Name: id_col; Type: DEFAULT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.colores ALTER COLUMN id_col SET DEFAULT nextval('public.colores_id_col_seq'::regclass);
-
-
---
--- TOC entry 2077 (class 2604 OID 33067)
--- Name: id_bien; Type: DEFAULT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.inventario ALTER COLUMN id_bien SET DEFAULT nextval('public.inventario_id_bien_seq'::regclass);
-
-
---
--- TOC entry 2073 (class 2604 OID 33058)
--- Name: id_marc; Type: DEFAULT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.marca ALTER COLUMN id_marc SET DEFAULT nextval('public.marca_id_marc_seq'::regclass);
-
-
---
--- TOC entry 2069 (class 2604 OID 33049)
--- Name: id_mod; Type: DEFAULT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.modelo ALTER COLUMN id_mod SET DEFAULT nextval('public.modelo_id_mod_seq'::regclass);
-
-
---
--- TOC entry 2062 (class 2604 OID 33034)
--- Name: id_parr; Type: DEFAULT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.parroquia ALTER COLUMN id_parr SET DEFAULT nextval('public.parroquia_id_parr_seq'::regclass);
-
-
---
--- TOC entry 2093 (class 2604 OID 33109)
--- Name: id_tp_trb; Type: DEFAULT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.tipo_trb ALTER COLUMN id_tp_trb SET DEFAULT nextval('public.tipo_trb_id_tp_trb_seq'::regclass);
-
-
---
--- TOC entry 2058 (class 2604 OID 33022)
--- Name: id_tp_comp; Type: DEFAULT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.tp_comp ALTER COLUMN id_tp_comp SET DEFAULT nextval('public.tp_comp_id_tp_comp_seq'::regclass);
-
-
---
--- TOC entry 2097 (class 2604 OID 33121)
--- Name: id_trb; Type: DEFAULT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.trabajador ALTER COLUMN id_trb SET DEFAULT nextval('public.trabajador_id_trb_seq'::regclass);
-
-
---
--- TOC entry 2054 (class 2604 OID 33013)
--- Name: id_uni_adm; Type: DEFAULT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.uni_adm ALTER COLUMN id_uni_adm SET DEFAULT nextval('public.uni_adm_id_uni_adm_seq'::regclass);
-
-
---
--- TOC entry 2280 (class 0 OID 33094)
--- Dependencies: 199
--- Data for Name: bien_mue; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-INSERT INTO public.bien_mue (id_bien_mue, num_bien_mue, fec_crt_mue, hor_crt_mue, status) VALUES (1, '20133', '2022-06-02', '19:35:32.860864', 0);
-INSERT INTO public.bien_mue (id_bien_mue, num_bien_mue, fec_crt_mue, hor_crt_mue, status) VALUES (3, '13002', '2022-06-02', '22:18:03.465021', 0);
-
-
---
--- TOC entry 2306 (class 0 OID 0)
--- Dependencies: 198
--- Name: bien_mue_id_bien_mue_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('public.bien_mue_id_bien_mue_seq', 3, true);
-
-
---
--- TOC entry 2278 (class 0 OID 33085)
--- Dependencies: 197
--- Data for Name: ciudad; Type: TABLE DATA; Schema: public; Owner: postgres
---
+//----------------------------------- Insert Table ------------------------------------------------
 
 INSERT INTO public.ciudad (id_ciu, id_mun, cod_ciu, desc_ciu, fec_crt_ciu, hor_crt_ciu, status) VALUES (1, 1, '0001', 'Caracas', '2017-03-29', '11:45:31.585866', 1);
 INSERT INTO public.ciudad (id_ciu, id_mun, cod_ciu, desc_ciu, fec_crt_ciu, hor_crt_ciu, status) VALUES (2, 2, '0001', 'La Esmeralda', '2017-03-29', '11:45:31.585866', 1);
@@ -1017,17 +501,8 @@ INSERT INTO public.ciudad (id_ciu, id_mun, cod_ciu, desc_ciu, fec_crt_ciu, hor_c
 
 
 --
--- TOC entry 2307 (class 0 OID 0)
--- Dependencies: 196
--- Name: ciudad_id_ciu_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('public.ciudad_id_ciu_seq', 1, false);
-
-
---
--- TOC entry 2276 (class 0 OID 33076)
--- Dependencies: 195
+-- TOC entry 2246 (class 0 OID 16671)
+-- Dependencies: 194
 -- Data for Name: colores; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -1071,72 +546,21 @@ INSERT INTO public.colores (id_col, cod_col, desc_col, fec_crt_col, hor_crt_col,
 
 
 --
--- TOC entry 2308 (class 0 OID 0)
--- Dependencies: 194
--- Name: colores_id_col_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('public.colores_id_col_seq', 1, false);
-
-
---
--- TOC entry 2285 (class 0 OID 33128)
--- Dependencies: 204
--- Data for Name: estado; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-INSERT INTO public.estado (id_est, cod_est, desc_est, fec_cre, hor_cre, status) VALUES (1, '1', 'DISTRITO CAPITAL', '2017-03-29', '11:42:45.371831', 1);
-INSERT INTO public.estado (id_est, cod_est, desc_est, fec_cre, hor_cre, status) VALUES (2, '2', 'AMAZONAS', '2017-03-29', '11:42:45.371831', 1);
-INSERT INTO public.estado (id_est, cod_est, desc_est, fec_cre, hor_cre, status) VALUES (3, '3', 'ANZOATEGUI', '2017-03-29', '11:42:45.371831', 1);
-INSERT INTO public.estado (id_est, cod_est, desc_est, fec_cre, hor_cre, status) VALUES (4, '4', 'APURE', '2017-03-29', '11:42:45.371831', 1);
-INSERT INTO public.estado (id_est, cod_est, desc_est, fec_cre, hor_cre, status) VALUES (5, '5', 'ARAGUA', '2017-03-29', '11:42:45.371831', 1);
-INSERT INTO public.estado (id_est, cod_est, desc_est, fec_cre, hor_cre, status) VALUES (6, '6', 'BARINAS', '2017-03-29', '11:42:45.371831', 1);
-INSERT INTO public.estado (id_est, cod_est, desc_est, fec_cre, hor_cre, status) VALUES (7, '7', 'BOLIVAR', '2017-03-29', '11:42:45.371831', 1);
-INSERT INTO public.estado (id_est, cod_est, desc_est, fec_cre, hor_cre, status) VALUES (8, '8', 'CARABOBO', '2017-03-29', '11:42:45.371831', 1);
-INSERT INTO public.estado (id_est, cod_est, desc_est, fec_cre, hor_cre, status) VALUES (9, '9', 'OJEDES', '2017-03-29', '11:42:45.371831', 1);
-INSERT INTO public.estado (id_est, cod_est, desc_est, fec_cre, hor_cre, status) VALUES (10, '10', 'DELTA AMACURO', '2017-03-29', '11:42:45.371831', 1);
-INSERT INTO public.estado (id_est, cod_est, desc_est, fec_cre, hor_cre, status) VALUES (11, '11', 'FALCON', '2017-03-29', '11:42:45.371831', 1);
-INSERT INTO public.estado (id_est, cod_est, desc_est, fec_cre, hor_cre, status) VALUES (12, '12', 'GUARICO', '2017-03-29', '11:42:45.371831', 1);
-INSERT INTO public.estado (id_est, cod_est, desc_est, fec_cre, hor_cre, status) VALUES (13, '13', 'LARA', '2017-03-29', '11:42:45.371831', 1);
-INSERT INTO public.estado (id_est, cod_est, desc_est, fec_cre, hor_cre, status) VALUES (14, '14', 'MERIDA', '2017-03-29', '11:42:45.371831', 1);
-INSERT INTO public.estado (id_est, cod_est, desc_est, fec_cre, hor_cre, status) VALUES (15, '15', 'MIRANDA', '2017-03-29', '11:42:45.371831', 1);
-INSERT INTO public.estado (id_est, cod_est, desc_est, fec_cre, hor_cre, status) VALUES (16, '16', 'MONAGAS', '2017-03-29', '11:42:45.371831', 1);
-INSERT INTO public.estado (id_est, cod_est, desc_est, fec_cre, hor_cre, status) VALUES (17, '17', 'NUEVA ESPARTA', '2017-03-29', '11:42:45.371831', 1);
-INSERT INTO public.estado (id_est, cod_est, desc_est, fec_cre, hor_cre, status) VALUES (18, '18', 'PORTUGUESA', '2017-03-29', '11:42:45.371831', 1);
-INSERT INTO public.estado (id_est, cod_est, desc_est, fec_cre, hor_cre, status) VALUES (19, '19', 'SUCRE', '2017-03-29', '11:42:45.371831', 1);
-INSERT INTO public.estado (id_est, cod_est, desc_est, fec_cre, hor_cre, status) VALUES (20, '20', 'TACHIRA', '2017-03-29', '11:42:45.371831', 1);
-INSERT INTO public.estado (id_est, cod_est, desc_est, fec_cre, hor_cre, status) VALUES (21, '21', 'TRUJILLO', '2017-03-29', '11:42:45.371831', 1);
-INSERT INTO public.estado (id_est, cod_est, desc_est, fec_cre, hor_cre, status) VALUES (22, '22', 'YARACUY', '2017-03-29', '11:42:45.371831', 1);
-INSERT INTO public.estado (id_est, cod_est, desc_est, fec_cre, hor_cre, status) VALUES (23, '23', 'ZULIA', '2017-03-29', '11:42:45.371831', 1);
-INSERT INTO public.estado (id_est, cod_est, desc_est, fec_cre, hor_cre, status) VALUES (24, '24', 'VARGAS', '2017-03-29', '11:42:45.371831', 1);
-INSERT INTO public.estado (id_est, cod_est, desc_est, fec_cre, hor_cre, status) VALUES (25, '25', 'TERRITORIO INSULAR FRANCISCO DE MIRANDA', '2017-03-29', '11:42:45.371831', 1);
-INSERT INTO public.estado (id_est, cod_est, desc_est, fec_cre, hor_cre, status) VALUES (26, '26', 'OTRAS DEPENDENCIAS FEDERALES', '2017-03-29', '11:42:45.371831', 1);
-INSERT INTO public.estado (id_est, cod_est, desc_est, fec_cre, hor_cre, status) VALUES (27, '27', 'Registro de Normalización (Estado)', '2017-03-29', '11:42:45.371831', 1);
-INSERT INTO public.estado (id_est, cod_est, desc_est, fec_cre, hor_cre, status) VALUES (28, '99', 'NO APLICA', '2017-10-14', '15:54:44.94228', 1);
-
-
---
--- TOC entry 2274 (class 0 OID 33064)
--- Dependencies: 193
+-- TOC entry 2242 (class 0 OID 16591)
+-- Dependencies: 190
 -- Data for Name: inventario; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public.inventario (id_bien, id_num_bien, id_clr_bien, id_mod_bien, id_tpc_bien, id_adm_bien, id_trb_bien, id_est_bien, id_ciu_bien, id_mun_bien, id_parr_bien, cod_marc, fec_crt_inv, hor_crt_inv, status, serial_bien) VALUES (1, 1, 33, 25, 1, 1, 1, 13, 60, 212, 636, '4', '2022-06-02', '19:35:32.865778', 0, 'eT-rP201');
-INSERT INTO public.inventario (id_bien, id_num_bien, id_clr_bien, id_mod_bien, id_tpc_bien, id_adm_bien, id_trb_bien, id_est_bien, id_ciu_bien, id_mun_bien, id_parr_bien, cod_marc, fec_crt_inv, hor_crt_inv, status, serial_bien) VALUES (2, 3, 33, 54, 2, 1, 1, 15, 184, 184, 633, '50', '2022-06-02', '22:18:03.466621', 0, 'mg2410');
 
 
 --
--- TOC entry 2309 (class 0 OID 0)
--- Dependencies: 192
--- Name: inventario_id_bien_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+-- TOC entry 2279 (class 0 OID 0)
+-- Dependencies: 189
+-- Name: inventario_id_eqp_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
-
-SELECT pg_catalog.setval('public.inventario_id_bien_seq', 2, true);
-
-
 --
--- TOC entry 2272 (class 0 OID 33055)
--- Dependencies: 191
+-- TOC entry 2247 (class 0 OID 16678)
+-- Dependencies: 195
 -- Data for Name: marca; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -1224,435 +648,416 @@ INSERT INTO public.marca (id_marc, cod_marc, den_com_marc, nom_fab, fec_crt_marc
 
 
 --
--- TOC entry 2310 (class 0 OID 0)
--- Dependencies: 190
--- Name: marca_id_marc_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('public.marca_id_marc_seq', 83, true);
-
-
---
--- TOC entry 2270 (class 0 OID 33046)
--- Dependencies: 189
+-- TOC entry 2248 (class 0 OID 16688)
+-- Dependencies: 196
 -- Data for Name: modelo; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public.modelo (id_mod, cod_marc_mod, den_mod, fec_crt_mod, hor_crt_mod, status) VALUES (1, 'XXX', 'NO APLICA', '2017-10-10', '13:52:07.949118', 1);
-INSERT INTO public.modelo (id_mod, cod_marc_mod, den_mod, fec_crt_mod, hor_crt_mod, status) VALUES (2, '25', '1576', '2017-10-31', '10:14:36.26401', 1);
-INSERT INTO public.modelo (id_mod, cod_marc_mod, den_mod, fec_crt_mod, hor_crt_mod, status) VALUES (3, '2', 'M-UAE96', '2017-10-31', '10:35:35.247219', 1);
-INSERT INTO public.modelo (id_mod, cod_marc_mod, den_mod, fec_crt_mod, hor_crt_mod, status) VALUES (4, '2', 'SO10-1004LA', '2017-10-31', '10:36:37.207612', 1);
-INSERT INTO public.modelo (id_mod, cod_marc_mod, den_mod, fec_crt_mod, hor_crt_mod, status) VALUES (5, '16', 'VIT2006', '2017-10-31', '10:37:28.11837', 1);
-INSERT INTO public.modelo (id_mod, cod_marc_mod, den_mod, fec_crt_mod, hor_crt_mod, status) VALUES (6, '18', 'E-1000', '2017-10-31', '10:38:21.958731', 1);
-INSERT INTO public.modelo (id_mod, cod_marc_mod, den_mod, fec_crt_mod, hor_crt_mod, status) VALUES (12, '2', 'W17Q', '2017-10-31', '13:21:03.014678', 1);
-INSERT INTO public.modelo (id_mod, cod_marc_mod, den_mod, fec_crt_mod, hor_crt_mod, status) VALUES (13, '15', '6331-47N/C', '2017-11-01', '13:46:05.324524', 1);
-INSERT INTO public.modelo (id_mod, cod_marc_mod, den_mod, fec_crt_mod, hor_crt_mod, status) VALUES (14, '15', '8188-33S', '2017-11-01', '14:35:34.535162', 1);
-INSERT INTO public.modelo (id_mod, cod_marc_mod, den_mod, fec_crt_mod, hor_crt_mod, status) VALUES (15, '15', 'KB-29711', '2017-11-01', '14:37:00.307483', 1);
-INSERT INTO public.modelo (id_mod, cod_marc_mod, den_mod, fec_crt_mod, hor_crt_mod, status) VALUES (16, '4', 'SK-2880', '2017-11-01', '15:20:02.783235', 1);
-INSERT INTO public.modelo (id_mod, cod_marc_mod, den_mod, fec_crt_mod, hor_crt_mod, status) VALUES (17, '4', 'MNM-SBF96', '2017-11-01', '15:20:59.457131', 1);
-INSERT INTO public.modelo (id_mod, cod_marc_mod, den_mod, fec_crt_mod, hor_crt_mod, status) VALUES (18, '16', 'TFT19N80PS', '2017-11-01', '15:21:52.581467', 1);
-INSERT INTO public.modelo (id_mod, cod_marc_mod, den_mod, fec_crt_mod, hor_crt_mod, status) VALUES (19, '1', 'DC5700', '2017-11-01', '15:22:38.303426', 1);
-INSERT INTO public.modelo (id_mod, cod_marc_mod, den_mod, fec_crt_mod, hor_crt_mod, status) VALUES (20, '62', 'K-AVR100612O VAC', '2017-11-01', '15:23:33.622306', 1);
-INSERT INTO public.modelo (id_mod, cod_marc_mod, den_mod, fec_crt_mod, hor_crt_mod, status) VALUES (21, '16', 'MSU0718T', '2017-11-01', '15:27:23.037619', 1);
-INSERT INTO public.modelo (id_mod, cod_marc_mod, den_mod, fec_crt_mod, hor_crt_mod, status) VALUES (22, '2', 'PC-SG3505LA', '2017-11-01', '15:28:43.110132', 1);
-INSERT INTO public.modelo (id_mod, cod_marc_mod, den_mod, fec_crt_mod, hor_crt_mod, status) VALUES (23, '2', 'SK-2085', '2017-11-01', '15:30:12.322023', 1);
-INSERT INTO public.modelo (id_mod, cod_marc_mod, den_mod, fec_crt_mod, hor_crt_mod, status) VALUES (24, '3', 'MO28VOL', '2017-11-01', '15:31:03.487126', 1);
-INSERT INTO public.modelo (id_mod, cod_marc_mod, den_mod, fec_crt_mod, hor_crt_mod, status) VALUES (25, '4', 'L1710', '2017-11-01', '15:31:54.540556', 1);
-INSERT INTO public.modelo (id_mod, cod_marc_mod, den_mod, fec_crt_mod, hor_crt_mod, status) VALUES (26, '4', 'CHCOMPAQ', '2017-11-01', '15:32:32.096866', 1);
-INSERT INTO public.modelo (id_mod, cod_marc_mod, den_mod, fec_crt_mod, hor_crt_mod, status) VALUES (27, '3', 'KU-0225', '2017-11-01', '15:33:51.115998', 1);
-INSERT INTO public.modelo (id_mod, cod_marc_mod, den_mod, fec_crt_mod, hor_crt_mod, status) VALUES (28, '3', 'L197WA', '2017-11-01', '15:35:04.17504', 1);
-INSERT INTO public.modelo (id_mod, cod_marc_mod, den_mod, fec_crt_mod, hor_crt_mod, status) VALUES (29, '3', 'NUMBAR-A16', '2017-11-01', '15:35:56.986646', 1);
-INSERT INTO public.modelo (id_mod, cod_marc_mod, den_mod, fec_crt_mod, hor_crt_mod, status) VALUES (30, '2', 'C01-1004LA', '2017-11-01', '15:37:04.979116', 1);
-INSERT INTO public.modelo (id_mod, cod_marc_mod, den_mod, fec_crt_mod, hor_crt_mod, status) VALUES (31, '50', 'MP41DHLL', '2017-11-01', '15:38:17.067504', 1);
-INSERT INTO public.modelo (id_mod, cod_marc_mod, den_mod, fec_crt_mod, hor_crt_mod, status) VALUES (32, '65', 'T782K52NKKACM', '2017-11-01', '15:39:04.388158', 1);
-INSERT INTO public.modelo (id_mod, cod_marc_mod, den_mod, fec_crt_mod, hor_crt_mod, status) VALUES (33, '4', 'MSBJ96', '2017-11-01', '15:39:46.318713', 1);
-INSERT INTO public.modelo (id_mod, cod_marc_mod, den_mod, fec_crt_mod, hor_crt_mod, status) VALUES (34, '15', '6332-4HE', '2017-11-01', '15:40:35.345703', 1);
-INSERT INTO public.modelo (id_mod, cod_marc_mod, den_mod, fec_crt_mod, hor_crt_mod, status) VALUES (35, '15', '215', '2017-11-01', '15:41:28.368362', 1);
-INSERT INTO public.modelo (id_mod, cod_marc_mod, den_mod, fec_crt_mod, hor_crt_mod, status) VALUES (36, '66', 'AVR-600M', '2017-11-01', '15:42:59.485342', 1);
-INSERT INTO public.modelo (id_mod, cod_marc_mod, den_mod, fec_crt_mod, hor_crt_mod, status) VALUES (37, '69', 'BDF-452', '2017-11-07', '10:33:30.479565', 1);
-INSERT INTO public.modelo (id_mod, cod_marc_mod, den_mod, fec_crt_mod, hor_crt_mod, status) VALUES (38, '69', 'DC18RAT', '2017-11-07', '10:35:13.451617', 1);
-INSERT INTO public.modelo (id_mod, cod_marc_mod, den_mod, fec_crt_mod, hor_crt_mod, status) VALUES (39, '80', '69-646', '2017-11-07', '11:07:24.725576', 1);
-INSERT INTO public.modelo (id_mod, cod_marc_mod, den_mod, fec_crt_mod, hor_crt_mod, status) VALUES (40, '25', 'WIREDKEYBOARD600', '2017-11-07', '13:43:56.538381', 1);
-INSERT INTO public.modelo (id_mod, cod_marc_mod, den_mod, fec_crt_mod, hor_crt_mod, status) VALUES (41, '2', 'CTFAUPQ', '2017-11-07', '13:53:35.679575', 1);
-INSERT INTO public.modelo (id_mod, cod_marc_mod, den_mod, fec_crt_mod, hor_crt_mod, status) VALUES (42, '63', 'NO APLICA', '2017-11-08', '10:40:31.425526', 1);
-INSERT INTO public.modelo (id_mod, cod_marc_mod, den_mod, fec_crt_mod, hor_crt_mod, status) VALUES (43, '67', 'TY838', '2017-11-08', '15:01:58.08359', 1);
-INSERT INTO public.modelo (id_mod, cod_marc_mod, den_mod, fec_crt_mod, hor_crt_mod, status) VALUES (44, '9', 'DTR-1HM-1WHTL', '2017-11-08', '15:08:55.534064', 1);
-INSERT INTO public.modelo (id_mod, cod_marc_mod, den_mod, fec_crt_mod, hor_crt_mod, status) VALUES (45, '27', '3921', '2017-11-09', '10:51:23.785265', 1);
-INSERT INTO public.modelo (id_mod, cod_marc_mod, den_mod, fec_crt_mod, hor_crt_mod, status) VALUES (46, '15', '6332PHE', '2017-11-09', '13:40:56.98702', 1);
-INSERT INTO public.modelo (id_mod, cod_marc_mod, den_mod, fec_crt_mod, hor_crt_mod, status) VALUES (47, '4', 'ALL-IN-ONE', '2017-11-14', '14:36:30.608232', 1);
-INSERT INTO public.modelo (id_mod, cod_marc_mod, den_mod, fec_crt_mod, hor_crt_mod, status) VALUES (48, '68', 'DD-14020', '2017-11-14', '15:04:06.688205', 1);
-INSERT INTO public.modelo (id_mod, cod_marc_mod, den_mod, fec_crt_mod, hor_crt_mod, status) VALUES (49, '68', 'HS-0590', '2017-11-14', '15:11:25.036247', 1);
-INSERT INTO public.modelo (id_mod, cod_marc_mod, den_mod, fec_crt_mod, hor_crt_mod, status) VALUES (50, '3', 'THINKPAD', '2017-11-20', '14:17:29.928653', 1);
-INSERT INTO public.modelo (id_mod, cod_marc_mod, den_mod, fec_crt_mod, hor_crt_mod, status) VALUES (51, '53', '600VA', '2017-11-20', '14:40:27.049055', 1);
-INSERT INTO public.modelo (id_mod, cod_marc_mod, den_mod, fec_crt_mod, hor_crt_mod, status) VALUES (7, '4', 'XXXXX', '2019-07-25', '11:34:45.545273', 1);
-INSERT INTO public.modelo (id_mod, cod_marc_mod, den_mod, fec_crt_mod, hor_crt_mod, status) VALUES (8, '16', 'KB2971', '2019-07-26', '10:00:52.532686', 1);
-INSERT INTO public.modelo (id_mod, cod_marc_mod, den_mod, fec_crt_mod, hor_crt_mod, status) VALUES (9, '8', 'AL1000', '2019-07-29', '10:18:18.554006', 1);
-INSERT INTO public.modelo (id_mod, cod_marc_mod, den_mod, fec_crt_mod, hor_crt_mod, status) VALUES (52, '82', '687-6S', '2019-08-13', '09:29:58.38635', 1);
-INSERT INTO public.modelo (id_mod, cod_marc_mod, den_mod, fec_crt_mod, hor_crt_mod, status) VALUES (53, '11', 'TAB4807EX', '2019-08-13', '09:45:43.859821', 1);
-INSERT INTO public.modelo (id_mod, cod_marc_mod, den_mod, fec_crt_mod, hor_crt_mod, status) VALUES (54, '50', 'pixma', '2022-06-02', '22:18:03.254813', 0);
+INSERT INTO public.modelo (id_mod, cod_marc_mod, id_cat_esp, cod_mod, den_mod, fec_crt_mod, hor_crt_mod, status) VALUES (1, 'XXX', 1554, 'XXX', 'NO APLICA', '2017-10-10', '13:52:07.949118', 1);
+INSERT INTO public.modelo (id_mod, cod_marc_mod, id_cat_esp, cod_mod, den_mod, fec_crt_mod, hor_crt_mod, status) VALUES (2, '25', 1402, '1', '1576', '2017-10-31', '10:14:36.26401', 1);
+INSERT INTO public.modelo (id_mod, cod_marc_mod, id_cat_esp, cod_mod, den_mod, fec_crt_mod, hor_crt_mod, status) VALUES (3, '2', 1402, '2', 'M-UAE96', '2017-10-31', '10:35:35.247219', 1);
+INSERT INTO public.modelo (id_mod, cod_marc_mod, id_cat_esp, cod_mod, den_mod, fec_crt_mod, hor_crt_mod, status) VALUES (4, '2', 1402, '3', 'SO10-1004LA', '2017-10-31', '10:36:37.207612', 1);
+INSERT INTO public.modelo (id_mod, cod_marc_mod, id_cat_esp, cod_mod, den_mod, fec_crt_mod, hor_crt_mod, status) VALUES (5, '16', 1407, '4', 'VIT2006', '2017-10-31', '10:37:28.11837', 1);
+INSERT INTO public.modelo (id_mod, cod_marc_mod, id_cat_esp, cod_mod, den_mod, fec_crt_mod, hor_crt_mod, status) VALUES (6, '18', 1554, '5', 'E-1000', '2017-10-31', '10:38:21.958731', 1);
+INSERT INTO public.modelo (id_mod, cod_marc_mod, id_cat_esp, cod_mod, den_mod, fec_crt_mod, hor_crt_mod, status) VALUES (12, '2', 1402, '11', 'W17Q', '2017-10-31', '13:21:03.014678', 1);
+INSERT INTO public.modelo (id_mod, cod_marc_mod, id_cat_esp, cod_mod, den_mod, fec_crt_mod, hor_crt_mod, status) VALUES (13, '15', 1402, '12', '6331-47N/C', '2017-11-01', '13:46:05.324524', 1);
+INSERT INTO public.modelo (id_mod, cod_marc_mod, id_cat_esp, cod_mod, den_mod, fec_crt_mod, hor_crt_mod, status) VALUES (14, '15', 1407, '13', '8188-33S', '2017-11-01', '14:35:34.535162', 1);
+INSERT INTO public.modelo (id_mod, cod_marc_mod, id_cat_esp, cod_mod, den_mod, fec_crt_mod, hor_crt_mod, status) VALUES (15, '15', 1402, '14', 'KB-29711', '2017-11-01', '14:37:00.307483', 1);
+INSERT INTO public.modelo (id_mod, cod_marc_mod, id_cat_esp, cod_mod, den_mod, fec_crt_mod, hor_crt_mod, status) VALUES (16, '4', 1402, '16', 'SK-2880', '2017-11-01', '15:20:02.783235', 1);
+INSERT INTO public.modelo (id_mod, cod_marc_mod, id_cat_esp, cod_mod, den_mod, fec_crt_mod, hor_crt_mod, status) VALUES (17, '4', 1402, '17', 'MNM-SBF96', '2017-11-01', '15:20:59.457131', 1);
+INSERT INTO public.modelo (id_mod, cod_marc_mod, id_cat_esp, cod_mod, den_mod, fec_crt_mod, hor_crt_mod, status) VALUES (18, '16', 1402, '18', 'TFT19N80PS', '2017-11-01', '15:21:52.581467', 1);
+INSERT INTO public.modelo (id_mod, cod_marc_mod, id_cat_esp, cod_mod, den_mod, fec_crt_mod, hor_crt_mod, status) VALUES (19, '1', 1407, '19', 'DC5700', '2017-11-01', '15:22:38.303426', 1);
+INSERT INTO public.modelo (id_mod, cod_marc_mod, id_cat_esp, cod_mod, den_mod, fec_crt_mod, hor_crt_mod, status) VALUES (20, '62', 1554, '20', 'K-AVR100612O VAC', '2017-11-01', '15:23:33.622306', 1);
+INSERT INTO public.modelo (id_mod, cod_marc_mod, id_cat_esp, cod_mod, den_mod, fec_crt_mod, hor_crt_mod, status) VALUES (21, '16', 1402, '21', 'MSU0718T', '2017-11-01', '15:27:23.037619', 1);
+INSERT INTO public.modelo (id_mod, cod_marc_mod, id_cat_esp, cod_mod, den_mod, fec_crt_mod, hor_crt_mod, status) VALUES (22, '2', 1407, '22', 'PC-SG3505LA', '2017-11-01', '15:28:43.110132', 1);
+INSERT INTO public.modelo (id_mod, cod_marc_mod, id_cat_esp, cod_mod, den_mod, fec_crt_mod, hor_crt_mod, status) VALUES (23, '2', 1402, '23', 'SK-2085', '2017-11-01', '15:30:12.322023', 1);
+INSERT INTO public.modelo (id_mod, cod_marc_mod, id_cat_esp, cod_mod, den_mod, fec_crt_mod, hor_crt_mod, status) VALUES (24, '3', 1402, '24', 'MO28VOL', '2017-11-01', '15:31:03.487126', 1);
+INSERT INTO public.modelo (id_mod, cod_marc_mod, id_cat_esp, cod_mod, den_mod, fec_crt_mod, hor_crt_mod, status) VALUES (25, '4', 1402, '25', 'L1710', '2017-11-01', '15:31:54.540556', 1);
+INSERT INTO public.modelo (id_mod, cod_marc_mod, id_cat_esp, cod_mod, den_mod, fec_crt_mod, hor_crt_mod, status) VALUES (26, '4', 1407, '26', 'CHCOMPAQ', '2017-11-01', '15:32:32.096866', 1);
+INSERT INTO public.modelo (id_mod, cod_marc_mod, id_cat_esp, cod_mod, den_mod, fec_crt_mod, hor_crt_mod, status) VALUES (27, '3', 1402, '27', 'KU-0225', '2017-11-01', '15:33:51.115998', 1);
+INSERT INTO public.modelo (id_mod, cod_marc_mod, id_cat_esp, cod_mod, den_mod, fec_crt_mod, hor_crt_mod, status) VALUES (28, '3', 1402, '28', 'L197WA', '2017-11-01', '15:35:04.17504', 1);
+INSERT INTO public.modelo (id_mod, cod_marc_mod, id_cat_esp, cod_mod, den_mod, fec_crt_mod, hor_crt_mod, status) VALUES (29, '3', 1407, '29', 'NUMBAR-A16', '2017-11-01', '15:35:56.986646', 1);
+INSERT INTO public.modelo (id_mod, cod_marc_mod, id_cat_esp, cod_mod, den_mod, fec_crt_mod, hor_crt_mod, status) VALUES (30, '2', 1402, '30', 'C01-1004LA', '2017-11-01', '15:37:04.979116', 1);
+INSERT INTO public.modelo (id_mod, cod_marc_mod, id_cat_esp, cod_mod, den_mod, fec_crt_mod, hor_crt_mod, status) VALUES (31, '50', 1388, '31', 'MP41DHLL', '2017-11-01', '15:38:17.067504', 1);
+INSERT INTO public.modelo (id_mod, cod_marc_mod, id_cat_esp, cod_mod, den_mod, fec_crt_mod, hor_crt_mod, status) VALUES (32, '65', 1402, '32', 'T782K52NKKACM', '2017-11-01', '15:39:04.388158', 1);
+INSERT INTO public.modelo (id_mod, cod_marc_mod, id_cat_esp, cod_mod, den_mod, fec_crt_mod, hor_crt_mod, status) VALUES (33, '4', 1402, '33', 'MSBJ96', '2017-11-01', '15:39:46.318713', 1);
+INSERT INTO public.modelo (id_mod, cod_marc_mod, id_cat_esp, cod_mod, den_mod, fec_crt_mod, hor_crt_mod, status) VALUES (34, '15', 1402, '34', '6332-4HE', '2017-11-01', '15:40:35.345703', 1);
+INSERT INTO public.modelo (id_mod, cod_marc_mod, id_cat_esp, cod_mod, den_mod, fec_crt_mod, hor_crt_mod, status) VALUES (35, '15', 1407, '35', '215', '2017-11-01', '15:41:28.368362', 1);
+INSERT INTO public.modelo (id_mod, cod_marc_mod, id_cat_esp, cod_mod, den_mod, fec_crt_mod, hor_crt_mod, status) VALUES (36, '66', 1554, '36', 'AVR-600M', '2017-11-01', '15:42:59.485342', 1);
+INSERT INTO public.modelo (id_mod, cod_marc_mod, id_cat_esp, cod_mod, den_mod, fec_crt_mod, hor_crt_mod, status) VALUES (37, '69', 182, '37', 'BDF-452', '2017-11-07', '10:33:30.479565', 1);
+INSERT INTO public.modelo (id_mod, cod_marc_mod, id_cat_esp, cod_mod, den_mod, fec_crt_mod, hor_crt_mod, status) VALUES (38, '69', 182, '38', 'DC18RAT', '2017-11-07', '10:35:13.451617', 1);
+INSERT INTO public.modelo (id_mod, cod_marc_mod, id_cat_esp, cod_mod, den_mod, fec_crt_mod, hor_crt_mod, status) VALUES (39, '80', 164, '39', '69-646', '2017-11-07', '11:07:24.725576', 1);
+INSERT INTO public.modelo (id_mod, cod_marc_mod, id_cat_esp, cod_mod, den_mod, fec_crt_mod, hor_crt_mod, status) VALUES (40, '25', 1402, '40', 'WIREDKEYBOARD600', '2017-11-07', '13:43:56.538381', 1);
+INSERT INTO public.modelo (id_mod, cod_marc_mod, id_cat_esp, cod_mod, den_mod, fec_crt_mod, hor_crt_mod, status) VALUES (41, '2', 1402, '41', 'CTFAUPQ', '2017-11-07', '13:53:35.679575', 1);
+INSERT INTO public.modelo (id_mod, cod_marc_mod, id_cat_esp, cod_mod, den_mod, fec_crt_mod, hor_crt_mod, status) VALUES (42, '63', 1383, '44', 'NO APLICA', '2017-11-08', '10:40:31.425526', 1);
+INSERT INTO public.modelo (id_mod, cod_marc_mod, id_cat_esp, cod_mod, den_mod, fec_crt_mod, hor_crt_mod, status) VALUES (43, '67', 1383, '45', 'TY838', '2017-11-08', '15:01:58.08359', 1);
+INSERT INTO public.modelo (id_mod, cod_marc_mod, id_cat_esp, cod_mod, den_mod, fec_crt_mod, hor_crt_mod, status) VALUES (44, '9', 1391, '46', 'DTR-1HM-1WHTL', '2017-11-08', '15:08:55.534064', 1);
+INSERT INTO public.modelo (id_mod, cod_marc_mod, id_cat_esp, cod_mod, den_mod, fec_crt_mod, hor_crt_mod, status) VALUES (45, '27', 1340, '47', '3921', '2017-11-09', '10:51:23.785265', 1);
+INSERT INTO public.modelo (id_mod, cod_marc_mod, id_cat_esp, cod_mod, den_mod, fec_crt_mod, hor_crt_mod, status) VALUES (46, '15', 1402, '48', '6332PHE', '2017-11-09', '13:40:56.98702', 1);
+INSERT INTO public.modelo (id_mod, cod_marc_mod, id_cat_esp, cod_mod, den_mod, fec_crt_mod, hor_crt_mod, status) VALUES (47, '4', 1338, '49', 'ALL-IN-ONE', '2017-11-14', '14:36:30.608232', 1);
+INSERT INTO public.modelo (id_mod, cod_marc_mod, id_cat_esp, cod_mod, den_mod, fec_crt_mod, hor_crt_mod, status) VALUES (48, '68', 1554, '50', 'DD-14020', '2017-11-14', '15:04:06.688205', 1);
+INSERT INTO public.modelo (id_mod, cod_marc_mod, id_cat_esp, cod_mod, den_mod, fec_crt_mod, hor_crt_mod, status) VALUES (49, '68', 1554, '51', 'HS-0590', '2017-11-14', '15:11:25.036247', 1);
+INSERT INTO public.modelo (id_mod, cod_marc_mod, id_cat_esp, cod_mod, den_mod, fec_crt_mod, hor_crt_mod, status) VALUES (50, '3', 1402, '52', 'THINKPAD', '2017-11-20', '14:17:29.928653', 1);
+INSERT INTO public.modelo (id_mod, cod_marc_mod, id_cat_esp, cod_mod, den_mod, fec_crt_mod, hor_crt_mod, status) VALUES (51, '53', 1554, '53', '600VA', '2017-11-20', '14:40:27.049055', 1);
+INSERT INTO public.modelo (id_mod, cod_marc_mod, id_cat_esp, cod_mod, den_mod, fec_crt_mod, hor_crt_mod, status) VALUES (7, '4', 1407, '55', 'XXXXX', '2019-07-25', '11:34:45.545273', 1);
+INSERT INTO public.modelo (id_mod, cod_marc_mod, id_cat_esp, cod_mod, den_mod, fec_crt_mod, hor_crt_mod, status) VALUES (8, '16', 1402, '56', 'KB2971', '2019-07-26', '10:00:52.532686', 1);
+INSERT INTO public.modelo (id_mod, cod_marc_mod, id_cat_esp, cod_mod, den_mod, fec_crt_mod, hor_crt_mod, status) VALUES (9, '8', 1554, '57', 'AL1000', '2019-07-29', '10:18:18.554006', 1);
+INSERT INTO public.modelo (id_mod, cod_marc_mod, id_cat_esp, cod_mod, den_mod, fec_crt_mod, hor_crt_mod, status) VALUES (52, '82', 1554, '58', '687-6S', '2019-08-13', '09:29:58.38635', 1);
+INSERT INTO public.modelo (id_mod, cod_marc_mod, id_cat_esp, cod_mod, den_mod, fec_crt_mod, hor_crt_mod, status) VALUES (53, '11', 1517, '59', 'TAB4807EX', '2019-08-13', '09:45:43.859821', 1);
 
 
 --
--- TOC entry 2311 (class 0 OID 0)
--- Dependencies: 188
--- Name: modelo_id_mod_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('public.modelo_id_mod_seq', 54, true);
-
-
---
--- TOC entry 2268 (class 0 OID 33038)
--- Dependencies: 187
+-- TOC entry 2244 (class 0 OID 16644)
+-- Dependencies: 192
 -- Data for Name: municipio; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (3, 2, '0200', 'Municipio Autónomo Atabapo               ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (5, 2, '0400', 'Municipio Autonomo Autana                ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (6, 2, '0500', 'Municipio Autónomo Maroa                 ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (7, 2, '0600', 'Municipio Autónomo Manapiare             ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (8, 2, '0700', 'Municipio Autónomo Río Negro             ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (9, 3, '0100', 'Municipio Anaco                          ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (10, 3, '0200', 'Municipio Aragua                         ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (11, 3, '0300', 'Municipio Fernando de Peñalver           ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (12, 3, '0400', 'Municipio Francisco del Carmen Carvajal  ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (13, 3, '0500', 'Municipio Francisco de Miranda           ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (14, 3, '0600', 'Municipio Guanta                         ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (15, 3, '0700', 'Municipio Independencia                  ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (16, 3, '0800', 'Municipio Juan Antonio Sotillo           ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (17, 3, '0900', 'Municipio Juan Manuel Cajigal            ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (18, 3, '1000', 'Municipio José Gregorio Monagas          ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (19, 3, '1100', 'Municipio Libertad                       ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (28, 3, '2000', 'Municipio Sir Arthur Mc Gregor		   ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (29, 3, '2100', 'Municipio Turístico Diego Bautista Urbaneja ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (30, 4, '0100', 'Municipio Achaguas                          ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (31, 4, '0200', 'Municipio Biruaca                           ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (32, 4, '0300', 'Municipio Muñoz                             ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (33, 4, '0400', 'Municipio Páez                              ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (34, 4, '0500', 'Municipio Pedro Camejo                      ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (35, 4, '0600', 'Municipio Rómulo Gallegos                   ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (36, 4, '0700', 'Municipio San Fernando                      ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (37, 5, '0100', 'Municipio Bolívar                           ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (38, 5, '0200', 'Municipio Camatagua                         ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (39, 5, '0300', 'Municipio Girardot                          ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (40, 5, '0400', 'Municipio José Ángel Lamas                  ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (41, 5, '0500', 'Municipio José Félix Ribas                  ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (42, 5, '0600', 'Municipio José Rafael Revenga               ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (43, 5, '0700', 'Municipio Libertador                        ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (44, 5, '0800', 'Municipio Mario Briceño Iragorry            ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (45, 5, '0900', 'Municipio San Casimiro                      ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (46, 5, '1000', 'Municipio San Sebastián                     ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (47, 5, '1100', 'Municipio Santiago Mariño                   ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (48, 5, '1200', 'Municipio Santos Michelena                  ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (49, 5, '1300', 'Municipio Sucre                             ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (50, 5, '1400', 'Municipio Tovar                             ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (51, 5, '1500', 'Municipio Urdaneta                          ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (52, 5, '1600', 'Municipio Zamora                            ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (53, 5, '1700', 'Municipio Francisco Linares Alcantara       ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (54, 5, '1800', 'Municipio Ocumare de La Costa de Oro', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (55, 6, '0100', 'Municipio Alberto Arvelo Torrealba  ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (56, 6, '0200', 'Municipio Antonio José de Sucre     ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (57, 6, '0300', 'Municipio Arismendi                 ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (58, 6, '0400', 'Municipio Barinas                   ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (59, 6, '0500', 'Municipio Bolívar                   ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (60, 6, '0600', 'Municipio Cruz Paredes              ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (61, 6, '0700', 'Municipio Ezequiel Zamora           ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (62, 6, '0800', 'Municipio Obispos                   ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (63, 6, '0900', 'Municipio Pedraza                   ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (64, 6, '1000', 'Municipio Rojas                     ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (65, 6, '1100', 'Municipio Sosa                      ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (66, 6, '1200', 'Municipio Andrés Eloy Blanco        ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (67, 7, '0100', 'Municipio Caroní                    ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (68, 7, '0200', 'Municipio Cedeño                    ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (69, 7, '0300', 'Municipio El Callao                 ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (70, 7, '0400', 'Municipio Gran Sabana               ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (71, 7, '0500', 'Municipio Heres                     ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (72, 7, '0600', 'Municipio Piar                      ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (73, 7, '0700', 'Municipio Raúl Leoni                ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (74, 7, '0800', 'Municipio Roscio                    ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (75, 7, '0900', 'Municipio Sifontes                  ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (76, 7, '1000', 'Municipio Sucre                     ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (77, 7, '1100', 'Municipio Padre Pedro Chien         ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (78, 8, '0100', 'Municipio Bejuma                    ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (79, 8, '0200', 'Municipio Carlos Arvelo             ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (80, 8, '0300', 'Municipio Diego Ibarra		   ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (81, 8, '0400', 'Municipio Guacara                   ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (21, 3, '1300', 'Municipio Pedro María Freites            ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (22, 3, '1400', 'Municipio Píritu                         ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (24, 3, '1600', 'Municipio San Juan de Capistrano         ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (23, 3, '1500', 'Municipio San José de Guanipa            ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (25, 3, '1700', 'Municipio Santa Ana                      ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (27, 3, '1900', 'Municipio Simón Rodríguez                ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (26, 3, '1800', 'Municipio Simón Bolívar                  ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (1, 1, '0100', 'Municipio Libertador', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (2, 2, '0100', 'Municipio Autónomo Alto Orinoco', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (4, 2, '0300', 'Municipio Autónomo Atures', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (82, 8, '0500', 'Municipio Juan José Mora            ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (83, 8, '0600', 'Municipio Libertador                ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (84, 8, '0700', 'Municipio Los Guayos                ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (85, 8, '0800', 'Municipio Miranda                   ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (86, 8, '0900', 'Municipio Montalbán                 ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (87, 8, '1000', 'Municipio Naguanagua                ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (88, 8, '1100', 'Municipio Puerto Cabello            ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (89, 8, '1200', 'Municipio San Diego                 ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (90, 8, '1300', 'Municipio San Joaquín               ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (91, 8, '1400', 'Municipio Valencia                  ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (92, 9, '0100', 'Municipio Anzoátegui                ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (93, 9, '0200', 'Municipio Falcón                    ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (94, 9, '0300', 'Municipio Girardot                  ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (95, 9, '0400', 'Municipio Lima Blanco               ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (96, 9, '0500', 'Municipio Pao de San Juan Bautista  ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (97, 9, '0600', 'Municipio Ricaurte                  ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (98, 9, '0700', 'Municipio Rómulo Gallegos           ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (99, 9, '0800', 'Municipio San Carlos                ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (100, 9, '0900', 'Municipio Tinaco                    ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (101, 10, '0100', 'Municipio Antonio Díaz             ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (102, 10, '0200', 'Municipio Casacoima                ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (103, 10, '0300', 'Municipio Pedernales               ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (104, 10, '0400', 'Municipio Tucupita                 ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (105, 11, '0100', 'Municipio Acosta                   ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (106, 11, '0200', 'Municipio Bolívar                  ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (107, 11, '0300', 'Municipio Buchivacoa		  ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (108, 11, '0400', 'Municipio Cacique Manaure          ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (109, 11, '0500', 'Municipio Carirubana               ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (110, 11, '0600', 'Municipio Colina                   ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (111, 11, '0700', 'Municipio Dabajuro                 ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (112, 11, '0800', 'Municipio Democracia               ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (113, 11, '0900', 'Municipio Falcón                   ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (114, 11, '1000', 'Municipio Federación               ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (115, 11, '1100', 'Municipio Jacura                   ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (116, 11, '1200', 'Municipio Los Taques               ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (117, 11, '1300', 'Municipio Mauroa                   ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (118, 11, '1400', 'Municipio Miranda                  ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (119, 11, '1500', 'Municipio Monseñor Iturriza        ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (120, 11, '1600', 'Municipio Palmasola                ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (121, 11, '1700', 'Municipio Petit                    ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (122, 11, '1800', 'Municipio Piritu                   ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (123, 11, '1900', 'Municipio San Francisco            ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (124, 11, '2000', 'Municipio Silva                    ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (125, 11, '2100', 'Municipio Sucre                    ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (126, 11, '2200', 'Municipio Tocopero                 ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (127, 11, '2300', 'Municipio Unión                    ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (128, 11, '2400', 'Municipio Urumaco                  ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (129, 11, '2500', 'Municipio Zamora                   ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (130, 12, '0100', 'Municipio Camaguan                 ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (131, 12, '0200', 'Municipio Chaguaramas              ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (132, 12, '0300', 'Municipio El Socorro               ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (133, 12, '0400', 'Municipio San Gerónimo de Guayabal ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (134, 12, '0500', 'Municipio Leonardo Infante	  ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (135, 12, '0600', 'Municipio Las Mercedes		  ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (136, 12, '0700', 'Municipio Julián Mellado           ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (137, 12, '0800', 'Municipio Francisco de Miranda     ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (138, 12, '0900', 'Municipio José Tadeo Monagas       ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (139, 12, '1000', 'Municipio Ortiz                    ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (140, 12, '1100', 'Municipio José Félix Ribas         ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (141, 12, '1200', 'Municipio Juan German Roscio       ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (142, 12, '1300', 'Municipio San José de Guaribe      ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (143, 12, '1400', 'Municipio Santa María de Ipire     ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (144, 12, '1500', 'Municipio Pedro Zaraza             ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (145, 13, '0100', 'Municipio Andrés Eloy Blanco       ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (146, 13, '0200', 'Municipio Crespo                   ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (147, 13, '0300', 'Municipio Iribarren                ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (148, 13, '0400', 'Municipio Jiménez                  ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (149, 13, '0500', 'Municipio Morón                    ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (150, 13, '0600', 'Municipio Palavecino               ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (151, 13, '0700', 'Municipio Simón Planas             ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (152, 13, '0800', 'Municipio Torres                   ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (153, 13, '0900', 'Municipio Urdaneta                 ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (154, 14, '0100', 'Municipio Alberto Adriani          ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (155, 14, '0200', 'Municipio Andrés Bello             ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (156, 14, '0300', 'Municipio Antonio Pinto Salinas    ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (157, 14, '0400', 'Municipio Aricagua                 ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (158, 14, '0500', 'Municipio Arzobispo Chacón         ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (159, 14, '0600', 'Municipio Campo Elías              ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (160, 14, '0700', 'Municipio Caracciolo Parra Olmedo  ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (161, 14, '0800', 'Municipio Cardenal Quintero        ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (162, 14, '0900', 'Municipio Guaraque   	      ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (163, 14, '1000', 'Municipio Julio Cesar Salas    ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (164, 14, '1100', 'Municipio Justo Briceño        ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (165, 14, '1200', 'Municipio Libertador           ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (166, 14, '1300', 'Municipio Miranda              ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (167, 14, '1400', 'Municipio Obispo Ramos de Lora ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (168, 14, '1500', 'Municipio Padre Noguera        ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (169, 14, '1600', 'Municipio Pueblo Llano         ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (170, 14, '1700', 'Municipio Rangel               ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (171, 14, '1800', 'Municipio Rivas Dávila         ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (172, 14, '1900', 'Municipio Santos Marquina      ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (173, 14, '2000', 'Municipio Sucre                ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (174, 14, '2100', 'Municipio Tovar                ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (175, 14, '2200', 'Municipio Tulio Febres Cordero ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (176, 14, '2300', 'Municipio Zea                  ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (177, 15, '0100', 'Municipio Acevedo              ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (178, 15, '0200', 'Municipio Andrés Bello         ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (179, 15, '0300', 'Municipio Baruta               ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (180, 15, '0400', 'Municipio Brion                ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (181, 15, '0500', 'Municipio Buroz                ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (182, 15, '0600', 'Municipio Carrizal             ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (183, 15, '0700', 'Municipio Chacao               ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (184, 15, '0800', 'Municipio Cristóbal Rojas      ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (185, 15, '0900', 'Municipio El Hatillo           ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (186, 15, '1000', 'Municipio Guaicaipuro          ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (187, 15, '1100', 'Municipio Independencia        ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (188, 15, '1200', 'Municipio Lander               ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (189, 15, '1300', 'Municipio Los Salías	  ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (190, 15, '1400', 'Municipio Páez             ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (191, 15, '1500', 'Municipio Paz Castillo     ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (192, 15, '1600', 'Municipio Pedro Gual       ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (193, 15, '1700', 'Municipio Plaza            ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (194, 15, '1800', 'Municipio Simón Bolívar    ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (195, 15, '1900', 'Municipio Sucre            ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (196, 15, '2000', 'Municipio Urdaneta         ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (197, 15, '2100', 'Municipio Zamora           ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (198, 16, '0100', 'Municipio Acosta           ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (199, 16, '0200', 'Municipio Aguasay          ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (200, 16, '0300', 'Municipio Bolívar          ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (201, 16, '0400', 'Municipio Caripe           ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (202, 16, '0500', 'Municipio Cedeño           ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (203, 16, '0600', 'Municipio Ezequiel Zamora  ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (204, 16, '0700', 'Municipio Libertador       ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (205, 16, '0800', 'Municipio Maturín          ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (206, 16, '0900', 'Municipio Piar             ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (207, 16, '1000', 'Municipio Punceres         ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (208, 16, '1100', 'Municipio Santa Bárbara    ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (209, 16, '1200', 'Municipio Sotillo          ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (210, 16, '1300', 'Municipio Uracoa           ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (211, 17, '0100', 'Municipio Antolon del Campo', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (212, 17, '0200', 'Municipio Arismendi        ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (213, 17, '0300', 'Municipio Díaz             ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (214, 17, '0400', 'Municipio García           ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (215, 17, '0500', 'Municipio Gómez            ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (216, 17, '0600', 'Municipio Maneiro		      ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (217, 17, '0700', 'Municipio Marcano                      ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (218, 17, '0800', 'Municipio Mariño                       ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (219, 17, '0900', 'Municipio Península de Macanao         ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (220, 17, '1000', 'Municipio Tubores                      ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (221, 17, '1100', 'Municipio Villalba                     ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (222, 18, '0100', 'Municipio Agua Blanca                  ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (223, 18, '0200', 'Municipio Araure                       ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (224, 18, '0300', 'Municipio Esteller                     ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (225, 18, '0400', 'Municipio Guanare                      ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (226, 18, '0500', 'Municipio Guanarito                    ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (227, 18, '0600', 'Municipio Monseñor José Vicente de Unda', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (228, 18, '0700', 'Municipio Ospino                       ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (229, 18, '0800', 'Municipio Páez                         ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (230, 18, '0900', 'Municipio Papelon                      ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (231, 18, '1000', 'Municipio San Genaro de Boconoito      ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (232, 18, '1100', 'Municipio San Rafael de Onoto          ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (233, 18, '1200', 'Municipio Santa Rosalía                ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (234, 18, '1300', 'Municipio Sucre                        ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (235, 18, '1400', 'Municipio Turín                        ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (236, 19, '0100', 'Municipio Andrés Eloy Blanco           ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (237, 19, '0200', 'Municipio Andrés Mata                  ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (238, 19, '0300', 'Municipio Arismendi                    ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (239, 19, '0400', 'Municipio Benítez                      ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (240, 19, '0500', 'Municipio Bermúdez                     ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (241, 19, '0600', 'Municipio Bolívar                      ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (242, 19, '0700', 'Municipio Cajigal                      ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (243, 19, '0800', 'Municipio Cruz Salmerón Acosta', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (244, 19, '0900', 'Municipio Libertador          ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (245, 19, '1000', 'Municipio Mariño              ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (246, 19, '1100', 'Municipio Mejías              ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (247, 19, '1200', 'Municipio Montes              ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (248, 19, '1300', 'Municipio Ribero              ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (249, 19, '1400', 'Municipio Sucre               ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (250, 19, '1500', 'Municipio Valdez              ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (251, 20, '0100', 'Municipio Andrés Bello        ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (252, 20, '0200', 'Municipio Antonio Rómulo Costa', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (253, 20, '0300', 'Municipio Ayacucho            ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (254, 20, '0400', 'Municipio Bolívar             ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (255, 20, '0500', 'Municipio Cárdenas            ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (256, 20, '0600', 'Municipio Córdoba             ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (257, 20, '0700', 'Municipio Fernández Feo       ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (258, 20, '0800', 'Municipio Francisco de Miranda', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (259, 20, '0900', 'Municipio García de Hevia     ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (260, 20, '1000', 'Municipio Guasimos            ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (261, 20, '1100', 'Municipio Independencia       ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (262, 20, '1200', 'Municipio Jáuregui            ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (263, 20, '1300', 'Municipio José María Vargas   ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (264, 20, '1400', 'Municipio Junín               ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (265, 20, '1500', 'Municipio Libertad            ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (266, 20, '1600', 'Municipio Libertador          ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (267, 20, '1700', 'Municipio Lobatera            ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (268, 20, '1800', 'Municipio Michelena           ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (269, 20, '1900', 'Municipio Panamericano        ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (270, 20, '2000', 'Municipio Pedro María Ureña		  ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (271, 20, '2100', 'Municipio Rafael Urdaneta                  ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (272, 20, '2200', 'Municipio Samuel Darío Maldonado           ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (273, 20, '2300', 'Municipio San Cristóbal                    ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (274, 20, '2400', 'Municipio Seboruco                         ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (275, 20, '2500', 'Municipio Simón Rodríguez                  ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (276, 20, '2600', 'Municipio Sucre                            ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (277, 20, '2700', 'Municipio Torbes                           ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (278, 20, '2800', 'Municipio Uribante                         ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (279, 20, '2900', 'Municipio San Judas Tadeo                  ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (280, 21, '0100', 'Municipio Andrés Bello                     ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (281, 21, '0200', 'Municipio Bocono                           ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (282, 21, '0300', 'Municipio Bolívar                          ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (283, 21, '0400', 'Municipio Candelaria                       ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (284, 21, '0500', 'Municipio Carache                          ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (285, 21, '0600', 'Municipio Escuque                          ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (286, 21, '0700', 'Municipio José Felipe Márquez Carrizales   ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (287, 21, '0800', 'Municipio Juan Vicente Campo Elías         ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (288, 21, '0900', 'Municipio La Ceiba                         ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (289, 21, '1000', 'Municipio Miranda                          ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (290, 21, '1100', 'Municipio Monte Carmelo                    ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (291, 21, '1200', 'Municipio Motatan                          ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (292, 21, '1300', 'Municipio Pampan                           ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (293, 21, '1400', 'Municipio Pampanito                        ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (294, 21, '1500', 'Municipio Rafael Rangel                    ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (295, 21, '1600', 'Municipio San Rafael de Carvajal           ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (296, 21, '1700', 'Municipio Sucre                            ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (297, 21, '1800', 'Municipio Trujillo		  ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (298, 21, '1900', 'Municipio Urdaneta                 ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (299, 21, '2000', 'Municipio Valera                   ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (300, 22, '0100', 'Municipio Arístides Bastidas       ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (301, 22, '0200', 'Municipio Bolívar                  ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (302, 22, '0300', 'Municipio Bruzual                  ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (303, 22, '0400', 'Municipio Cocorote                 ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (304, 22, '0500', 'Municipio Independencia            ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (305, 22, '0600', 'Municipio José Antonio Páez        ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (306, 22, '0700', 'Municipio La Trinidad              ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (307, 22, '0800', 'Municipio Manuel Monge             ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (308, 22, '0900', 'Municipio Nirgua                   ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (309, 22, '1000', 'Municipio Peña                     ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (310, 22, '1100', 'Municipio San Felipe               ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (311, 22, '1200', 'Municipio Sucre                    ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (312, 22, '1300', 'Municipio Urachiche                ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (313, 22, '1400', 'Municipio Veroes                   ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (314, 23, '0100', 'Municipio Almirante Padilla        ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (315, 23, '0200', 'Municipio Baralt                   ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (316, 23, '0300', 'Municipio Cabimas                  ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (317, 23, '0400', 'Municipio Catatumbo                ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (318, 23, '0500', 'Municipio Colon                    ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (319, 23, '0600', 'Municipio Francisco Javier Pulgar  ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (320, 23, '0700', 'Municipio Jesús Enrique Lossada    ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (321, 23, '0800', 'Municipio Jesús María Sempron      ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (322, 23, '0900', 'Municipio La Cañada de Urdaneta    ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (323, 23, '1000', 'Municipio Lagunillas               ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (324, 23, '1100', 'Municipio Machiques de Perijá	    ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (325, 23, '1200', 'Municipio Mara                       ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (326, 23, '1300', 'Municipio Maracaibo                  ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (327, 23, '1400', 'Municipio Miranda                    ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (328, 23, '1500', 'Municipio Páez                       ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (329, 23, '1600', 'Municipio Rosario de Perijá          ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (330, 23, '1700', 'Municipio San Francisco              ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (331, 23, '1800', 'Municipio Santa Rita                 ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (332, 23, '1900', 'Municipio Simón Bolívar              ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (333, 23, '2000', 'Municipio Sucre                      ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (334, 23, '2100', 'Municipio Valmore Rodríguez          ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (335, 24, '0100', 'Municipio Vargas                     ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (336, 25, '0100', 'Archipiélago Los Roques              ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (337, 25, '0200', 'Archipiélago Las Aves                ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (338, 25, '0300', 'Archipiélago La Orchila              ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (339, 26, '0100', 'Otras Dependencias Federales (M)     ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (340, 27, '0100', 'Registro de Normalización (Municipio)', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (20, 3, '1200', 'Municipio Manuel Ezequiel Bruzual        ', '2017-03-29', '11:43:37.371799', 1);
-INSERT INTO public.municipio (id_mun, id_est, cod_mun, desc_mun, fec_cre, hor_cre, status) VALUES (341, 28, '99', 'NO APLICA', '2017-10-14', '15:56:58.84549', 1);
+INSERT INTO public.municipio VALUES (3, 2, '0200', 'Municipio Autónomo Atabapo               ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (5, 2, '0400', 'Municipio Autonomo Autana                ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (6, 2, '0500', 'Municipio Autónomo Maroa                 ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (7, 2, '0600', 'Municipio Autónomo Manapiare             ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (8, 2, '0700', 'Municipio Autónomo Río Negro             ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (9, 3, '0100', 'Municipio Anaco                          ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (10, 3, '0200', 'Municipio Aragua                         ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (11, 3, '0300', 'Municipio Fernando de Peñalver           ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (12, 3, '0400', 'Municipio Francisco del Carmen Carvajal  ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (13, 3, '0500', 'Municipio Francisco de Miranda           ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (14, 3, '0600', 'Municipio Guanta                         ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (15, 3, '0700', 'Municipio Independencia                  ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (16, 3, '0800', 'Municipio Juan Antonio Sotillo           ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (17, 3, '0900', 'Municipio Juan Manuel Cajigal            ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (18, 3, '1000', 'Municipio José Gregorio Monagas          ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (19, 3, '1100', 'Municipio Libertad                       ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (28, 3, '2000', 'Municipio Sir Arthur Mc Gregor		   ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (29, 3, '2100', 'Municipio Turístico Diego Bautista Urbaneja ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (30, 4, '0100', 'Municipio Achaguas                          ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (31, 4, '0200', 'Municipio Biruaca                           ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (32, 4, '0300', 'Municipio Muñoz                             ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (33, 4, '0400', 'Municipio Páez                              ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (34, 4, '0500', 'Municipio Pedro Camejo                      ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (35, 4, '0600', 'Municipio Rómulo Gallegos                   ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (36, 4, '0700', 'Municipio San Fernando                      ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (37, 5, '0100', 'Municipio Bolívar                           ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (38, 5, '0200', 'Municipio Camatagua                         ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (39, 5, '0300', 'Municipio Girardot                          ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (40, 5, '0400', 'Municipio José Ángel Lamas                  ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (41, 5, '0500', 'Municipio José Félix Ribas                  ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (42, 5, '0600', 'Municipio José Rafael Revenga               ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (43, 5, '0700', 'Municipio Libertador                        ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (44, 5, '0800', 'Municipio Mario Briceño Iragorry            ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (45, 5, '0900', 'Municipio San Casimiro                      ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (46, 5, '1000', 'Municipio San Sebastián                     ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (47, 5, '1100', 'Municipio Santiago Mariño                   ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (48, 5, '1200', 'Municipio Santos Michelena                  ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (49, 5, '1300', 'Municipio Sucre                             ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (50, 5, '1400', 'Municipio Tovar                             ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (51, 5, '1500', 'Municipio Urdaneta                          ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (52, 5, '1600', 'Municipio Zamora                            ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (53, 5, '1700', 'Municipio Francisco Linares Alcantara       ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (54, 5, '1800', 'Municipio Ocumare de La Costa de Oro', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (55, 6, '0100', 'Municipio Alberto Arvelo Torrealba  ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (56, 6, '0200', 'Municipio Antonio José de Sucre     ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (57, 6, '0300', 'Municipio Arismendi                 ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (58, 6, '0400', 'Municipio Barinas                   ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (59, 6, '0500', 'Municipio Bolívar                   ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (60, 6, '0600', 'Municipio Cruz Paredes              ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (61, 6, '0700', 'Municipio Ezequiel Zamora           ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (62, 6, '0800', 'Municipio Obispos                   ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (63, 6, '0900', 'Municipio Pedraza                   ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (64, 6, '1000', 'Municipio Rojas                     ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (65, 6, '1100', 'Municipio Sosa                      ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (66, 6, '1200', 'Municipio Andrés Eloy Blanco        ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (67, 7, '0100', 'Municipio Caroní                    ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (68, 7, '0200', 'Municipio Cedeño                    ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (69, 7, '0300', 'Municipio El Callao                 ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (70, 7, '0400', 'Municipio Gran Sabana               ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (71, 7, '0500', 'Municipio Heres                     ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (72, 7, '0600', 'Municipio Piar                      ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (73, 7, '0700', 'Municipio Raúl Leoni                ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (74, 7, '0800', 'Municipio Roscio                    ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (75, 7, '0900', 'Municipio Sifontes                  ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (76, 7, '1000', 'Municipio Sucre                     ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (77, 7, '1100', 'Municipio Padre Pedro Chien         ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (78, 8, '0100', 'Municipio Bejuma                    ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (79, 8, '0200', 'Municipio Carlos Arvelo             ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (80, 8, '0300', 'Municipio Diego Ibarra		   ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (81, 8, '0400', 'Municipio Guacara                   ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (21, 3, '1300', 'Municipio Pedro María Freites            ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (22, 3, '1400', 'Municipio Píritu                         ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (24, 3, '1600', 'Municipio San Juan de Capistrano         ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (23, 3, '1500', 'Municipio San José de Guanipa            ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (25, 3, '1700', 'Municipio Santa Ana                      ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (27, 3, '1900', 'Municipio Simón Rodríguez                ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (26, 3, '1800', 'Municipio Simón Bolívar                  ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (1, 1, '0100', 'Municipio Libertador', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (2, 2, '0100', 'Municipio Autónomo Alto Orinoco', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (4, 2, '0300', 'Municipio Autónomo Atures', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (82, 8, '0500', 'Municipio Juan José Mora            ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (83, 8, '0600', 'Municipio Libertador                ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (84, 8, '0700', 'Municipio Los Guayos                ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (85, 8, '0800', 'Municipio Miranda                   ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (86, 8, '0900', 'Municipio Montalbán                 ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (87, 8, '1000', 'Municipio Naguanagua                ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (88, 8, '1100', 'Municipio Puerto Cabello            ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (89, 8, '1200', 'Municipio San Diego                 ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (90, 8, '1300', 'Municipio San Joaquín               ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (91, 8, '1400', 'Municipio Valencia                  ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (92, 9, '0100', 'Municipio Anzoátegui                ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (93, 9, '0200', 'Municipio Falcón                    ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (94, 9, '0300', 'Municipio Girardot                  ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (95, 9, '0400', 'Municipio Lima Blanco               ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (96, 9, '0500', 'Municipio Pao de San Juan Bautista  ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (97, 9, '0600', 'Municipio Ricaurte                  ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (98, 9, '0700', 'Municipio Rómulo Gallegos           ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (99, 9, '0800', 'Municipio San Carlos                ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (100, 9, '0900', 'Municipio Tinaco                    ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (101, 10, '0100', 'Municipio Antonio Díaz             ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (102, 10, '0200', 'Municipio Casacoima                ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (103, 10, '0300', 'Municipio Pedernales               ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (104, 10, '0400', 'Municipio Tucupita                 ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (105, 11, '0100', 'Municipio Acosta                   ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (106, 11, '0200', 'Municipio Bolívar                  ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (107, 11, '0300', 'Municipio Buchivacoa		  ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (108, 11, '0400', 'Municipio Cacique Manaure          ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (109, 11, '0500', 'Municipio Carirubana               ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (110, 11, '0600', 'Municipio Colina                   ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (111, 11, '0700', 'Municipio Dabajuro                 ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (112, 11, '0800', 'Municipio Democracia               ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (113, 11, '0900', 'Municipio Falcón                   ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (114, 11, '1000', 'Municipio Federación               ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (115, 11, '1100', 'Municipio Jacura                   ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (116, 11, '1200', 'Municipio Los Taques               ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (117, 11, '1300', 'Municipio Mauroa                   ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (118, 11, '1400', 'Municipio Miranda                  ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (119, 11, '1500', 'Municipio Monseñor Iturriza        ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (120, 11, '1600', 'Municipio Palmasola                ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (121, 11, '1700', 'Municipio Petit                    ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (122, 11, '1800', 'Municipio Piritu                   ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (123, 11, '1900', 'Municipio San Francisco            ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (124, 11, '2000', 'Municipio Silva                    ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (125, 11, '2100', 'Municipio Sucre                    ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (126, 11, '2200', 'Municipio Tocopero                 ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (127, 11, '2300', 'Municipio Unión                    ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (128, 11, '2400', 'Municipio Urumaco                  ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (129, 11, '2500', 'Municipio Zamora                   ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (130, 12, '0100', 'Municipio Camaguan                 ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (131, 12, '0200', 'Municipio Chaguaramas              ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (132, 12, '0300', 'Municipio El Socorro               ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (133, 12, '0400', 'Municipio San Gerónimo de Guayabal ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (134, 12, '0500', 'Municipio Leonardo Infante	  ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (135, 12, '0600', 'Municipio Las Mercedes		  ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (136, 12, '0700', 'Municipio Julián Mellado           ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (137, 12, '0800', 'Municipio Francisco de Miranda     ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (138, 12, '0900', 'Municipio José Tadeo Monagas       ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (139, 12, '1000', 'Municipio Ortiz                    ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (140, 12, '1100', 'Municipio José Félix Ribas         ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (141, 12, '1200', 'Municipio Juan German Roscio       ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (142, 12, '1300', 'Municipio San José de Guaribe      ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (143, 12, '1400', 'Municipio Santa María de Ipire     ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (144, 12, '1500', 'Municipio Pedro Zaraza             ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (145, 13, '0100', 'Municipio Andrés Eloy Blanco       ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (146, 13, '0200', 'Municipio Crespo                   ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (147, 13, '0300', 'Municipio Iribarren                ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (148, 13, '0400', 'Municipio Jiménez                  ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (149, 13, '0500', 'Municipio Morón                    ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (150, 13, '0600', 'Municipio Palavecino               ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (151, 13, '0700', 'Municipio Simón Planas             ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (152, 13, '0800', 'Municipio Torres                   ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (153, 13, '0900', 'Municipio Urdaneta                 ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (154, 14, '0100', 'Municipio Alberto Adriani          ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (155, 14, '0200', 'Municipio Andrés Bello             ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (156, 14, '0300', 'Municipio Antonio Pinto Salinas    ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (157, 14, '0400', 'Municipio Aricagua                 ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (158, 14, '0500', 'Municipio Arzobispo Chacón         ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (159, 14, '0600', 'Municipio Campo Elías              ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (160, 14, '0700', 'Municipio Caracciolo Parra Olmedo  ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (161, 14, '0800', 'Municipio Cardenal Quintero        ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (162, 14, '0900', 'Municipio Guaraque   	      ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (163, 14, '1000', 'Municipio Julio Cesar Salas    ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (164, 14, '1100', 'Municipio Justo Briceño        ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (165, 14, '1200', 'Municipio Libertador           ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (166, 14, '1300', 'Municipio Miranda              ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (167, 14, '1400', 'Municipio Obispo Ramos de Lora ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (168, 14, '1500', 'Municipio Padre Noguera        ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (169, 14, '1600', 'Municipio Pueblo Llano         ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (170, 14, '1700', 'Municipio Rangel               ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (171, 14, '1800', 'Municipio Rivas Dávila         ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (172, 14, '1900', 'Municipio Santos Marquina      ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (173, 14, '2000', 'Municipio Sucre                ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (174, 14, '2100', 'Municipio Tovar                ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (175, 14, '2200', 'Municipio Tulio Febres Cordero ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (176, 14, '2300', 'Municipio Zea                  ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (177, 15, '0100', 'Municipio Acevedo              ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (178, 15, '0200', 'Municipio Andrés Bello         ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (179, 15, '0300', 'Municipio Baruta               ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (180, 15, '0400', 'Municipio Brion                ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (181, 15, '0500', 'Municipio Buroz                ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (182, 15, '0600', 'Municipio Carrizal             ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (183, 15, '0700', 'Municipio Chacao               ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (184, 15, '0800', 'Municipio Cristóbal Rojas      ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (185, 15, '0900', 'Municipio El Hatillo           ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (186, 15, '1000', 'Municipio Guaicaipuro          ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (187, 15, '1100', 'Municipio Independencia        ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (188, 15, '1200', 'Municipio Lander               ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (189, 15, '1300', 'Municipio Los Salías	  ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (190, 15, '1400', 'Municipio Páez             ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (191, 15, '1500', 'Municipio Paz Castillo     ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (192, 15, '1600', 'Municipio Pedro Gual       ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (193, 15, '1700', 'Municipio Plaza            ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (194, 15, '1800', 'Municipio Simón Bolívar    ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (195, 15, '1900', 'Municipio Sucre            ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (196, 15, '2000', 'Municipio Urdaneta         ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (197, 15, '2100', 'Municipio Zamora           ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (198, 16, '0100', 'Municipio Acosta           ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (199, 16, '0200', 'Municipio Aguasay          ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (200, 16, '0300', 'Municipio Bolívar          ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (201, 16, '0400', 'Municipio Caripe           ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (202, 16, '0500', 'Municipio Cedeño           ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (203, 16, '0600', 'Municipio Ezequiel Zamora  ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (204, 16, '0700', 'Municipio Libertador       ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (205, 16, '0800', 'Municipio Maturín          ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (206, 16, '0900', 'Municipio Piar             ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (207, 16, '1000', 'Municipio Punceres         ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (208, 16, '1100', 'Municipio Santa Bárbara    ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (209, 16, '1200', 'Municipio Sotillo          ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (210, 16, '1300', 'Municipio Uracoa           ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (211, 17, '0100', 'Municipio Antolon del Campo', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (212, 17, '0200', 'Municipio Arismendi        ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (213, 17, '0300', 'Municipio Díaz             ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (214, 17, '0400', 'Municipio García           ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (215, 17, '0500', 'Municipio Gómez            ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (216, 17, '0600', 'Municipio Maneiro		      ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (217, 17, '0700', 'Municipio Marcano                      ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (218, 17, '0800', 'Municipio Mariño                       ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (219, 17, '0900', 'Municipio Península de Macanao         ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (220, 17, '1000', 'Municipio Tubores                      ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (221, 17, '1100', 'Municipio Villalba                     ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (222, 18, '0100', 'Municipio Agua Blanca                  ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (223, 18, '0200', 'Municipio Araure                       ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (224, 18, '0300', 'Municipio Esteller                     ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (225, 18, '0400', 'Municipio Guanare                      ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (226, 18, '0500', 'Municipio Guanarito                    ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (227, 18, '0600', 'Municipio Monseñor José Vicente de Unda', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (228, 18, '0700', 'Municipio Ospino                       ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (229, 18, '0800', 'Municipio Páez                         ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (230, 18, '0900', 'Municipio Papelon                      ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (231, 18, '1000', 'Municipio San Genaro de Boconoito      ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (232, 18, '1100', 'Municipio San Rafael de Onoto          ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (233, 18, '1200', 'Municipio Santa Rosalía                ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (234, 18, '1300', 'Municipio Sucre                        ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (235, 18, '1400', 'Municipio Turín                        ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (236, 19, '0100', 'Municipio Andrés Eloy Blanco           ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (237, 19, '0200', 'Municipio Andrés Mata                  ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (238, 19, '0300', 'Municipio Arismendi                    ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (239, 19, '0400', 'Municipio Benítez                      ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (240, 19, '0500', 'Municipio Bermúdez                     ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (241, 19, '0600', 'Municipio Bolívar                      ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (242, 19, '0700', 'Municipio Cajigal                      ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (243, 19, '0800', 'Municipio Cruz Salmerón Acosta', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (244, 19, '0900', 'Municipio Libertador          ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (245, 19, '1000', 'Municipio Mariño              ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (246, 19, '1100', 'Municipio Mejías              ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (247, 19, '1200', 'Municipio Montes              ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (248, 19, '1300', 'Municipio Ribero              ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (249, 19, '1400', 'Municipio Sucre               ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (250, 19, '1500', 'Municipio Valdez              ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (251, 20, '0100', 'Municipio Andrés Bello        ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (252, 20, '0200', 'Municipio Antonio Rómulo Costa', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (253, 20, '0300', 'Municipio Ayacucho            ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (254, 20, '0400', 'Municipio Bolívar             ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (255, 20, '0500', 'Municipio Cárdenas            ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (256, 20, '0600', 'Municipio Córdoba             ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (257, 20, '0700', 'Municipio Fernández Feo       ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (258, 20, '0800', 'Municipio Francisco de Miranda', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (259, 20, '0900', 'Municipio García de Hevia     ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (260, 20, '1000', 'Municipio Guasimos            ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (261, 20, '1100', 'Municipio Independencia       ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (262, 20, '1200', 'Municipio Jáuregui            ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (263, 20, '1300', 'Municipio José María Vargas   ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (264, 20, '1400', 'Municipio Junín               ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (265, 20, '1500', 'Municipio Libertad            ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (266, 20, '1600', 'Municipio Libertador          ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (267, 20, '1700', 'Municipio Lobatera            ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (268, 20, '1800', 'Municipio Michelena           ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (269, 20, '1900', 'Municipio Panamericano        ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (270, 20, '2000', 'Municipio Pedro María Ureña		  ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (271, 20, '2100', 'Municipio Rafael Urdaneta                  ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (272, 20, '2200', 'Municipio Samuel Darío Maldonado           ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (273, 20, '2300', 'Municipio San Cristóbal                    ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (274, 20, '2400', 'Municipio Seboruco                         ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (275, 20, '2500', 'Municipio Simón Rodríguez                  ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (276, 20, '2600', 'Municipio Sucre                            ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (277, 20, '2700', 'Municipio Torbes                           ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (278, 20, '2800', 'Municipio Uribante                         ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (279, 20, '2900', 'Municipio San Judas Tadeo                  ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (280, 21, '0100', 'Municipio Andrés Bello                     ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (281, 21, '0200', 'Municipio Bocono                           ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (282, 21, '0300', 'Municipio Bolívar                          ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (283, 21, '0400', 'Municipio Candelaria                       ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (284, 21, '0500', 'Municipio Carache                          ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (285, 21, '0600', 'Municipio Escuque                          ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (286, 21, '0700', 'Municipio José Felipe Márquez Carrizales   ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (287, 21, '0800', 'Municipio Juan Vicente Campo Elías         ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (288, 21, '0900', 'Municipio La Ceiba                         ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (289, 21, '1000', 'Municipio Miranda                          ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (290, 21, '1100', 'Municipio Monte Carmelo                    ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (291, 21, '1200', 'Municipio Motatan                          ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (292, 21, '1300', 'Municipio Pampan                           ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (293, 21, '1400', 'Municipio Pampanito                        ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (294, 21, '1500', 'Municipio Rafael Rangel                    ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (295, 21, '1600', 'Municipio San Rafael de Carvajal           ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (296, 21, '1700', 'Municipio Sucre                            ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (297, 21, '1800', 'Municipio Trujillo		  ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (298, 21, '1900', 'Municipio Urdaneta                 ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (299, 21, '2000', 'Municipio Valera                   ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (300, 22, '0100', 'Municipio Arístides Bastidas       ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (301, 22, '0200', 'Municipio Bolívar                  ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (302, 22, '0300', 'Municipio Bruzual                  ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (303, 22, '0400', 'Municipio Cocorote                 ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (304, 22, '0500', 'Municipio Independencia            ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (305, 22, '0600', 'Municipio José Antonio Páez        ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (306, 22, '0700', 'Municipio La Trinidad              ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (307, 22, '0800', 'Municipio Manuel Monge             ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (308, 22, '0900', 'Municipio Nirgua                   ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (309, 22, '1000', 'Municipio Peña                     ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (310, 22, '1100', 'Municipio San Felipe               ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (311, 22, '1200', 'Municipio Sucre                    ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (312, 22, '1300', 'Municipio Urachiche                ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (313, 22, '1400', 'Municipio Veroes                   ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (314, 23, '0100', 'Municipio Almirante Padilla        ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (315, 23, '0200', 'Municipio Baralt                   ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (316, 23, '0300', 'Municipio Cabimas                  ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (317, 23, '0400', 'Municipio Catatumbo                ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (318, 23, '0500', 'Municipio Colon                    ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (319, 23, '0600', 'Municipio Francisco Javier Pulgar  ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (320, 23, '0700', 'Municipio Jesús Enrique Lossada    ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (321, 23, '0800', 'Municipio Jesús María Sempron      ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (322, 23, '0900', 'Municipio La Cañada de Urdaneta    ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (323, 23, '1000', 'Municipio Lagunillas               ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (324, 23, '1100', 'Municipio Machiques de Perijá	    ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (325, 23, '1200', 'Municipio Mara                       ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (326, 23, '1300', 'Municipio Maracaibo                  ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (327, 23, '1400', 'Municipio Miranda                    ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (328, 23, '1500', 'Municipio Páez                       ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (329, 23, '1600', 'Municipio Rosario de Perijá          ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (330, 23, '1700', 'Municipio San Francisco              ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (331, 23, '1800', 'Municipio Santa Rita                 ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (332, 23, '1900', 'Municipio Simón Bolívar              ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (333, 23, '2000', 'Municipio Sucre                      ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (334, 23, '2100', 'Municipio Valmore Rodríguez          ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (335, 24, '0100', 'Municipio Vargas                     ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (336, 25, '0100', 'Archipiélago Los Roques              ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (337, 25, '0200', 'Archipiélago Las Aves                ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (338, 25, '0300', 'Archipiélago La Orchila              ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (339, 26, '0100', 'Otras Dependencias Federales (M)     ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (340, 27, '0100', 'Registro de Normalización (Municipio)', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (20, 3, '1200', 'Municipio Manuel Ezequiel Bruzual        ', '2017-03-29', '11:43:37.371799', 1);
+INSERT INTO public.municipio VALUES (341, 28, '99', 'NO APLICA', '2017-10-14', '15:56:58.84549', 1);
 
 
 --
--- TOC entry 2267 (class 0 OID 33031)
--- Dependencies: 186
+-- TOC entry 2245 (class 0 OID 16652)
+-- Dependencies: 193
 -- Data for Name: parroquia; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -2788,17 +2193,8 @@ INSERT INTO public.parroquia (id_parr, id_mun, cod_parr, desc_parr, fec_crt_parr
 
 
 --
--- TOC entry 2312 (class 0 OID 0)
--- Dependencies: 185
--- Name: parroquia_id_parr_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('public.parroquia_id_parr_seq', 1, false);
-
-
---
--- TOC entry 2282 (class 0 OID 33106)
--- Dependencies: 201
+-- TOC entry 2234 (class 0 OID 16410)
+-- Dependencies: 182
 -- Data for Name: tipo_trb; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -2807,79 +2203,59 @@ INSERT INTO public.tipo_trb (id_tp_trb, tp_trb, fec_crt_tp, hor_crt_tp, status) 
 
 
 --
--- TOC entry 2313 (class 0 OID 0)
--- Dependencies: 200
--- Name: tipo_trb_id_tp_trb_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('public.tipo_trb_id_tp_trb_seq', 1, false);
-
-
---
--- TOC entry 2265 (class 0 OID 33019)
--- Dependencies: 184
+-- TOC entry 2238 (class 0 OID 16510)
+-- Dependencies: 186
 -- Data for Name: tp_comp; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public.tp_comp (id_tp_comp, mat_tp_comp, fec_crt_comp, hor_crt_comp, status) VALUES (1, 'Acero', '2022-06-02', '18:44:55.041285', 0);
-INSERT INTO public.tp_comp (id_tp_comp, mat_tp_comp, fec_crt_comp, hor_crt_comp, status) VALUES (2, 'Plastico', '2022-06-02', '18:45:03.491476', 0);
-INSERT INTO public.tp_comp (id_tp_comp, mat_tp_comp, fec_crt_comp, hor_crt_comp, status) VALUES (3, 'Madera', '2022-06-02', '18:45:11.881773', 0);
-INSERT INTO public.tp_comp (id_tp_comp, mat_tp_comp, fec_crt_comp, hor_crt_comp, status) VALUES (4, 'Vidrio ', '2022-06-02', '18:45:17.328206', 0);
-INSERT INTO public.tp_comp (id_tp_comp, mat_tp_comp, fec_crt_comp, hor_crt_comp, status) VALUES (5, 'Corcho', '2022-06-02', '18:45:24.86797', 0);
-INSERT INTO public.tp_comp (id_tp_comp, mat_tp_comp, fec_crt_comp, hor_crt_comp, status) VALUES (6, 'Hierro', '2022-06-02', '18:55:02.737638', 0);
-INSERT INTO public.tp_comp (id_tp_comp, mat_tp_comp, fec_crt_comp, hor_crt_comp, status) VALUES (7, 'Ferrita', '2022-06-02', '18:55:12.540304', 0);
-INSERT INTO public.tp_comp (id_tp_comp, mat_tp_comp, fec_crt_comp, hor_crt_comp, status) VALUES (8, 'Mortero', '2022-06-02', '19:12:53.577911', 0);
-INSERT INTO public.tp_comp (id_tp_comp, mat_tp_comp, fec_crt_comp, hor_crt_comp, status) VALUES (9, 'Hormigón', '2022-06-02', '19:12:53.577911', 0);
-INSERT INTO public.tp_comp (id_tp_comp, mat_tp_comp, fec_crt_comp, hor_crt_comp, status) VALUES (10, 'Yeso', '2022-06-02', '19:12:53.577911', 0);
-INSERT INTO public.tp_comp (id_tp_comp, mat_tp_comp, fec_crt_comp, hor_crt_comp, status) VALUES (11, 'Cemento', '2022-06-02', '19:12:53.577911', 0);
-INSERT INTO public.tp_comp (id_tp_comp, mat_tp_comp, fec_crt_comp, hor_crt_comp, status) VALUES (12, 'Estaño', '2022-06-02', '19:12:53.577911', 0);
-INSERT INTO public.tp_comp (id_tp_comp, mat_tp_comp, fec_crt_comp, hor_crt_comp, status) VALUES (13, 'Aluminio', '2022-06-02', '19:12:53.577911', 0);
-INSERT INTO public.tp_comp (id_tp_comp, mat_tp_comp, fec_crt_comp, hor_crt_comp, status) VALUES (14, 'goma', '2022-06-02', '19:12:53.577911', 0);
-INSERT INTO public.tp_comp (id_tp_comp, mat_tp_comp, fec_crt_comp, hor_crt_comp, status) VALUES (15, 'celofán', '2022-06-02', '19:12:53.577911', 0);
-INSERT INTO public.tp_comp (id_tp_comp, mat_tp_comp, fec_crt_comp, hor_crt_comp, status) VALUES (16, 'metacrilato', '2022-06-02', '19:12:53.577911', 0);
-INSERT INTO public.tp_comp (id_tp_comp, mat_tp_comp, fec_crt_comp, hor_crt_comp, status) VALUES (17, 'polietileno', '2022-06-02', '19:12:53.577911', 0);
-INSERT INTO public.tp_comp (id_tp_comp, mat_tp_comp, fec_crt_comp, hor_crt_comp, status) VALUES (18, 'Roble', '2022-06-02', '19:12:53.577911', 0);
-INSERT INTO public.tp_comp (id_tp_comp, mat_tp_comp, fec_crt_comp, hor_crt_comp, status) VALUES (19, 'Castaño', '2022-06-02', '19:12:53.577911', 0);
-INSERT INTO public.tp_comp (id_tp_comp, mat_tp_comp, fec_crt_comp, hor_crt_comp, status) VALUES (20, 'Pino', '2022-06-02', '19:12:53.577911', 0);
-INSERT INTO public.tp_comp (id_tp_comp, mat_tp_comp, fec_crt_comp, hor_crt_comp, status) VALUES (21, 'Iroko', '2022-06-02', '19:12:53.577911', 0);
-INSERT INTO public.tp_comp (id_tp_comp, mat_tp_comp, fec_crt_comp, hor_crt_comp, status) VALUES (22, 'Abeto', '2022-06-02', '19:12:53.577911', 0);
-INSERT INTO public.tp_comp (id_tp_comp, mat_tp_comp, fec_crt_comp, hor_crt_comp, status) VALUES (23, 'Cerámica', '2022-06-02', '19:12:53.577911', 0);
-INSERT INTO public.tp_comp (id_tp_comp, mat_tp_comp, fec_crt_comp, hor_crt_comp, status) VALUES (24, 'Porcelana', '2022-06-02', '19:12:53.577911', 0);
-INSERT INTO public.tp_comp (id_tp_comp, mat_tp_comp, fec_crt_comp, hor_crt_comp, status) VALUES (25, 'Teja', '2022-06-02', '19:12:53.577911', 0);
-INSERT INTO public.tp_comp (id_tp_comp, mat_tp_comp, fec_crt_comp, hor_crt_comp, status) VALUES (26, 'Otros tipo', '2022-06-02', '19:12:53.577911', 0);
 
 
 --
--- TOC entry 2314 (class 0 OID 0)
--- Dependencies: 183
+-- TOC entry 2280 (class 0 OID 0)
+-- Dependencies: 185
 -- Name: tp_comp_id_tp_comp_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.tp_comp_id_tp_comp_seq', 7, true);
+
+INSERT INTO public.tp_comp VALUES (1, 'Acero', '2022-06-02', '18:44:55.041285', 0);
+INSERT INTO public.tp_comp VALUES (2, 'Plastico', '2022-06-02', '18:45:03.491476', 0);
+INSERT INTO public.tp_comp VALUES (3, 'Madera', '2022-06-02', '18:45:11.881773', 0);
+INSERT INTO public.tp_comp VALUES (4, 'Vidrio ', '2022-06-02', '18:45:17.328206', 0);
+INSERT INTO public.tp_comp VALUES (5, 'Corcho', '2022-06-02', '18:45:24.86797', 0);
+INSERT INTO public.tp_comp VALUES (6, 'Hierro', '2022-06-02', '18:55:02.737638', 0);
+INSERT INTO public.tp_comp VALUES (7, 'Ferrita', '2022-06-02', '18:55:12.540304', 0);
+INSERT INTO public.tp_comp VALUES (8, 'Mortero', '2022-06-02', '19:12:53.577911', 0);
+INSERT INTO public.tp_comp VALUES (9, 'Hormigón', '2022-06-02', '19:12:53.577911', 0);
+INSERT INTO public.tp_comp VALUES (10, 'Yeso', '2022-06-02', '19:12:53.577911', 0);
+INSERT INTO public.tp_comp VALUES (11, 'Cemento', '2022-06-02', '19:12:53.577911', 0);
+INSERT INTO public.tp_comp VALUES (12, 'Estaño', '2022-06-02', '19:12:53.577911', 0);
+INSERT INTO public.tp_comp VALUES (13, 'Aluminio', '2022-06-02', '19:12:53.577911', 0);
+INSERT INTO public.tp_comp VALUES (14, 'goma', '2022-06-02', '19:12:53.577911', 0);
+INSERT INTO public.tp_comp VALUES (15, 'celofán', '2022-06-02', '19:12:53.577911', 0);
+INSERT INTO public.tp_comp VALUES (16, 'metacrilato', '2022-06-02', '19:12:53.577911', 0);
+INSERT INTO public.tp_comp VALUES (17, 'polietileno', '2022-06-02', '19:12:53.577911', 0);
+INSERT INTO public.tp_comp VALUES (18, 'Roble', '2022-06-02', '19:12:53.577911', 0);
+INSERT INTO public.tp_comp VALUES (19, 'Castaño', '2022-06-02', '19:12:53.577911', 0);
+INSERT INTO public.tp_comp VALUES (20, 'Pino', '2022-06-02', '19:12:53.577911', 0);
+INSERT INTO public.tp_comp VALUES (21, 'Iroko', '2022-06-02', '19:12:53.577911', 0);
+INSERT INTO public.tp_comp VALUES (22, 'Abeto', '2022-06-02', '19:12:53.577911', 0);
+INSERT INTO public.tp_comp VALUES (23, 'Cerámica', '2022-06-02', '19:12:53.577911', 0);
+INSERT INTO public.tp_comp VALUES (24, 'Porcelana', '2022-06-02', '19:12:53.577911', 0);
+INSERT INTO public.tp_comp VALUES (25, 'Teja', '2022-06-02', '19:12:53.577911', 0);
+INSERT INTO public.tp_comp VALUES (26, 'Otros tipo', '2022-06-02', '19:12:53.577911', 0);
 
 
 --
--- TOC entry 2284 (class 0 OID 33118)
--- Dependencies: 203
+-- TOC entry 2236 (class 0 OID 16421)
+-- Dependencies: 184
 -- Data for Name: trabajador; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public.trabajador (id_trb, id_tp_trb, id_adm_trb, email_trb, nombre_trb, apellido_trb, cedula_trb, password_trb, fecha_crt_trb, hora_crt_trb, status) VALUES (1, 1, 1, 'alejandro.molinar17@gmail.com', 'Alejandro ', 'Molinar', '26624599', '$2y$10$nKXt1ZPMKg6YSCaFYeHri.R/VcC0RqlU89IXNE.H2eKKajJgqUhzK', '2022-06-02', '19:20:28.764329-04', 0);
-INSERT INTO public.trabajador (id_trb, id_tp_trb, id_adm_trb, email_trb, nombre_trb, apellido_trb, cedula_trb, password_trb, fecha_crt_trb, hora_crt_trb, status) VALUES (2, 2, 2, 'maseiltorres@gmail.com', 'Masiel ', 'Torres', '10382329', '$2y$10$FhlDciARIiwJOR9nzkjKWee9mECmRPZmy96UGU5zWvnsHCk1blzVe', '2022-06-02', '19:38:48.566238-04', 0);
 
 
 --
--- TOC entry 2315 (class 0 OID 0)
--- Dependencies: 202
--- Name: trabajador_id_trb_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('public.trabajador_id_trb_seq', 2, true);
-
-
---
--- TOC entry 2263 (class 0 OID 33010)
--- Dependencies: 182
+-- TOC entry 2249 (class 0 OID 16694)
+-- Dependencies: 197
 -- Data for Name: uni_adm; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -2893,299 +2269,173 @@ INSERT INTO public.uni_adm (id_uni_adm, desc_uni_adm, fec_cre, hor_cre, status) 
 
 
 --
--- TOC entry 2316 (class 0 OID 0)
--- Dependencies: 181
--- Name: uni_adm_id_uni_adm_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+-- TOC entry 2439 (class 0 OID 653811)
+-- Dependencies: 189
+-- Data for Name: estado; Type: TABLE DATA; Schema: public; Owner: user_sigebin
 --
 
-SELECT pg_catalog.setval('public.uni_adm_id_uni_adm_seq', 7, true);
+INSERT INTO public.estado (id_est, cod_est, desc_est, fec_cre, hor_cre, status) VALUES (1, '1', 'DISTRITO CAPITAL', '2017-03-29', '11:42:45.371831', 1);
+INSERT INTO public.estado (id_est, cod_est, desc_est, fec_cre, hor_cre, status) VALUES (2, '2', 'AMAZONAS', '2017-03-29', '11:42:45.371831', 1);
+INSERT INTO public.estado (id_est, cod_est, desc_est, fec_cre, hor_cre, status) VALUES (3, '3', 'ANZOATEGUI', '2017-03-29', '11:42:45.371831', 1);
+INSERT INTO public.estado (id_est, cod_est, desc_est, fec_cre, hor_cre, status) VALUES (4, '4', 'APURE', '2017-03-29', '11:42:45.371831', 1);
+INSERT INTO public.estado (id_est, cod_est, desc_est, fec_cre, hor_cre, status) VALUES (5, '5', 'ARAGUA', '2017-03-29', '11:42:45.371831', 1);
+INSERT INTO public.estado (id_est, cod_est, desc_est, fec_cre, hor_cre, status) VALUES (6, '6', 'BARINAS', '2017-03-29', '11:42:45.371831', 1);
+INSERT INTO public.estado (id_est, cod_est, desc_est, fec_cre, hor_cre, status) VALUES (7, '7', 'BOLIVAR', '2017-03-29', '11:42:45.371831', 1);
+INSERT INTO public.estado (id_est, cod_est, desc_est, fec_cre, hor_cre, status) VALUES (8, '8', 'CARABOBO', '2017-03-29', '11:42:45.371831', 1);
+INSERT INTO public.estado (id_est, cod_est, desc_est, fec_cre, hor_cre, status) VALUES (9, '9', 'OJEDES', '2017-03-29', '11:42:45.371831', 1);
+INSERT INTO public.estado (id_est, cod_est, desc_est, fec_cre, hor_cre, status) VALUES (10, '10', 'DELTA AMACURO', '2017-03-29', '11:42:45.371831', 1);
+INSERT INTO public.estado (id_est, cod_est, desc_est, fec_cre, hor_cre, status) VALUES (11, '11', 'FALCON', '2017-03-29', '11:42:45.371831', 1);
+INSERT INTO public.estado (id_est, cod_est, desc_est, fec_cre, hor_cre, status) VALUES (12, '12', 'GUARICO', '2017-03-29', '11:42:45.371831', 1);
+INSERT INTO public.estado (id_est, cod_est, desc_est, fec_cre, hor_cre, status) VALUES (13, '13', 'LARA', '2017-03-29', '11:42:45.371831', 1);
+INSERT INTO public.estado (id_est, cod_est, desc_est, fec_cre, hor_cre, status) VALUES (14, '14', 'MERIDA', '2017-03-29', '11:42:45.371831', 1);
+INSERT INTO public.estado (id_est, cod_est, desc_est, fec_cre, hor_cre, status) VALUES (15, '15', 'MIRANDA', '2017-03-29', '11:42:45.371831', 1);
+INSERT INTO public.estado (id_est, cod_est, desc_est, fec_cre, hor_cre, status) VALUES (16, '16', 'MONAGAS', '2017-03-29', '11:42:45.371831', 1);
+INSERT INTO public.estado (id_est, cod_est, desc_est, fec_cre, hor_cre, status) VALUES (17, '17', 'NUEVA ESPARTA', '2017-03-29', '11:42:45.371831', 1);
+INSERT INTO public.estado (id_est, cod_est, desc_est, fec_cre, hor_cre, status) VALUES (18, '18', 'PORTUGUESA', '2017-03-29', '11:42:45.371831', 1);
+INSERT INTO public.estado (id_est, cod_est, desc_est, fec_cre, hor_cre, status) VALUES (19, '19', 'SUCRE', '2017-03-29', '11:42:45.371831', 1);
+INSERT INTO public.estado (id_est, cod_est, desc_est, fec_cre, hor_cre, status) VALUES (20, '20', 'TACHIRA', '2017-03-29', '11:42:45.371831', 1);
+INSERT INTO public.estado (id_est, cod_est, desc_est, fec_cre, hor_cre, status) VALUES (21, '21', 'TRUJILLO', '2017-03-29', '11:42:45.371831', 1);
+INSERT INTO public.estado (id_est, cod_est, desc_est, fec_cre, hor_cre, status) VALUES (22, '22', 'YARACUY', '2017-03-29', '11:42:45.371831', 1);
+INSERT INTO public.estado (id_est, cod_est, desc_est, fec_cre, hor_cre, status) VALUES (23, '23', 'ZULIA', '2017-03-29', '11:42:45.371831', 1);
+INSERT INTO public.estado (id_est, cod_est, desc_est, fec_cre, hor_cre, status) VALUES (24, '24', 'VARGAS', '2017-03-29', '11:42:45.371831', 1);
+INSERT INTO public.estado (id_est, cod_est, desc_est, fec_cre, hor_cre, status) VALUES (25, '25', 'TERRITORIO INSULAR FRANCISCO DE MIRANDA', '2017-03-29', '11:42:45.371831', 1);
+INSERT INTO public.estado (id_est, cod_est, desc_est, fec_cre, hor_cre, status) VALUES (26, '26', 'OTRAS DEPENDENCIAS FEDERALES', '2017-03-29', '11:42:45.371831', 1);
+INSERT INTO public.estado (id_est, cod_est, desc_est, fec_cre, hor_cre, status) VALUES (27, '27', 'Registro de Normalización (Estado)', '2017-03-29', '11:42:45.371831', 1);
+INSERT INTO public.estado (id_est, cod_est, desc_est, fec_cre, hor_cre, status) VALUES (28, '99', 'NO APLICA', '2017-10-14', '15:54:44.94228', 1);
 
 
---
--- TOC entry 2115 (class 2606 OID 33135)
--- Name: pk_cod_marc; Type: CONSTRAINT; Schema: public; Owner: postgres
---
+//-----------------------------------PRIMARY KEY ------------------------------------------------
+
 
 ALTER TABLE ONLY public.marca
     ADD CONSTRAINT pk_cod_marc PRIMARY KEY (cod_marc);
 
 
---
--- TOC entry 2129 (class 2606 OID 33164)
--- Name: pk_estado_id_est; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.estado
-    ADD CONSTRAINT pk_estado_id_est PRIMARY KEY (id_est);
-
-
---
--- TOC entry 2105 (class 2606 OID 33137)
--- Name: pk_id_adm; Type: CONSTRAINT; Schema: public; Owner: postgres
---
 
 ALTER TABLE ONLY public.uni_adm
     ADD CONSTRAINT pk_id_adm PRIMARY KEY (id_uni_adm);
 
 
---
--- TOC entry 2123 (class 2606 OID 33139)
--- Name: pk_id_bien; Type: CONSTRAINT; Schema: public; Owner: postgres
---
 
 ALTER TABLE ONLY public.bien_mue
     ADD CONSTRAINT pk_id_bien PRIMARY KEY (id_bien_mue);
 
 
---
--- TOC entry 2121 (class 2606 OID 33141)
--- Name: pk_id_ciu; Type: CONSTRAINT; Schema: public; Owner: postgres
---
 
 ALTER TABLE ONLY public.ciudad
     ADD CONSTRAINT pk_id_ciu PRIMARY KEY (id_ciu);
 
 
---
--- TOC entry 2119 (class 2606 OID 33143)
--- Name: pk_id_col; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
 ALTER TABLE ONLY public.colores
     ADD CONSTRAINT pk_id_col PRIMARY KEY (id_col);
 
-
---
--- TOC entry 2107 (class 2606 OID 33145)
--- Name: pk_id_comp; Type: CONSTRAINT; Schema: public; Owner: postgres
---
 
 ALTER TABLE ONLY public.tp_comp
     ADD CONSTRAINT pk_id_comp PRIMARY KEY (id_tp_comp);
 
 
---
--- TOC entry 2117 (class 2606 OID 33147)
--- Name: pk_id_eqp; Type: CONSTRAINT; Schema: public; Owner: postgres
---
 
 ALTER TABLE ONLY public.inventario
     ADD CONSTRAINT pk_id_eqp PRIMARY KEY (id_bien);
 
 
---
--- TOC entry 2113 (class 2606 OID 33149)
--- Name: pk_id_mod; Type: CONSTRAINT; Schema: public; Owner: postgres
---
 
 ALTER TABLE ONLY public.modelo
     ADD CONSTRAINT pk_id_mod PRIMARY KEY (id_mod);
 
 
---
--- TOC entry 2109 (class 2606 OID 33153)
--- Name: pk_id_parr; Type: CONSTRAINT; Schema: public; Owner: postgres
---
+ALTER TABLE ONLY public.municipio
+    ADD CONSTRAINT pk_municipio_id_mun PRIMARY KEY (id_mun);
 
 ALTER TABLE ONLY public.parroquia
     ADD CONSTRAINT pk_id_parr PRIMARY KEY (id_parr);
 
 
---
--- TOC entry 2125 (class 2606 OID 33155)
--- Name: pk_id_tp; Type: CONSTRAINT; Schema: public; Owner: postgres
---
 
 ALTER TABLE ONLY public.tipo_trb
     ADD CONSTRAINT pk_id_tp PRIMARY KEY (id_tp_trb);
 
 
---
--- TOC entry 2127 (class 2606 OID 33157)
--- Name: pk_id_trb; Type: CONSTRAINT; Schema: public; Owner: postgres
---
 
 ALTER TABLE ONLY public.trabajador
     ADD CONSTRAINT pk_id_trb PRIMARY KEY (id_trb);
 
+//-----------------------------------FOREIGN KEY ------------------------------------------------
+
+
+ALTER TABLE ONLY public.modelo
+    ADD CONSTRAINT fk_cod_marc FOREIGN KEY (cod_marc_mod) REFERENCES public.marca(cod_marc);
+
+
+ALTER TABLE ONLY public.estado
+    ADD CONSTRAINT pk_estado_id_est PRIMARY KEY (id_est);
 
 --
--- TOC entry 2111 (class 2606 OID 33151)
--- Name: pk_municipio_id_mun; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.municipio
-    ADD CONSTRAINT pk_municipio_id_mun PRIMARY KEY (id_mun);
-
-
---
--- TOC entry 2131 (class 2606 OID 33166)
--- Name: uq_estado_desc_est; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- TOC entry 2334 (class 2606 OID 653821)
+-- Name: uq_estado_desc_est; Type: CONSTRAINT; Schema: public; Owner: user_sigebin
 --
 
 ALTER TABLE ONLY public.estado
     ADD CONSTRAINT uq_estado_desc_est UNIQUE (desc_est);
 
 
---
--- TOC entry 2134 (class 2606 OID 33158)
--- Name: fk_cod_marc; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.modelo
-    ADD CONSTRAINT fk_cod_marc FOREIGN KEY (cod_marc_mod) REFERENCES public.marca(cod_marc);
-
-
---
--- TOC entry 2135 (class 2606 OID 33167)
--- Name: fk_cod_marc; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
 ALTER TABLE ONLY public.inventario
     ADD CONSTRAINT fk_cod_marc FOREIGN KEY (cod_marc) REFERENCES public.marca(cod_marc);
 
-
---
--- TOC entry 2146 (class 2606 OID 33172)
--- Name: fk_id_adm; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
 
 ALTER TABLE ONLY public.trabajador
     ADD CONSTRAINT fk_id_adm FOREIGN KEY (id_adm_trb) REFERENCES public.uni_adm(id_uni_adm);
 
 
---
--- TOC entry 2136 (class 2606 OID 33177)
--- Name: fk_id_adm; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
 ALTER TABLE ONLY public.inventario
     ADD CONSTRAINT fk_id_adm FOREIGN KEY (id_adm_bien) REFERENCES public.uni_adm(id_uni_adm);
 
 
---
--- TOC entry 2137 (class 2606 OID 33182)
--- Name: fk_id_bien; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
 ALTER TABLE ONLY public.inventario
-    ADD CONSTRAINT fk_id_bien FOREIGN KEY (id_num_bien) REFERENCES public.bien_mue(id_bien_mue);
+    ADD CONSTRAINT fk_id_bien FOREIGN KEY (id_bien_bien) REFERENCES public.bien_mue(id_bien_mue);
 
-
---
--- TOC entry 2138 (class 2606 OID 33187)
--- Name: fk_id_ciu; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
 
 ALTER TABLE ONLY public.inventario
     ADD CONSTRAINT fk_id_ciu FOREIGN KEY (id_ciu_bien) REFERENCES public.ciudad(id_ciu);
 
 
---
--- TOC entry 2139 (class 2606 OID 33192)
--- Name: fk_id_col; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
 ALTER TABLE ONLY public.inventario
     ADD CONSTRAINT fk_id_col FOREIGN KEY (id_clr_bien) REFERENCES public.colores(id_col);
 
-
---
--- TOC entry 2140 (class 2606 OID 33197)
--- Name: fk_id_mod; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
 
 ALTER TABLE ONLY public.inventario
     ADD CONSTRAINT fk_id_mod FOREIGN KEY (id_mod_bien) REFERENCES public.modelo(id_mod);
 
 
---
--- TOC entry 2132 (class 2606 OID 33202)
--- Name: fk_id_mun; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
 ALTER TABLE ONLY public.parroquia
     ADD CONSTRAINT fk_id_mun FOREIGN KEY (id_mun) REFERENCES public.municipio(id_mun);
 
-
---
--- TOC entry 2145 (class 2606 OID 33207)
--- Name: fk_id_mun; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
 
 ALTER TABLE ONLY public.ciudad
     ADD CONSTRAINT fk_id_mun FOREIGN KEY (id_mun) REFERENCES public.municipio(id_mun);
 
 
---
--- TOC entry 2141 (class 2606 OID 33212)
--- Name: fk_id_mun; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
 ALTER TABLE ONLY public.inventario
     ADD CONSTRAINT fk_id_mun FOREIGN KEY (id_mun_bien) REFERENCES public.municipio(id_mun);
 
-
---
--- TOC entry 2142 (class 2606 OID 33217)
--- Name: fk_id_parr; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
 
 ALTER TABLE ONLY public.inventario
     ADD CONSTRAINT fk_id_parr FOREIGN KEY (id_parr_bien) REFERENCES public.parroquia(id_parr);
 
 
---
--- TOC entry 2143 (class 2606 OID 33222)
--- Name: fk_id_tbr; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
 
 ALTER TABLE ONLY public.inventario
     ADD CONSTRAINT fk_id_tbr FOREIGN KEY (id_trb_bien) REFERENCES public.trabajador(id_trb);
 
 
---
--- TOC entry 2147 (class 2606 OID 33227)
--- Name: fk_id_tp; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
 ALTER TABLE ONLY public.trabajador
     ADD CONSTRAINT fk_id_tp FOREIGN KEY (id_tp_trb) REFERENCES public.tipo_trb(id_tp_trb);
 
-
---
--- TOC entry 2144 (class 2606 OID 33232)
--- Name: fk_id_tpc; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
 
 ALTER TABLE ONLY public.inventario
     ADD CONSTRAINT fk_id_tpc FOREIGN KEY (id_tpc_bien) REFERENCES public.tp_comp(id_tp_comp);
 
 
---
--- TOC entry 2133 (class 2606 OID 33237)
--- Name: fk_municipio_id_est; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
 ALTER TABLE ONLY public.municipio
     ADD CONSTRAINT fk_municipio_id_est FOREIGN KEY (id_est) REFERENCES public.estado(id_est) ON UPDATE CASCADE ON DELETE RESTRICT;
-
-
---
--- TOC entry 2293 (class 0 OID 0)
--- Dependencies: 6
--- Name: SCHEMA public; Type: ACL; Schema: -; Owner: postgres
---
-
-REVOKE ALL ON SCHEMA public FROM PUBLIC;
-REVOKE ALL ON SCHEMA public FROM postgres;
-GRANT ALL ON SCHEMA public TO postgres;
-GRANT ALL ON SCHEMA public TO PUBLIC;
-
-
--- Completed on 2022-06-02 22:26:49
-
---
--- PostgreSQL database dump complete
---
 
