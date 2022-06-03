@@ -83,7 +83,7 @@ class ControladorUpdate extends CI_Controller{
 		$statusF = $this->input->post('statusS');
 
 		//-------------------Validacion----------------------------------------------------------
-		$datosBien = $this->ModelCreate->GetTables('inventario', 'id_num_bien', 'id_inv_bien', $idF);
+		$datosBien = $this->ModelCreate->GetTables('inventario', 'id_num_bien', 'id_bien', $idF);
 		//-------------------Validacion----------------------------------------------------------
 
 		$config = fromUpdate_rules();

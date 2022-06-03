@@ -41,7 +41,7 @@ class ControlUsuarios extends CI_Controller{
 						'nombre' => $items->nombre_trb,
 						'apellido' => $items->apellido_trb,
 						'cedula' => $items->cedula_trb,
-						'areaAdm' => $this->ModelInventario->GetTables('uni_adm', 'desc_uni_adm', 'id_uni_adm', $items->id_area_trb),
+						'areaAdm' => $this->ModelInventario->GetTables('uni_adm', 'desc_uni_adm', 'id_uni_adm', $items->id_adm_trb),
 						'fecha' => $items->fecha_crt_trb,
 						'hora' => $items->hora_crt_trb ,
 						'status' => $items->status,

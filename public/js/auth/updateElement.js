@@ -2,8 +2,7 @@
 	$("#formUpdate").submit(function (ev) {
 		ev.preventDefault();
 		$.ajax({
-			// url: "http://localhost/InventorySystem/guardarUp",
-			url: "guardarUp",
+			url: "http://localhost/InventorySystem/guardarUp",
 			type: "POST",
 			data: $(this).serialize(),
 			success: function (data) {
@@ -44,6 +43,8 @@
 					}
 
 				}
+
+				
 			},
 		});
 	});

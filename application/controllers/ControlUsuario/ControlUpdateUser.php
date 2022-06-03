@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class ControlUpdate extends CI_Controller{
+class ControlUpdateUser extends CI_Controller{
 
 	public function __construct(){
 		parent::__construct();
@@ -29,7 +29,7 @@ class ControlUpdate extends CI_Controller{
 
 				$data = array(
 					'head' => $this->load->view('VistaUsuarios/layout/headUpdate', '', TRUE),
-					'nav' => $this->load->view('VistaUsuarios/layout/navbar', '', TRUE),
+					'nav' => $this->load->view('VistaUsuarios/layout/navbarUpdate', '', TRUE),
 					'content' => $this->load->view('VistaUsuarios/content/userUpdate', array(
 						'id' => $datos->id_trb,			
 						'rango' => $datos->id_tp_trb,		
@@ -40,7 +40,7 @@ class ControlUpdate extends CI_Controller{
 						'fecha' => $datos->fecha_crt_trb,			
 						'hora' => $datos->hora_crt_trb,			
 						'status' => $datos->status,	
-						'areaAdm' => $datos->id_area_trb,
+						'areaAdm' => $datos->id_adm_trb,
 						'areaAdmSelect' => $undAdm,
 					), TRUE),
 					'footer' => $this->load->view('VistaUsuarios/layout/footerUpdate', '', TRUE),

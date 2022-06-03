@@ -13,7 +13,7 @@
         <li class="nav-item">
             <?php if ($this->session->range == 1) : ?>
                 <button type="button" class="btn btn-outline-danger" 
-                onclick="window.location.href=' <?= base_url("controlInv") ?>'">
+                onclick="window.location.href=' <?= base_url("controlUser") ?>'">
                     Regresar
                 </button>
             <?php endif; ?>
