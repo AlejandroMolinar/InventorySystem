@@ -63,39 +63,24 @@ class ControlUpdateUser extends CI_Controller{
 		$cedulaU = $this->input->post('cedulaU');
 		$undAdmU = $this->input->post('undAdmU');
 		$statusU = $this->input->post('statusU');
-
+		
 		//-------------------Validacion----------------------------------------------------------
 
 		$config = userUpdate_rules();
 		$this->form_validation->set_rules($config);
 		$this->form_validation->set_error_delimiters('', '');
 
-		if ($this->form_validation->run() === FALSE) {
+		if ($this->form_validation->run() == FALSE) {
 			$error = array(
-				'rango' => form_error('rangoU'),
 				'email' => form_error('emailU'),
 				'nombre' => form_error('nombreU'),
 				'apellido' => form_error('apellidoU'),
 				'cedula' => form_error('cedulaU'),
-				'undAdm' => form_error('undAdmU'),
-				'status' => form_error('statusU'),
 			);
 			echo json_encode($error);
 			$this->output->set_status_header(400);
 			exit;
 		} else {
-
-			// id_trb			
-			// id_tp_trb			
-			// id_adm_trb			
-			// email_trb			
-			// nombre_trb			
-			// apellido_trb			
-			// cedula_trb			
-			// password_trb			
-			// fecha_crt_trb			
-			// hora_crt_trb			
-			// status
 			
 			$data = array(
 				'id_tp_trb' => $rangoU,
@@ -112,7 +97,7 @@ class ControlUpdateUser extends CI_Controller{
 				$this->output->set_status_header(401);
 				exit;
 			} else {
-				echo json_encode(array("url" => base_url('controlInv')));
+				echo json_encode(array("url" => base_url('controlUser')));
 			}
 		}
 	}

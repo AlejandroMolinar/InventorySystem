@@ -1,31 +1,43 @@
 <?php
-function register_rules(){
+function register_rules()
+{
         return array(
                 array(
-                        'field' => 'txt_nom_r',
-                        'label' => 'Nombres',
-                        'rules' => 'required|alpha_numeric_spaces',
+                        'field' => 'txt_ema_r',
+                        'label' => 'Email',
+                        'rules' => 'required|trim',
                         'errors' => array(
-                                'required' => 'Los %s son Requeridos.',
-                                'alpha_numeric_spaces' => 'Los %s no pueden Contener S&iacutembolos',
+                                'required' => 'El %s es Requerido.',
+                        ),
+                ),
+                array(
+                        'field' => 'txt_nom_r',
+                        'label' => 'Nombre',
+                        'rules' => 'required|alpha_numeric_spaces|min_length[3]|trim',
+                        'errors' => array(
+                                'required' => 'El %s es Requerido.',
+                                'alpha_numeric_spaces' => 'El %s no puede Contener S&iacutembolos',
+                                'min_length' => 'El %s debe tener M&iacutenimo 3 d&iacutegitos'
                         ),
                 ),
                 array(
                         'field' => 'txt_ape_r',
-                        'label' => 'Apellidos',
-                        'rules' => 'required|alpha_numeric_spaces',
+                        'label' => 'Apellido',
+                        'rules' => 'required|alpha_numeric_spaces|min_length[3]|trim',
                         'errors' => array(
-                                'required' => 'Los %s son Requeridos.',
-                                'alpha_numeric_spaces' => 'Los %s no pueden Contener S&iacutembolos',
+                                'required' => 'El %s es Requerido.',
+                                'alpha_numeric_spaces' => 'El %s no puede Contener S&iacutembolos',
+                                'min_length' => 'El %s debe tener M&iacutenimo 3 d&iacutegitos'
                         ),
                 ),
                 array(
                         'field' => 'txt_ced_r',
                         'label' => 'C&eacutedula',
-                        'rules' => 'required|numeric',
+                        'rules' => 'required|numeric|min_length[7]|trim',
                         'errors' => array(
                                 'required' => 'La %s es Requerida.',
                                 'numeric' => 'La %s es un Campo Num&eacuterico',
+                                'min_length' => 'La %s debe tener M&iacutenimo 7 d&iacutegitos'
                         ),
                 ),
                 array(
@@ -37,21 +49,13 @@ function register_rules(){
                         ),
                 ),
                 array(
-                        'field' => 'txt_ema_r',
-                        'label' => 'Correo',
-                        'rules' => 'required|trim',
-                        'errors' => array(
-                                'required' => 'El %s es Requerido.',
-                        ),
-                ),
-                array(
                         'field' => 'txt_pas_r',
                         'label' => 'Clave',
                         'rules' => 'required|trim|min_length[5]',
                         'errors' => array(
                                 'required' => 'La %s es invalida.',
                                 'min_length' => 'La %s debe tener m&iacutenimo 5 caracteres.',
-                        ),       
+                        ),
                 ),
                 array(
                         'field' => 'txt_rep_pas',

@@ -224,6 +224,7 @@ a {
   .alert{
 	position: relative;	
 	padding: 1rem 1rem;
+	left: .20rem;
 	margin-bottom: 1rem;
 	border: 1px solid transparent;
 	border-radius: .50rem;

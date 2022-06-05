@@ -1,12 +1,21 @@
 <?php
 function fromCreate_rules(){
     return array(
-                array(
+        array(
+            'field' => 'marcaS',
+            'label' => 'Marca',
+            'rules' => 'required',
+            'errors' => array(
+                'required' => 'La %s es Requerida.',
+            ),
+        ),
+        array(
             'field' => 'serialAdd',
             'label' => 'Serial',
-            'rules' => 'required|trim',
+            'rules' => 'required|trim|min_length[3]',
             'errors' => array(
                 'required' => 'El %s es Requerido.',
+                'min_length' => 'El %s debe tener M&iacutenimo 4 d&iacutegitos',
             ),
         ),
         array(
@@ -77,32 +86,6 @@ function fromCreate_rules(){
     );
 }
 
-function fromMarcaS_rules(){
-    return array(
-        array(
-            'field' => 'marcaS',
-            'label' => 'Marca',
-            'rules' => 'required',
-            'errors' => array(
-                'required' => 'La %s es Requerida.',
-            ),
-        ),
-    );
-}
-function fromMarcaI_rules(){
-    return array(
-        array(
-            'field' => 'marcaAdd',
-            'label' => 'Marca',
-            'rules' => 'required|trim|min_length[2]',
-            'errors' => array(
-                'required' => 'La %s es Requerida.',
-                'min_length' => 'La %s debe tener M&iacutenimo 4 d&iacutegitos'
-            ),
-        ),
-    );
-}
-
 function fromModeloS_rules(){
     return array(
         array(
@@ -155,4 +138,3 @@ function fromNumBienI_rules(){
         ),
     );
 }
-

@@ -67,6 +67,10 @@
 						$("#trabajador_err").html('<div class="alert alert-danger" role="alert">'
 							+ json.trabajador + '</div>');
 					}
+					if (json.estado.length != 0) {
+						$("#estado_err").html('<div class="alert alert-danger" role="alert">'
+							+ json.estado + '</div>');
+					}
 					if (json.ciudad.length != 0) {
 						$("#ciudad_err").html('<div class="alert alert-danger" role="alert">'
 							+ json.ciudad + '</div>');

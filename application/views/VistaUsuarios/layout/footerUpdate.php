@@ -24,17 +24,7 @@
 
 
     $(document).ready(function () {
-      ordenarSelect('marcaS');
-      ordenarSelect('modeloS');
-      ordenarSelect('numBienS');
-      ordenarSelect('colorS');
-      ordenarSelect('componenteS');
-      ordenarSelect('undAdmS');
-      ordenarSelect('trabajadorS');
-      ordenarSelect('estadoS');
-      ordenarSelect('ciudadS');
-      ordenarSelect('municipioS');
-      ordenarSelect('parroquiaS');
+      ordenarSelect('undAdmU');
     });
   </script>
 </body>

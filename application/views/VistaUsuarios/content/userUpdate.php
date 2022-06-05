@@ -17,8 +17,7 @@
                 <label>Id
                     <span class="obligatorio">*</span>
                 </label>
-                <input id="idU" name="id" type="text" class="form-inputs" 
-                value="<?= $id ?>" readonly>
+                <input id="idU" name="idU" type="text" class="form-inputs" value="<?= $id ?>" readonly>
             <div id="id_err"></div>
 
             </p>
@@ -27,9 +26,9 @@
                     <span class="obligatorio">*</span>
                 </label>
                 <select id="rangoU" name="rangoU" class="form-selects">
-                    <option <?=($rango == 1) ? 'selected' : '' ?> value="1">
+                    <option <?= ($rango == 1) ? 'selected' : '' ?> value="1">
                         1~Admin</option>
-                    <option <?=($rango == 2) ? 'selected' : '' ?> value="2">
+                    <option <?= ($rango == 2) ? 'selected' : '' ?> value="2">
                         2~User</option>
                 </select>
             <div id="rango_err"></div>
@@ -40,8 +39,7 @@
                 <label>Email
                     <span class="obligatorio">*</span>
                 </label>
-                <input id="emailU" name="emailU" type="text" class="form-inputs" 
-                value="<?= $email ?>">
+                <input id="emailU" name="emailU" type="text" class="form-inputs" value="<?= $email ?>">
             <div id="email_err"></div>
             </p>
 
@@ -49,8 +47,7 @@
                 <label>Nombre
                     <span class="obligatorio">*</span>
                 </label>
-                <input id="nombreU" name="nombreU" type="text" class="form-inputs" 
-                value="<?= $nombre ?>">
+                <input id="nombreU" name="nombreU" type="text" class="form-inputs" value="<?= $nombre ?>">
             <div id="nombre_err"></div>
             </p>
 
@@ -58,16 +55,14 @@
                 <label>Apellido
                     <span class="obligatorio">*</span>
                 </label>
-                <input id="apellidoU" name="apellidoU" type="text" class="form-inputs" 
-                value="<?= $apellido ?>">
+                <input id="apellidoU" name="apellidoU" type="text" class="form-inputs" value="<?= $apellido ?>">
             <div id="apellido_err"></div>
             </p>
             <p>
                 <label>C&eacutedula
                     <span class="obligatorio">*</span>
                 </label>
-                <input id="cedulaU" name="cedulaU" type="text" class="form-inputs" 
-                value="<?= $cedula ?>">
+                <input id="cedulaU" name="cedulaU" type="text" class="form-inputs" value="<?= $cedula ?>">
             <div id="cedula_err"></div>
             </p>
             <p>
@@ -94,9 +89,9 @@
                     <span class="obligatorio">*</span>
                 </label>
                 <select id="statusU" name="statusU" class="form-selects">
-                    <option <?=($status == 0) ? 'selected' : '' ?> value="0">
+                    <option <?= ($status == 0) ? 'selected' : '' ?> value="0">
                         0~Activo</option>
-                    <option <?=($status == 1) ? 'selected' : '' ?> value="1">
+                    <option <?= ($status == 1) ? 'selected' : '' ?> value="1">
                         1~Inactivo</option>
                 </select>
             <div id="status_err"></div>

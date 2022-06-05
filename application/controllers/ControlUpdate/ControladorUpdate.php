@@ -15,7 +15,7 @@ class ControladorUpdate extends CI_Controller{
 			$timeLog = $this->session->time;
 			$timeNow = time();
 
-			if ($timeNow - $timeLog >= 3000) {
+			if ($timeNow - $timeLog >= 300) {
 				session_destroy();
 				redirect(base_url());
 			} else {

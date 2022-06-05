@@ -53,7 +53,7 @@ class Login extends CI_Controller{
 			$this->form_validation->set_rules($config);
 			$this->form_validation->set_error_delimiters('', '');
 
-			if ($this->form_validation->run() === FALSE) {
+			if ($this->form_validation->run() == FALSE) {
 				$error = array(
 					'email_si' => form_error('txt_ema_l'),
 					'password_si' => form_error('txt_pas_l'),
@@ -72,7 +72,7 @@ class Login extends CI_Controller{
 				}else{
 					
 					if (!password_verify($password_si, $data_log->password_trb)) {
-						echo json_encode(array('msg' => "La Clave no son valida"));
+						echo json_encode(array('msg' => "La Clave no es valida"));
 						$this->output->set_status_header(401);
 						exit;
 	
