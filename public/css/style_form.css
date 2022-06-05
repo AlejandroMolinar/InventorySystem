@@ -1,0 +1,151 @@
+/* ===========================================================================================
+    Archivo: style_form.css
+    Descripcion: lista de estilos formulario Create y Update.
+    Fecha de Creacion: 20-05-2022
+    Por: Alejandro Molinar.
+ * ===========================================================================================
+*/
+
+/* Importación de fuentes de google fonts */
+@import url(https://fonts.googleapis.com/css?family=Noto+Sans);
+
+body {
+	height: 100%;
+	font-family: "Noto Sans", sans-serif;
+	background: linear-gradient(90deg, rgb(61, 61, 61) 0%, rgb(58, 58, 58) 50%, rgb(0, 0, 0) 100%);
+}
+.nav {
+	position: fixed;
+	top: 0px;
+	width: 100%;
+}
+
+.contact_form {
+	width: 35vw;
+	height: 94vh;
+	top: 40px;
+	left: 35%;
+	margin: 10px auto;
+	border-radius: 10px;
+	padding-top: 30px;
+	padding-bottom: 20px;
+	background-color: #fbfbfb;
+	padding-left: 30px;
+	position: fixed;
+	overflow-y: scroll;
+	overflow-x: scroll;
+}
+
+.form-selects,
+.form-inputs{
+	background-color: #fbfbfb;
+	width: 30vw;
+	height: 7vh;
+	border-radius: 5px;
+	border-style: solid;
+	border-width: 1px;
+	border-color: #000000;
+	margin-top: 10px;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+.form-selectAdd,
+.form-inputAdd{
+	background-color: #fbfbfb;
+	width: 26vw;
+	height: 7vh;
+	border-radius: 5px;
+	border-style: solid;
+	border-width: 1px;
+	border-color: #000000;
+	margin-top: 10px;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+
+label {
+	display: block;
+	float: center;
+}
+
+.submit{
+	height: 45px;
+	padding-left: 5px;
+	padding-right: 5px;
+	padding-top: 10px;
+	margin-bottom: 10px;
+	margin-top: 10px;
+	text-transform: uppercase;
+	background-color: #0e0e0e;
+	border-color: #0e0e0e;
+	border-style: solid;
+	border-radius: 10px;
+	width: 30vw;
+	cursor: pointer;
+}
+
+button p {
+	color: #fff;
+}
+
+span {
+	color: #0e0e0e76;
+}
+
+.aviso {
+	font-size: 13px;
+	color: #0e0e0e;
+}
+
+h1 {
+	font-size: 39px;
+	text-align: letf;
+	padding-bottom: 20px;
+	color: #000000;
+}
+
+h3 {
+	font-size: 16px;
+	padding-bottom: 30px;
+	color: #0e0e0e76;
+}
+
+p {
+	font-size: 14px;
+	color: #000000;
+}
+
+::-webkit-input-placeholder {
+	color: #a8a8a8;
+}
+
+
+.formulario input:focus {
+	outline: 0;
+	border: 1px solid #016d0a;
+}
+
+option{
+	text-transform: capitalize;
+}
+
+.alert{
+	position: relative;	
+	padding: 1rem 1rem;
+	margin-bottom: 1rem;
+	border: 1px solid transparent;
+	border-radius: .50rem;
+	height: .20rem;
+	width: 30vw;
+	display: flex;
+   	align-items: center;
+}
+
+.addContent{
+	width: 40px;
+	height: 40px;
+}
+
+

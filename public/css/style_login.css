@@ -1,0 +1,235 @@
+body {
+	margin: 0;
+    background: linear-gradient(90deg, rgb(61, 61, 61) 0%, rgb(58, 58, 58) 50%, rgb(0, 0, 0) 100%);
+	font: 600 16px/18px "Open Sans", sans-serif;
+}
+*,
+:after,
+:before {
+	box-sizing: border-box;
+}
+.clearfix:after,
+.clearfix:before {
+	content: "";
+	display: table;
+}
+.clearfix:after {
+	clear: both;
+	display: block;
+}
+a {
+	color: inherit;
+	text-decoration: none;
+}
+
+.login-wrap {
+	width: 40vw;
+	height: 100vh;
+	margin: auto;
+	position: relative;
+	box-shadow: 0 12px 15px 0 rgba(0, 0, 0, 0.24),
+		0 17px 90px 0 rgba(0, 0, 0, 0.19);
+}
+.login-html {
+	width: 40vw;
+	height: 100vh;
+	position: fixed;
+	padding: 50px 50px 50px 30px;
+	background: rgba(41, 41, 41, 0.9);
+	overflow-x: hidden;
+	overflow-y: scroll;
+
+}
+.login-html .sign-in-htm,
+.login-html .sign-up-htm {
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	position: absolute;
+	transform: rotateY(180deg);
+	backface-visibility: hidden;
+	transition: all 0.4s linear;
+}
+.login-html .sign-in,
+.login-html .sign-up,
+.login-form .group .check {
+	display: none;
+}
+.login-html .tab,
+.login-form .group .label,
+.login-form .group .button {
+	text-transform: uppercase;
+}
+.login-html .tab {
+	font-size: 22px;
+	margin-right: 15px;
+	padding-bottom: 5px;
+	margin: 0 15px 10px 0;
+	display: inline-block;
+	border-bottom: 2px solid transparent;
+}
+.login-html .sign-in:checked + .tab,
+.login-html .sign-up:checked + .tab {
+	color: #fff;
+	border-color: #ff1414;
+}
+.login-form {
+	min-height: 345px;
+	position: relative;
+	perspective: 1000px;
+	transform-style: preserve-3d;
+}
+.login-form .group {
+	margin-bottom: 20px;
+}
+.login-form .group .label,
+.login-form .group .input,
+.login-form .group .button {
+	width: 100%;
+	color: #fff;
+	display: block;
+}
+.login-form .group .input,
+.login-form .group .button {
+	border: none;
+	padding: 10px 10px;
+	border-radius: 20px;
+	background: rgba(255, 255, 255, 0.1);
+}
+.login-form .group input[data-type="password"] {
+	-text-security: circle;
+	-webkit-text-security: circle;
+}
+.login-form .group .label {
+	color: #aaa;
+	font-size: 12px;
+}
+.login-form .group .button {
+	background: #f51111;	
+	width: 105%;
+	height: 8vh;
+	border-radius: 15px;
+
+}
+.login-form .group label .icon {
+	width: 15px;
+	height: 15px;
+	border-radius: 2px;
+	position: relative;
+	display: inline-block;
+	background: rgba(255, 255, 255, 0.1);
+}
+.login-form .group label .icon:before,
+.login-form .group label .icon:after {
+	content: "";
+	width: 10px;
+	height: 2px;
+	background: #fff;
+	position: absolute;
+	transition: all 0.2s ease-in-out 0s;
+}
+.login-form .group label .icon:before {
+	left: 3px;
+	width: 5px;
+	bottom: 6px;
+	transform: scale(0) rotate(0);
+}
+.login-form .group label .icon:after {
+	top: 6px;
+	right: 0;
+	transform: scale(0) rotate(0);
+}
+.login-form .group .check:checked + label {
+	color: #fff;
+}
+.login-form .group .check:checked + label .icon {
+	background: #ee1111;
+}
+.login-form .group .check:checked + label .icon:before {
+	transform: scale(1) rotate(45deg);
+}
+.login-form .group .check:checked + label .icon:after {
+	transform: scale(1) rotate(-45deg);
+}
+.login-html .sign-in:checked + .tab	+ .sign-up	+ .tab	+ .login-form	.sign-in-htm {
+	transform: rotate(0);
+}
+.login-html .sign-up:checked + .tab + .login-form .sign-up-htm {
+	transform: rotate(0);
+}
+
+.hr {
+	height: 2px;
+	margin: 60px 0 50px 0;
+	background: rgba(245, 17, 17, 0.2);
+}
+.foot-lnk {
+	text-align: center;
+	color: #ee1111;
+}
+
+.msgtxt {
+	color:#fa0000;
+}
+
+.label_error {
+	text-align: center;
+	color: #ee1111;
+	font-size: medium;
+}
+
+.line_color{
+	background-color: #ffffff;
+}
+
+.input_area{
+	width: 105%;
+	height: 62px;
+	color: rgb(0, 0, 0);
+	display: block;
+	border: none;
+	border-radius: 15px;
+	background: rgba(113, 113, 113, 0.9);
+}
+
+/* label color */
+.input-field label {
+	color: #000;
+  }
+  /* label focus color */
+  .input-field input[type=text]:focus + label {
+	color: #000;
+  }
+  /* label underline focus color */
+  .input-field input[type=text]:focus {
+	border-bottom: 1px solid #000;
+	box-shadow: 0 1px 0 0 #000;
+  }
+  /* valid color */
+  .input-field input[type=text].valid {
+	border-bottom: 1px solid #000;
+	box-shadow: 0 1px 0 0 #000;
+  }
+  /* invalid color */
+  .input-field input[type=text].invalid {
+	border-bottom: 1px solid #000;
+	box-shadow: 0 1px 0 0 #000;
+  }
+  /* icon prefix focus color */
+  .input-field .prefix.active {
+	color: #000;
+  }
+
+  .alert{
+	position: relative;	
+	padding: 1rem 1rem;
+	left: .20rem;
+	margin-bottom: 1rem;
+	border: 1px solid transparent;
+	border-radius: .50rem;
+	height: .20rem;
+	display: flex;
+   	align-items: center;
+}
+
