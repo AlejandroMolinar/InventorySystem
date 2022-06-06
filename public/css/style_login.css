@@ -23,7 +23,7 @@ a {
 }
 
 .login-wrap {
-	width: 35vw;
+	width: 40vw;
 	height: 100vh;
 	margin: auto;
 	position: relative;
@@ -31,7 +31,7 @@ a {
 		0 17px 90px 0 rgba(0, 0, 0, 0.19);
 }
 .login-html {
-	width: 35vw;
+	width: 40vw;
 	height: 100vh;
 	position: fixed;
 	padding: 50px 50px 50px 30px;
