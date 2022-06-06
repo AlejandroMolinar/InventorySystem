@@ -29,10 +29,10 @@ body {
 
 .inventario {
 	position: fixed;
-	left: 22vw;
+	left: 18vw;
 	top: 7vh;
 	bottom: 0;
-	width: 78vw; /* viewport width */
+	width: 82vw; /* viewport width */
 	height: 93vh; /* viewport height */
 	overflow-y: scroll;
 	overflow-x: scroll;
