@@ -1,3 +1,11 @@
+/* ===========================================================================================
+    Archivo: style_login.css
+    Descripcion: lista de estilos formulario Registro e Inicio de Sesion.
+    Fecha de Creacion: 20-05-2022
+    Por: Alejandro Molinar.
+ * ===========================================================================================
+*/
+
 body {
 	margin: 0;
     background: linear-gradient(90deg, rgb(61, 61, 61) 0%, rgb(58, 58, 58) 50%, rgb(0, 0, 0) 100%);
