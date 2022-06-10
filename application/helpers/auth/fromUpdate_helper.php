@@ -1,4 +1,13 @@
 <?php
+/* ===========================================================================================
+    Archivo: ControlUsuarios.php
+    Descripcion:  Validación para el Formulario de Actualización de Bienes.
+    Fecha de Creacion: 20-04-2022
+    Por: Alejandro Molinar.
+ * ===========================================================================================
+*/
+?>
+<?php
 function fromUpdate_rules(){
     return array(
         

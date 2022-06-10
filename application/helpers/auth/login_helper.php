@@ -1,4 +1,13 @@
 <?php
+/* ===========================================================================================
+    Archivo: ControlUsuarios.php
+    Descripcion:  Validación para el Formulario de Inicio de Sesión.
+    Fecha de Creacion: 20-04-2022
+    Por: Alejandro Molinar.
+ * ===========================================================================================
+*/
+?>
+<?php
 
 function main_menu(){
     return array('urlBase' => base_url());

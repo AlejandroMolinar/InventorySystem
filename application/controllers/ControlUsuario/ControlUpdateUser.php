@@ -1,4 +1,14 @@
 <?php
+/* ===========================================================================================
+    Archivo: ControlUsuarios.php
+    Descripcion: Controlador para la Actualizacion de Usuarios.
+    Fecha de Creacion: 30-05-2022
+    Por: Alejandro Molinar.
+ * ===========================================================================================
+*/
+?>
+
+<?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
 class ControlUpdateUser extends CI_Controller{

@@ -1,4 +1,14 @@
 <?php
+/* ===========================================================================================
+    Archivo: ControladorUpdate.php
+    Descripcion: Controlador para la Actualizacion de los Bienes.
+    Fecha de Creacion: 20-5-2022
+    Por: Alejandro Molinar.
+ * ===========================================================================================
+*/
+?>
+
+<?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
 class ControladorUpdate extends CI_Controller{

@@ -2,7 +2,7 @@
 /* ===========================================================================================
     Archivo: ControlUsuarios.php
     Descripcion: Controlador para la Gestion de Usuarios.
-    Fecha de Creacion: 20-04-2022
+    Fecha de Creacion: 30-05-2022
     Por: Alejandro Molinar.
  * ===========================================================================================
 */
